@@ -471,6 +471,68 @@
         .footer-now { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.8rem; }
         .footer-now span { font-size: 0.78rem; color: var(--text); font-style: italic; font-family: 'Fraunces', serif; }
         .footer-now span::before { content: '· '; color: var(--accent); font-style: normal; }
+
+        /* LEXICON */
+        .lexicon-sec { padding: 14vh 5vw; background: var(--bg); border-top: 1px solid var(--line); position: relative; z-index: 5; }
+        .lexicon-grid { display: grid; grid-template-columns: 1fr; gap: 0; margin-top: 6vh; max-width: 1100px; }
+        @media (min-width: 768px) { .lexicon-grid { grid-template-columns: repeat(2, 1fr); column-gap: 4vw; } }
+        .lex-entry { padding: 3vh 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr; gap: 1vh; }
+        @media (min-width: 600px) { .lex-entry { grid-template-columns: 0.5fr 1fr; gap: 2vw; align-items: baseline; } }
+        .lex-term { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1.3rem, 2vw, 1.8rem); }
+        .lex-term::after { content: ' /n./'; color: var(--accent); font-size: 0.7em; font-style: normal; letter-spacing: 0.1em; }
+        .lex-def { font-size: clamp(0.92rem, 1.1vw, 1.05rem); line-height: 1.55; color: var(--text); font-weight: 300; }
+
+        /* INFLUENCES masthead */
+        .influences-sec { padding: 14vh 5vw; background: var(--bg-light); border-top: 1px solid var(--line); position: relative; z-index: 5; }
+        .influences-list { list-style: none; margin-top: 5vh; column-count: 1; column-gap: 4vw; }
+        @media (min-width: 768px) { .influences-list { column-count: 2; } }
+        @media (min-width: 1100px) { .influences-list { column-count: 3; } }
+        .influences-list li { display: flex; justify-content: space-between; gap: 2vw; padding: 1.4vh 0; border-bottom: 1px dotted var(--line); break-inside: avoid; font-size: 0.95rem; }
+        .influences-list li .name { font-family: 'Fraunces', serif; font-size: 1.05rem; }
+        .influences-list li .what { font-size: 0.75rem; letter-spacing: 0.18em; color: var(--text-dim); text-transform: uppercase; align-self: end; padding-bottom: 4px; }
+
+        /* KRONIKA timeline */
+        .kronika-sec { padding: 14vh 5vw; background: var(--bg); border-top: 1px solid var(--line); position: relative; z-index: 5; }
+        .kronika-list { list-style: none; margin-top: 6vh; position: relative; }
+        .kronika-list::before { content: ''; position: absolute; left: 4.5em; top: 1.5vh; bottom: 1.5vh; width: 1px; background: var(--line); }
+        @media (max-width: 600px) { .kronika-list::before { left: 3em; } }
+        .kron-entry { display: grid; grid-template-columns: 4em 1fr; gap: 2vw; padding: 3vh 0; border-bottom: 1px solid var(--line); align-items: baseline; position: relative; }
+        @media (max-width: 600px) { .kron-entry { grid-template-columns: 3em 1fr; gap: 1.2rem; } }
+        .kron-year { font-family: 'Fraunces', serif; font-size: clamp(1.4rem, 2.5vw, 2rem); color: var(--accent); position: relative; }
+        .kron-year::after { content: ''; position: absolute; right: -1px; top: 0.4em; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--bg); }
+        .kron-body h4 { font-family: 'Fraunces', serif; font-size: clamp(1.2rem, 1.8vw, 1.6rem); margin-bottom: 0.6rem; line-height: 1.15; }
+        .kron-body p { font-size: 0.92rem; line-height: 1.55; color: var(--text); font-weight: 300; max-width: 60ch; }
+
+        /* ANNALS — poetic numbers */
+        .annals-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4vh 4vw; padding: 9vh 5vw; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-light); position: relative; z-index: 5; }
+        @media (min-width: 768px) { .annals-row { grid-template-columns: repeat(4, 1fr); } }
+        .annal .num { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(2rem, 3.6vw, 3.2rem); line-height: 1; color: var(--text); display: block; }
+        .annal .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--text-dim); margin-top: 0.7rem; display: block; max-width: 22ch; line-height: 1.5; }
+
+        /* COLOPHON */
+        .colophon { padding: 5vh 5vw; border-top: 1px solid var(--line); background: var(--bg); }
+        .colophon-grid { display: grid; grid-template-columns: 1fr; gap: 3vh; max-width: 1280px; margin: 0 auto; }
+        @media (min-width: 900px) { .colophon-grid { grid-template-columns: 1fr 2fr; gap: 4vw; align-items: start; } }
+        .colophon-title { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1rem, 1.4vw, 1.3rem); color: var(--text-dim); }
+        .colophon-text { font-size: 0.85rem; line-height: 1.7; color: var(--text); font-weight: 300; column-count: 1; column-gap: 3vw; }
+        @media (min-width: 768px) { .colophon-text { column-count: 2; } }
+        .colophon-text p { margin-bottom: 1em; break-inside: avoid; }
+        .colophon-text strong { color: var(--text); font-weight: 500; }
+
+        /* PRINT stylesheet — site reads as editorial when printed */
+        @media print {
+            html, body { background: #fff; color: #111; }
+            #grain-overlay, #webgl-bg, .top-bar, .side-rail, .cursor-dot, .cursor-ring, .cursor-trail, .hover-img-container, .case-modal, .konami-flash, .mobile-menu, .menu-toggle, #scrollProgress, .audio-toggle { display: none !important; }
+            * { animation: none !important; transition: none !important; box-shadow: none !important; }
+            .huge { color: #111; -webkit-text-stroke: 0; }
+            .meta-text, .accent, .accent-slash, .case-credit .role, .lex-term::after { color: #d92525 !important; }
+            section, footer { padding: 4cm 2cm; page-break-inside: avoid; }
+            .hero-pin { height: auto; min-height: 24cm; page-break-after: always; }
+            .hero-img-container { opacity: 1 !important; filter: grayscale(100%); }
+            .body-text, .case-text, .tenet p, .lex-def, .kron-body p { color: #111 !important; }
+            .colophon { border-top: 0.5pt solid #999; }
+            .footer-mega { color: #111; font-size: 18cm; opacity: 0.05; position: absolute; }
+        }
     </style>
 </head>
 <body>
@@ -919,6 +981,125 @@
             </div>
         </section>
 
+        <section class="lexicon-sec" data-act="04">
+            <div class="meta-text" style="margin-bottom: 2rem;">— Słownik studyjny</div>
+            <h2 class="huge split-target" style="max-width: 16ch;">Słowa, których używamy świadomie.</h2>
+            <div class="lexicon-grid">
+                <div class="lex-entry">
+                    <span class="lex-term">narracja</span>
+                    <p class="lex-def">Sposób, w jaki marka decyduje, co chce zostawić światu. Nie kampania — postawa. Nie slogan — ramy, w które wchodzi każda decyzja przez dziesięć kolejnych lat.</p>
+                </div>
+                <div class="lex-entry">
+                    <span class="lex-term">manifest</span>
+                    <p class="lex-def">Krótki tekst, w którym marka mówi, czego nie zrobi. Negacje są wyraźniejsze od deklaracji. Manifest pisany w pierwszych godzinach współpracy chroni przed dwoma latami błądzenia.</p>
+                </div>
+                <div class="lex-entry">
+                    <span class="lex-term">forma</span>
+                    <p class="lex-def">Wszystko, co czytelnik widzi przed pierwszym słowem. Marginesy, krój, papier, tempo, cisza. Forma jest argumentem — używa go każdy, kto coś projektuje, świadomie albo nie.</p>
+                </div>
+                <div class="lex-entry">
+                    <span class="lex-term">echo</span>
+                    <p class="lex-def">Wszystko, co dzieje się z marką po launchu. Mierzymy je nie reachem, a powtórzeniem: ile razy klient wraca z tą samą historią w głowie. Echo to ostatni etap procesu.</p>
+                </div>
+                <div class="lex-entry">
+                    <span class="lex-term">archetyp</span>
+                    <p class="lex-def">Kategoria narracyjna pomocna w pierwszych tygodniach. Później ją porzucamy. Archetypy są wytarte, bo pomagają zacząć rozmowę — ale żadna marka, która została, nie była tylko archetypem.</p>
+                </div>
+                <div class="lex-entry">
+                    <span class="lex-term">cisza</span>
+                    <p class="lex-def">Pole, w którym marka nic nie mówi. To, co świadomie pomija. W projektach editorialnych cisza zajmuje 40-60% strony. W marketingu — 0%. Stąd zmęczenie czytelnika.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="influences-sec" data-act="04">
+            <div class="meta-text" style="margin-bottom: 2rem;">— Wpływy</div>
+            <h2 class="huge split-target" style="max-width: 18ch;">Półka, której nie ruszamy.</h2>
+            <p class="body-text gs-up" style="max-width: 60ch; margin-top: 3vh;">Autorzy, projektanci, reżyserzy i miejsca, które nas ukształtowały. Wracamy do nich między projektami — by sprawdzić, czy nadal myślimy.</p>
+            <ul class="influences-list">
+                <li><span class="name">Olga Tokarczuk</span><span class="what">Czuły narrator</span></li>
+                <li><span class="name">Kenya Hara</span><span class="what">White</span></li>
+                <li><span class="name">Bruno Munari</span><span class="what">Design as art</span></li>
+                <li><span class="name">Italo Calvino</span><span class="what">Six memos</span></li>
+                <li><span class="name">Wim Wenders</span><span class="what">Film</span></li>
+                <li><span class="name">John Berger</span><span class="what">Ways of seeing</span></li>
+                <li><span class="name">Robert Bringhurst</span><span class="what">Elements of typography</span></li>
+                <li><span class="name">Andrzej Tomaszewski</span><span class="what">Polska szkoła plakatu</span></li>
+                <li><span class="name">Studio Dumbar</span><span class="what">Praktyka</span></li>
+                <li><span class="name">Andrei Tarkovsky</span><span class="what">Sculpting in time</span></li>
+                <li><span class="name">Susan Sontag</span><span class="what">On photography</span></li>
+                <li><span class="name">Jasper Morrison</span><span class="what">Super normal</span></li>
+            </ul>
+        </section>
+
+        <section class="kronika-sec" data-act="04">
+            <div class="meta-text" style="margin-bottom: 2rem;">— Kronika studia</div>
+            <h2 class="huge split-target" style="max-width: 14ch;">Dwanaście lat, sześć rozdziałów.</h2>
+            <ol class="kronika-list">
+                <li class="kron-entry">
+                    <div class="kron-year">2014</div>
+                    <div class="kron-body">
+                        <h4 class="serif">Założenie studia</h4>
+                        <p>Aleksandra i Tomasz otwierają jednoosobowe studio w pracowni przy Krakowskim Przedmieściu. Pierwszym klientem zostaje wydawnictwo, które do dziś jest na liście — Refugium Press.</p>
+                    </div>
+                </li>
+                <li class="kron-entry">
+                    <div class="kron-year">2017</div>
+                    <div class="kron-body">
+                        <h4 class="serif">Pierwsza nagroda branżowa</h4>
+                        <p>Identyfikacja Polifonii Warszawskiej zostaje wyróżniona przez European Design Awards. To pierwszy raz, gdy zespół wyjeżdża razem za granicę po nagrodę. I ostatni — od 2018 nagrody odbiera tylko jedna osoba.</p>
+                    </div>
+                </li>
+                <li class="kron-entry">
+                    <div class="kron-year">2019</div>
+                    <div class="kron-body">
+                        <h4 class="serif">Drugie biuro w Lizbonie</h4>
+                        <p>Tomasz przeprowadza się na rok do Portugalii. Rok zostaje pięcioma. Dziś biuro w Lizbonie obsługuje klientów z półwyspu iberyjskiego i Ameryki Łacińskiej. Każdy projekt z Lizbony zaczyna się od kawy w Bambino.</p>
+                    </div>
+                </li>
+                <li class="kron-entry">
+                    <div class="kron-year">2021</div>
+                    <div class="kron-body">
+                        <h4 class="serif">Decyzja: 6 zleceń rocznie</h4>
+                        <p>Po roku covidowych remote-projektów decyzja jest wewnętrzna i ostateczna: studio nie urośnie. Maksymalnie sześć pełnych brandingów rocznie. Nigdy więcej. Lista oczekujących wydłuża się do 14 miesięcy.</p>
+                    </div>
+                </li>
+                <li class="kron-entry">
+                    <div class="kron-year">2024</div>
+                    <div class="kron-body">
+                        <h4 class="serif">Pierwszy Studio Notes</h4>
+                        <p>Newsletter studyjny — kwartalnik, esej, jeden temat. Bez reklam, bez CTA. Po dwóch latach 2 800 subskrybentów, 64% open rate. Studio Notes staje się drugim językiem marki.</p>
+                    </div>
+                </li>
+                <li class="kron-entry">
+                    <div class="kron-year">2026</div>
+                    <div class="kron-body">
+                        <h4 class="serif">Director's Cut V26</h4>
+                        <p>Strona studia przeprojektowana od zera. Pięć aktów, jeden manifest, siedem case studies. Towarzyszy jej książka „Narracja jako rzemiosło" — wydanie limitowane 600 egzemplarzy, druk Drukarnia Oficyna, papier Munken Pure 120g.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <section class="annals-row" aria-label="Studio Annals 2014–2026" data-act="04">
+            <div class="annal">
+                <span class="num">4 800</span>
+                <span class="label">filiżanek kawy w pracowni od 2014</span>
+            </div>
+            <div class="annal">
+                <span class="num">142</span>
+                <span class="label">książek przeczytanych zespołowo</span>
+            </div>
+            <div class="annal">
+                <span class="num">37 400</span>
+                <span class="label">kilometrów do klientów</span>
+            </div>
+            <div class="annal">
+                <span class="num">6 / rok</span>
+                <span class="label">przyjętych projektów. Lista oczekujących: 14 miesięcy</span>
+            </div>
+        </section>
+
         <section class="notes-sec" id="notes" data-act="04">
             <div class="meta-text" style="margin-bottom: 2rem;">— Studio Notes</div>
             <h2 class="huge split-target" style="max-width: 16ch;">Mini-eseje, raz na kwartał.</h2>
@@ -998,6 +1179,20 @@
                 </form>
             </div>
         </section>
+
+        <aside class="colophon" aria-label="Colophon">
+            <div class="colophon-grid">
+                <div class="colophon-title">Colophon</div>
+                <div class="colophon-text">
+                    <p>Ta strona została napisana, zaprojektowana i wydana przez <strong>Storyline Studio</strong> w Warszawie i Lizbonie, między grudniem 2025 a kwietniem 2026.</p>
+                    <p>Typografia: <strong>Fraunces</strong> (Phaedra Charles, 2020) jako rdzeń serifowy oraz <strong>Manrope</strong> (Mikhail Sharanda, 2018) jako sans-serif tekstowy. Diakrytyka polska weryfikowana ręcznie.</p>
+                    <p>Akcent: <strong>Oxblood Red #D92525</strong>. Trzy lata na palecie studyjnej. W trybie „Director's Cut" przechodzi w <strong>Burnt Amber #D4A574</strong>.</p>
+                    <p>Build: czysty HTML / CSS / JavaScript. Bez frameworka. <strong>GSAP 3.12</strong> dla choreografii, <strong>Lenis 1.1</strong> dla smooth scroll, <strong>WebGL</strong> dla tła z domain-warpingiem (po I.Q.).</p>
+                    <p>Krój testowy w nagłówkach: 160 px, 800 wagi, masa optyczna 144. Kompozycja siatki: clamp() bez breakpointów twardych, perspective 1800 px na każdej sekcji. Kolejność stosu: hero → manifest → forma → proces → praktyka → metoda → spotkanie.</p>
+                    <p>Towarzyszy stronie publikacja <em>„Narracja jako rzemiosło"</em>, druk: <strong>Drukarnia Oficyna</strong>, Warszawa. Papier: Munken Pure 120 g. Nakład: 600 egz. numerowanych.</p>
+                </div>
+            </div>
+        </aside>
 
         <footer>
             <div class="footer-mega" id="footerMega">Storyline.</div>
