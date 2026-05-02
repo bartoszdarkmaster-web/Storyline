@@ -73,12 +73,16 @@
         .cursor-ring { display: none; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.4); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s; mix-blend-mode: difference; justify-content: center; align-items: center; text-transform: uppercase; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-align: center; will-change: transform; }
         @media (pointer: fine) { .cursor-dot, .cursor-ring { display: flex; } }
 
+        /* Scroll progress hairline */
+        #scrollProgress { position: fixed; top: 0; left: 0; right: 0; height: 2px; background: rgba(255,255,255,0.06); z-index: 9001; pointer-events: none; }
+        #scrollProgress .bar { height: 100%; background: var(--accent); width: 0%; box-shadow: 0 0 8px var(--accent); transform-origin: left; transform: scaleX(0); }
+
         /* Top UI */
         .top-bar { position: fixed; top: 24px; left: 0; right: 0; padding: 0 28px; z-index: 9000; display: flex; justify-content: space-between; align-items: center; mix-blend-mode: difference; pointer-events: none; }
         .top-bar > * { pointer-events: auto; }
         .ui-brand { font-family: 'Fraunces', serif; letter-spacing: 0.08em; font-size: 1.05rem; display: flex; align-items: center; }
         .ui-brand .accent-slash { color: var(--accent); }
-        .ui-brand .active-act { font-family: 'Manrope', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dim); padding-left: 14px; margin-left: 14px; border-left: 1px solid rgba(255,255,255,0.2); transition: color 0.4s; }
+        .ui-brand .active-act { font-family: 'Manrope', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dim); padding-left: 14px; margin-left: 14px; border-left: 1px solid rgba(255,255,255,0.2); transition: opacity 0.25s ease, color 0.4s; min-width: 7em; display: inline-block; }
         @media (max-width: 720px) { .ui-brand .active-act { display: none; } }
 
         .ui-controls { display: flex; gap: 14px; align-items: center; }
@@ -118,15 +122,19 @@
 
         /* Hero */
         .hero-pin { height: 100vh; width: 100%; position: relative; overflow: hidden; padding: 0; }
+        .hero-stack { position: absolute; inset: 0; }
         .hero-img-container {
             position: absolute; inset: 0;
-            background: url('https://images.unsplash.com/photo-1530819568329-97653eafbbfa?w=1800&q=90&auto=format&fit=crop') center/cover no-repeat;
+            background-position: center; background-size: cover; background-repeat: no-repeat;
             -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 300'%3E%3Ctext x='50%25' y='52%25' font-family='Fraunces' font-size='160' font-weight='800' text-anchor='middle' dominant-baseline='middle'%3ESTORYLINE%3C/text%3E%3C/svg%3E");
             mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 300'%3E%3Ctext x='50%25' y='52%25' font-family='Fraunces' font-size='160' font-weight='800' text-anchor='middle' dominant-baseline='middle'%3ESTORYLINE%3C/text%3E%3C/svg%3E");
             -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
             -webkit-mask-position: center; mask-position: center;
             -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1.2s cubic-bezier(0.65, 0, 0.35, 1);
         }
+        .hero-img-container.active { opacity: 1; }
         @media (max-width: 768px) {
             .hero-img-container {
                 -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 300'%3E%3Ctext x='50%25' y='52%25' font-family='Fraunces' font-size='270' font-weight='800' text-anchor='middle' dominant-baseline='middle'%3ESTORY%3C/text%3E%3C/svg%3E");
@@ -145,6 +153,7 @@
 
         /* Akt I (consume) */
         .consume { background: rgba(1,1,1,0.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+        .drop-cap::first-letter { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 4.2em; line-height: 0.85; float: left; padding: 0.08em 0.12em 0 0; color: var(--accent); }
 
         /* Manifesto Scrub */
         .manifesto-scrub { height: 200vh; position: relative; background: var(--bg); z-index: 5; }
@@ -295,6 +304,7 @@
 </head>
 <body>
     <div id="grain-overlay"></div>
+    <div id="scrollProgress" aria-hidden="true"><div class="bar"></div></div>
 
     <header class="top-bar">
         <a href="#hero" class="ui-brand" aria-label="Storyline — góra strony">
@@ -340,14 +350,19 @@
     <main id="smooth-wrapper">
 
         <section class="hero-pin" id="hero" data-act="01">
-            <div class="hero-img-container" id="heroImg"></div>
+            <div class="hero-stack" id="heroStack">
+                <div class="hero-img-container active" data-photo="https://images.unsplash.com/photo-1530819568329-97653eafbbfa?w=1800&q=90&auto=format&fit=crop"></div>
+                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1492136344046-866c85e0bf04?w=1800&q=90&auto=format&fit=crop"></div>
+                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1561070791-2526d30994b8?w=1800&q=90&auto=format&fit=crop"></div>
+                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1800&q=90&auto=format&fit=crop"></div>
+            </div>
             <div class="hero-meta left">
-                <div>Warszawa · Lizbona</div>
-                <div class="accent">52°N · 38°W</div>
+                <div id="heroClockWAW">Warszawa · 12:34</div>
+                <div class="accent" id="heroClockLIS">Lizbona · 11:34</div>
             </div>
             <div class="hero-meta right">
                 <div>MMXXVI · Director's Cut</div>
-                <div id="reelCounter">Reel 02 / 04</div>
+                <div id="reelCounter">Reel 01 / 04</div>
             </div>
             <div class="hero-sub">Studio Narracji Marki — przewiń, by rozpocząć</div>
         </section>
@@ -361,7 +376,7 @@
                     <p class="body-text lead gs-up">Nie zaczynamy od briefu. Zaczynamy od pytania, którego brief nie zadał.</p>
                 </div>
                 <div>
-                    <p class="body-text gs-up" style="margin-bottom: 1.6rem;">Co Twoja marka pamięta, czego klient jeszcze nie wie? Co w niej jest sprzeczne, ciekawe, niedopowiedziane? Tam mieszka historia, którą warto powiedzieć — i którą ktoś usłyszy.</p>
+                    <p class="body-text drop-cap gs-up" style="margin-bottom: 1.6rem;">Co Twoja marka pamięta, czego klient jeszcze nie wie? Co w niej jest sprzeczne, ciekawe, niedopowiedziane? Tam mieszka historia, którą warto powiedzieć — i którą ktoś usłyszy.</p>
                     <p class="body-text gs-up">W erze zautomatyzowanego szumu, ludzka perspektywa staje się dobrem luksusowym. Przetwarzamy Twoje dane w architekturę umysłu.</p>
                 </div>
             </div>
@@ -815,16 +830,41 @@
                 scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
         });
 
-        /* ---------- HERO MASK PIN ---------- */
-        const heroImg = document.getElementById('heroImg');
+        /* ---------- HERO MASK PIN + SHOWREEL ---------- */
+        const heroLayers = Array.from(document.querySelectorAll('.hero-img-container'));
+        // Set background images from data-photo
+        heroLayers.forEach(layer => {
+            const photo = layer.dataset.photo;
+            if (photo) layer.style.backgroundImage = `url('${photo}')`;
+        });
+        // Preload all
+        heroLayers.forEach(l => { const img = new Image(); img.src = l.dataset.photo; });
         ScrollTrigger.create({
             trigger: '#hero', start: 'top top', end: '+=140%',
             pin: true, scrub: 1, anticipatePin: 1,
             onUpdate: self => {
                 const size = 100 + self.progress * 1900;
-                heroImg.style.maskSize = size + '% ' + size + '%';
-                heroImg.style.webkitMaskSize = size + '% ' + size + '%';
+                heroLayers.forEach(layer => {
+                    layer.style.maskSize = size + '% ' + size + '%';
+                    layer.style.webkitMaskSize = size + '% ' + size + '%';
+                });
             }
+        });
+        // Cycle showreel — only when hero is in view, only if not reduced motion
+        let heroIdx = 0, heroCycleTimer = null;
+        function heroCycleStart() {
+            if (reduceMotion || heroCycleTimer) return;
+            heroCycleTimer = setInterval(() => {
+                heroLayers[heroIdx].classList.remove('active');
+                heroIdx = (heroIdx + 1) % heroLayers.length;
+                heroLayers[heroIdx].classList.add('active');
+            }, 4500);
+        }
+        function heroCycleStop() { if (heroCycleTimer) { clearInterval(heroCycleTimer); heroCycleTimer = null; } }
+        ScrollTrigger.create({
+            trigger: '#hero', start: 'top bottom', end: 'bottom top',
+            onEnter: heroCycleStart, onEnterBack: heroCycleStart,
+            onLeave: heroCycleStop, onLeaveBack: heroCycleStop
         });
 
         /* ---------- MANIFESTO SCRUB ---------- */
@@ -1092,7 +1132,11 @@
         function setActiveAct(act) {
             if (act === currentAct) return;
             currentAct = act;
-            activeAct.textContent = actLabels[act] || '';
+            // Crossfade label
+            gsap.to(activeAct, { opacity: 0, duration: 0.18, ease: 'power2.in', onComplete: () => {
+                activeAct.textContent = actLabels[act] || '';
+                gsap.to(activeAct, { opacity: 1, duration: 0.28, ease: 'power2.out' });
+            }});
             railDots.forEach(d => {
                 const isActive = d.dataset.act === act;
                 d.classList.toggle('active', isActive);
@@ -1145,6 +1189,37 @@
         });
         startReel();
 
+        /* ---------- SCROLL PROGRESS HAIRLINE ---------- */
+        const progressBar = document.querySelector('#scrollProgress .bar');
+        if (progressBar) {
+            const updateProgress = () => {
+                const max = document.documentElement.scrollHeight - window.innerHeight;
+                const cur = lenis ? lenis.scroll : window.scrollY;
+                const p = max > 0 ? Math.min(cur / max, 1) : 0;
+                progressBar.style.transform = `scaleX(${p})`;
+            };
+            ScrollTrigger.create({ start: 0, end: 'max', onUpdate: updateProgress });
+            window.addEventListener('resize', updateProgress);
+        }
+
+        /* ---------- LIVE CLOCKS (Warszawa / Lizbona) ---------- */
+        const wawEl = document.getElementById('heroClockWAW');
+        const lisEl = document.getElementById('heroClockLIS');
+        function fmtTime(tz) {
+            try {
+                return new Intl.DateTimeFormat('pl-PL', {
+                    hour: '2-digit', minute: '2-digit', second: '2-digit',
+                    hour12: false, timeZone: tz
+                }).format(new Date());
+            } catch (e) { return '—'; }
+        }
+        function tickClocks() {
+            if (wawEl) wawEl.textContent = `Warszawa · ${fmtTime('Europe/Warsaw')}`;
+            if (lisEl) lisEl.textContent = `Lizbona · ${fmtTime('Europe/Lisbon')}`;
+        }
+        tickClocks();
+        setInterval(tickClocks, 1000);
+
         /* ---------- FOOTER MEGA REVEAL ---------- */
         gsap.fromTo('#footerMega', { y: 200, opacity: 0 }, {
             y: 0, opacity: 1, duration: 1.4, ease: 'power4.out',
@@ -1160,7 +1235,7 @@
                 initWebGL();
                 aberrLoop();
                 gsap.from('.hero-meta, .hero-sub', { y: 30, opacity: 0, duration: 1.2, ease: 'power3.out', stagger: 0.1 });
-                gsap.from('#heroImg', { scale: 1.15, duration: 1.6, ease: 'power3.out' });
+                gsap.from('.hero-stack', { scale: 1.15, duration: 1.6, ease: 'power3.out' });
                 gsap.from('.top-bar, .side-rail', { y: -20, opacity: 0, duration: 1, delay: 0.3, ease: 'power3.out', stagger: 0.1 });
             } else {
                 // Reduced-motion: snap reveal targets to final state
