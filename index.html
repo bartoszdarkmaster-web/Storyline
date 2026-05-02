@@ -375,6 +375,30 @@
         body.directors-cut .accent-slash, body.directors-cut .case-hero-meta .accent { color: var(--accent); }
         .konami-flash { position: fixed; inset: 0; z-index: 9999; background: var(--accent); opacity: 0; pointer-events: none; }
 
+        /* HERO RGB GLITCH layers — periodic chromatic shudder on the masked text */
+        .hero-glitch-layer { position: absolute; inset: 0; pointer-events: none; opacity: 0;
+            background: url('https://images.unsplash.com/photo-1530819568329-97653eafbbfa?w=1800&q=90&auto=format&fit=crop') center/cover no-repeat;
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 300'%3E%3Ctext x='50%25' y='52%25' font-family='Fraunces' font-size='160' font-weight='800' text-anchor='middle' dominant-baseline='middle'%3ESTORYLINE%3C/text%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 300'%3E%3Ctext x='50%25' y='52%25' font-family='Fraunces' font-size='160' font-weight='800' text-anchor='middle' dominant-baseline='middle'%3ESTORYLINE%3C/text%3E%3C/svg%3E");
+            -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+            -webkit-mask-position: center; mask-position: center;
+            -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+            mix-blend-mode: screen;
+        }
+        .hero-glitch-layer.r { filter: hue-rotate(-30deg) saturate(2.5); }
+        .hero-glitch-layer.b { filter: hue-rotate(180deg) saturate(2.5); }
+        .hero-glitch-layer.shudder.r { animation: glitchR 0.32s steps(2, end); }
+        .hero-glitch-layer.shudder.b { animation: glitchB 0.32s steps(2, end); }
+        @keyframes glitchR { 0% { opacity: 0.9; transform: translate(-5px, 1px); } 50% { opacity: 0.6; transform: translate(2px, -2px); } 100% { opacity: 0; transform: translate(0,0); } }
+        @keyframes glitchB { 0% { opacity: 0.7; transform: translate(5px, -1px); } 50% { opacity: 0.5; transform: translate(-2px, 2px); } 100% { opacity: 0; transform: translate(0,0); } }
+
+        /* MARQUEE PARTICLE FIELD — drifts subtly */
+        .dual-marquee { position: relative; }
+        .marquee-particles { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+        .dm-track { position: relative; z-index: 1; }
+        .marquee-particles span { position: absolute; width: 2px; height: 2px; background: var(--accent); border-radius: 50%; opacity: 0; box-shadow: 0 0 8px var(--accent); animation: floatParticle 9s ease-in-out infinite; }
+        @keyframes floatParticle { 0%, 100% { opacity: 0; transform: translate(0, 0); } 25% { opacity: 0.7; } 50% { opacity: 0.5; transform: translate(8px, -28px); } 75% { opacity: 0.3; } }
+
         /* MANIFEST extended */
         .manifest-extended { padding: 16vh 5vw; background: var(--bg); position: relative; z-index: 5; }
         .manifest-extended .lead-quote { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: clamp(1.8rem, 4vw, 3.5rem); line-height: 1.2; max-width: 26ch; margin-bottom: 8vh; color: var(--text); }
@@ -392,8 +416,9 @@
         @media (min-width: 768px) { .team-grid { grid-template-columns: repeat(2, 1fr); gap: 4vw 4vw; } }
         @media (min-width: 1100px) { .team-grid { grid-template-columns: repeat(4, 1fr); } }
         .team-card { display: flex; flex-direction: column; gap: 1.2rem; }
-        .team-portrait { width: 100%; aspect-ratio: 4/5; background-size: cover; background-position: center 20%; border-radius: 3px; filter: grayscale(80%) contrast(1.05); transition: filter 0.6s; }
-        @media (pointer: fine) { .team-card:hover .team-portrait { filter: grayscale(0%) contrast(1.05); } }
+        .role-emblem { width: 100%; aspect-ratio: 4/5; border: 1px solid var(--line); border-radius: 3px; display: flex; align-items: flex-end; justify-content: flex-start; padding: 1.4rem; font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(2rem, 4vw, 3.2rem); color: var(--text-dim); transition: color 0.6s, border-color 0.6s, background 0.6s; line-height: 1; position: relative; overflow: hidden; }
+        .role-emblem::before { content: ''; position: absolute; inset: -50%; background: radial-gradient(circle at 50% 50%, rgba(217,37,37,0.18), transparent 60%); opacity: 0; transition: opacity 0.6s; }
+        @media (pointer: fine) { .team-card:hover .role-emblem { color: var(--accent); border-color: var(--accent); } .team-card:hover .role-emblem::before { opacity: 1; } }
         .team-card h3 { font-size: clamp(1.3rem, 1.8vw, 1.7rem); line-height: 1; margin-bottom: 0.4rem; }
         .team-card .role { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; display: block; }
         .team-card .bio { font-size: 0.92rem; line-height: 1.55; color: var(--text); font-weight: 300; }
@@ -600,12 +625,14 @@
 
         <section class="hero-pin" id="hero" data-act="01">
             <div class="hero-stack" id="heroStack">
-                <div class="hero-img-container active" data-photo="https://images.unsplash.com/photo-1530819568329-97653eafbbfa?w=1800&q=90&auto=format&fit=crop" data-caption="Cervo Maison · Warszawa · 2026"></div>
-                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1492136344046-866c85e0bf04?w=1800&q=90&auto=format&fit=crop" data-caption="Refugium Press · Lizbona · 2023"></div>
-                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1561070791-2526d30994b8?w=1800&q=90&auto=format&fit=crop" data-caption="Polifonia · Reżyseria · 2025"></div>
-                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1800&q=90&auto=format&fit=crop" data-caption="Atelier Norhe · Manifest · 2025"></div>
+                <div class="hero-img-container active" data-photo="https://images.unsplash.com/photo-1530819568329-97653eafbbfa?w=1800&q=90&auto=format&fit=crop" data-caption="Studium · № 014 · Editorial"></div>
+                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1492136344046-866c85e0bf04?w=1800&q=90&auto=format&fit=crop" data-caption="Studium · № 022 · Architektura"></div>
+                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1561070791-2526d30994b8?w=1800&q=90&auto=format&fit=crop" data-caption="Studium · № 041 · Reżyseria"></div>
+                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1800&q=90&auto=format&fit=crop" data-caption="Studium · № 053 · Materia"></div>
+                <div class="hero-glitch-layer r" id="heroGlitchR" aria-hidden="true"></div>
+                <div class="hero-glitch-layer b" id="heroGlitchB" aria-hidden="true"></div>
             </div>
-            <div class="hero-caption" id="heroCaption">Cervo Maison · Warszawa · 2026</div>
+            <div class="hero-caption" id="heroCaption">Studium · № 014 · Editorial</div>
             <div class="hero-meta left">
                 <div id="heroClockWAW">Warszawa · 12:34</div>
                 <div class="accent" id="heroClockLIS">Lizbona · 11:34</div>
@@ -663,6 +690,7 @@
         </section>
 
         <section class="dual-marquee" aria-hidden="true">
+            <div class="marquee-particles" id="marqueeParticles"></div>
             <div class="dm-track" data-marquee-dir="left">
                 <span>Strategia narracyjna</span><span>·</span>
                 <span>Tożsamość</span><span>·</span>
@@ -710,43 +738,40 @@
         </section>
 
         <section class="team-sec" id="zespol" data-act="03">
-            <div class="meta-text" style="margin-bottom: 2rem;">— Zespół</div>
-            <h2 class="huge split-target" style="max-width: 14ch;">Cztery osoby. Jedna wrażliwość.</h2>
+            <div class="meta-text" style="margin-bottom: 2rem;">— Studio</div>
+            <h2 class="huge split-target" style="max-width: 14ch;">Cztery role. Jedna wrażliwość.</h2>
+            <p class="body-text gs-up" style="max-width: 60ch; margin-top: 3vh;">Studio pracuje w czterech rolach. Czasami pełni je jedna osoba, czasami cztery. Zawsze zaczyna się od strategii, kończy na technicznym wykonaniu — i wraca z każdym kolejnym projektem.</p>
             <div class="team-grid">
                 <div class="team-card">
-                    <div class="team-portrait" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=85&auto=format&fit=crop');"></div>
+                    <div class="role-emblem">/ 01</div>
                     <div>
-                        <h3 class="serif">Aleksandra Czerwiec</h3>
                         <span class="role">Strategia narracyjna</span>
-                        <p class="bio">Filolog polski, dziennikarka, copywriterka. 12 lat w redakcjach, 6 lat po stronie marek. Tłumaczy marki z języka rynku na język ludzi.</p>
-                        <div class="now"><strong>Now reading</strong> · Tokarczuk, „Czuły narrator"</div>
+                        <p class="bio">Audyt języka marki, mapowanie kontekstu kulturowego, projekt manifestu. Praca, która dzieje się w zeszycie i w rozmowie zanim pojawi się jakikolwiek pixel.</p>
+                        <div class="now"><strong>Tools</strong> · zeszyt, Google Docs, dyktafon, archiwa prasy</div>
                     </div>
                 </div>
                 <div class="team-card">
-                    <div class="team-portrait" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=85&auto=format&fit=crop');"></div>
+                    <div class="role-emblem">/ 02</div>
                     <div>
-                        <h3 class="serif">Tomasz Wójcik</h3>
                         <span class="role">Reżyseria kreatywna</span>
-                        <p class="bio">Reżyser, fotograf, były kierownik artystyczny studia w Lizbonie. Pracuje między Warszawą a Lizboną. Wierzy, że światło to też pisanie.</p>
-                        <div class="now"><strong>Now watching</strong> · Wim Wenders, „Perfect Days"</div>
+                        <p class="bio">Spinanie strategii z formą. Kierunek artystyczny, art direction kampanii, reżyseria sesji i filmów. Decyzje o tonie, świetle i rytmie historii.</p>
+                        <div class="now"><strong>Tools</strong> · storyboard, lookbook, Vimeo, planowanie produkcji</div>
                     </div>
                 </div>
                 <div class="team-card">
-                    <div class="team-portrait" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=85&auto=format&fit=crop');"></div>
+                    <div class="role-emblem">/ 03</div>
                     <div>
-                        <h3 class="serif">Marta Kowalik</h3>
                         <span class="role">Identyfikacja wizualna</span>
-                        <p class="bio">Typografka, projektantka systemów. Studia u prof. Andrzeja Tomaszewskiego. Specjalizuje się w polskiej diakrytyce i editorialu.</p>
-                        <div class="now"><strong>Now drawing</strong> · Studia kroju Söhne dla Korzeń &amp; Sól</div>
+                        <p class="bio">System typograficzny, paleta, siatka, ruch. Tworzenie języka, który będzie pracować dziesięć lat — od opakowania po manifest, od bilbordu po bilet wizytowy.</p>
+                        <div class="now"><strong>Tools</strong> · Figma, Glyphs, drukarnia, papierownia</div>
                     </div>
                 </div>
                 <div class="team-card">
-                    <div class="team-portrait" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85&auto=format&fit=crop');"></div>
+                    <div class="role-emblem">/ 04</div>
                     <div>
-                        <h3 class="serif">Paweł Kowalski</h3>
                         <span class="role">Web · Tech</span>
-                        <p class="bio">Frontend, kreatywne kodowanie, WebGL. Pracował dla studia Field w Londynie. W Storyline od 2022. Pisze własny font dla side-projectu.</p>
-                        <div class="now"><strong>Now thinking</strong> · Variable fonts + scroll-driven animations</div>
+                        <p class="bio">Frontend, kreatywne kodowanie, WebGL, scroll-driven animations. Każda strona to mała maszyna — projektowana tak, żeby działała w rok i w pięć lat.</p>
+                        <div class="now"><strong>Tools</strong> · vanilla JS, GSAP, Lenis, WebGL, type rendering</div>
                     </div>
                 </div>
             </div>
@@ -811,32 +836,32 @@
             <div class="meta-text" style="margin-bottom: 1.8rem;">— Akt III · Praktyka</div>
             <h2 class="huge split-target">Wybrane projekty<br><em style="color:var(--accent); font-style: italic;">2022—2026</em></h2>
             <ul class="portfolio-list">
-                <li><a href="#" class="portfolio-item" data-project="cervo-maison" data-thumb="https://images.unsplash.com/photo-1542838132-92c53300491e?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Cervo Maison — Tożsamość, Editorial, 2026">
-                    <h3 class="magnetic-target">Cervo Maison</h3>
+                <li><a href="#" class="portfolio-item" data-project="cervo-maison" data-thumb="https://images.unsplash.com/photo-1542838132-92c53300491e?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Studium № 014 — Manufaktura, Tożsamość · Editorial, 2026">
+                    <h3 class="magnetic-target">Studium № 014</h3>
                     <div class="pi-meta"><span>Tożsamość · Editorial</span><span>2026</span><div class="arrow"></div></div>
                 </a></li>
-                <li><a href="#" class="portfolio-item" data-project="atelier-norhe" data-thumb="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Atelier Norhe — Manifest, Web, 2025">
-                    <h3 class="magnetic-target">Atelier Norhe</h3>
+                <li><a href="#" class="portfolio-item" data-project="atelier-norhe" data-thumb="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Studium № 022 — Pracownia, Manifest · Web, 2025">
+                    <h3 class="magnetic-target">Studium № 022</h3>
                     <div class="pi-meta"><span>Manifest · Web</span><span>2025</span><div class="arrow"></div></div>
                 </a></li>
-                <li><a href="#" class="portfolio-item" data-project="polifonia" data-thumb="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Polifonia Warszawa — Reżyseria, Film, 2025">
-                    <h3 class="magnetic-target">Polifonia Warszawa</h3>
+                <li><a href="#" class="portfolio-item" data-project="polifonia" data-thumb="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Studium № 041 — Festiwal, Reżyseria · Film, 2025">
+                    <h3 class="magnetic-target">Studium № 041</h3>
                     <div class="pi-meta"><span>Reżyseria · Film</span><span>2025</span><div class="arrow"></div></div>
                 </a></li>
-                <li><a href="#" class="portfolio-item" data-project="salt-marrow" data-thumb="https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Salt &amp; Marrow — Strategia, Branding, 2024">
-                    <h3 class="magnetic-target">Salt &amp; Marrow</h3>
+                <li><a href="#" class="portfolio-item" data-project="salt-marrow" data-thumb="https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Studium № 053 — Bistro, Strategia · Branding, 2024">
+                    <h3 class="magnetic-target">Studium № 053</h3>
                     <div class="pi-meta"><span>Strategia · Branding</span><span>2024</span><div class="arrow"></div></div>
                 </a></li>
-                <li><a href="#" class="portfolio-item" data-project="hotel-lume" data-thumb="https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Hotel Lume — Tożsamość, Kampania, 2024">
-                    <h3 class="magnetic-target">Hotel Lume</h3>
+                <li><a href="#" class="portfolio-item" data-project="hotel-lume" data-thumb="https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Studium № 067 — Hotel, Tożsamość · Kampania, 2024">
+                    <h3 class="magnetic-target">Studium № 067</h3>
                     <div class="pi-meta"><span>Tożsamość · Kampania</span><span>2024</span><div class="arrow"></div></div>
                 </a></li>
-                <li><a href="#" class="portfolio-item" data-project="refugium-press" data-thumb="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Refugium Press — Editorial, Wydawnictwo, 2023">
-                    <h3 class="magnetic-target">Refugium Press</h3>
+                <li><a href="#" class="portfolio-item" data-project="refugium-press" data-thumb="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Studium № 081 — Wydawnictwo, Editorial, 2023">
+                    <h3 class="magnetic-target">Studium № 081</h3>
                     <div class="pi-meta"><span>Editorial · Wydawnictwo</span><span>2023</span><div class="arrow"></div></div>
                 </a></li>
-                <li><a href="#" class="portfolio-item" data-project="korzen-sol" data-thumb="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Korzeń i Sól — Branding, Packaging, 2022">
-                    <h3 class="magnetic-target">Korzeń &amp; Sól</h3>
+                <li><a href="#" class="portfolio-item" data-project="korzen-sol" data-thumb="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Studium № 092 — Manufaktura, Branding · Packaging, 2022">
+                    <h3 class="magnetic-target">Studium № 092</h3>
                     <div class="pi-meta"><span>Branding · Packaging</span><span>2022</span><div class="arrow"></div></div>
                 </a></li>
             </ul>
@@ -877,33 +902,34 @@
         <hr class="sec-divider" aria-hidden="true">
 
         <section class="press-sec" data-act="04">
-            <div class="meta-text" style="margin-bottom: 2rem;">— Notatki redaktorskie</div>
-            <h2 class="huge split-target" style="max-width: 14ch;">Co o nas piszą.</h2>
+            <div class="meta-text" style="margin-bottom: 2rem;">— Półka redakcyjna</div>
+            <h2 class="huge split-target" style="max-width: 14ch;">Co czytamy.</h2>
+            <p class="body-text gs-up" style="max-width: 60ch; margin-top: 3vh;">Publikacje, do których wracamy między projektami. Nie reprezentują naszej pracy — kształtują naszą uwagę. Listę aktualizujemy raz na pół roku.</p>
             <ul class="press-list">
                 <li class="press-item">
                     <div class="press-source">Eye Magazine</div>
-                    <div class="press-title">„Studio z drugą warstwą — w czasach, gdy marki krzyczą jednym głosem."</div>
-                    <div class="press-year">№ 104 · 2025</div>
+                    <div class="press-title">Kwartalnik o typografii i editorialu — od 1990. Najmocniejsza redakcja, która wciąż pisze o designie poważnie.</div>
+                    <div class="press-year">UK · Kwartalnik</div>
                 </li>
                 <li class="press-item">
                     <div class="press-source">It's Nice That</div>
-                    <div class="press-title">„Storyline odzyskuje powolność jako narzędzie projektowe."</div>
-                    <div class="press-year">Maj · 2025</div>
+                    <div class="press-title">Codzienny serwis o pracy studyjnej. Obrazek + dobrze prowadzony tekst. Najlepsze studia świata, prawie zawsze pierwsze.</div>
+                    <div class="press-year">UK · Daily</div>
                 </li>
                 <li class="press-item">
                     <div class="press-source">Brand New</div>
-                    <div class="press-title">„Cervo Maison — rzadkie ćwiczenie z editorialnej restawy."</div>
-                    <div class="press-year">Marzec · 2026</div>
+                    <div class="press-title">Recenzje rebrandingów z perspektywy zawodowca — bezlitosne, ale uczciwe. Najlepszy probierz, czy projekt obroni się przez dziesięć lat.</div>
+                    <div class="press-year">US · Daily</div>
                 </li>
                 <li class="press-item">
-                    <div class="press-source">Are.na Annual</div>
-                    <div class="press-title">„Top 50 narrative studios — wybór redakcji."</div>
-                    <div class="press-year">Edycja · 2024</div>
+                    <div class="press-source">Are.na</div>
+                    <div class="press-title">Zamiast feedu — kolekcje. Cierpliwa platforma dla osób, które myślą wolniej. Tu uczymy się, jak czyta się kulturowy szum.</div>
+                    <div class="press-year">US · Platforma</div>
                 </li>
                 <li class="press-item">
                     <div class="press-source">Awwwards</div>
-                    <div class="press-title">„Site of the Day ×3 między 2023 a 2026."</div>
-                    <div class="press-year">SOTD · 2023—2026</div>
+                    <div class="press-title">Codzienne katalog stron, które warto rozłożyć na czynniki. Czasem techniczna ekstrawagancja, czasem lekcja typografii.</div>
+                    <div class="press-year">US · Daily</div>
                 </li>
             </ul>
         </section>
@@ -1040,42 +1066,42 @@
                     <div class="kron-year">2014</div>
                     <div class="kron-body">
                         <h4 class="serif">Założenie studia</h4>
-                        <p>Aleksandra i Tomasz otwierają jednoosobowe studio w pracowni przy Krakowskim Przedmieściu. Pierwszym klientem zostaje wydawnictwo, które do dziś jest na liście — Refugium Press.</p>
+                        <p>Studio otwiera pracownię w kamienicy w centrum Warszawy. Pierwszy projekt — identyfikacja niezależnego wydawnictwa — definiuje to, co później nazwiemy „pisaniem przed projektowaniem".</p>
                     </div>
                 </li>
                 <li class="kron-entry">
                     <div class="kron-year">2017</div>
                     <div class="kron-body">
-                        <h4 class="serif">Pierwsza nagroda branżowa</h4>
-                        <p>Identyfikacja Polifonii Warszawskiej zostaje wyróżniona przez European Design Awards. To pierwszy raz, gdy zespół wyjeżdża razem za granicę po nagrodę. I ostatni — od 2018 nagrody odbiera tylko jedna osoba.</p>
+                        <h4 class="serif">Pierwsze wyróżnienia branżowe</h4>
+                        <p>Pierwsze nominacje na European Design Awards i Polish Graphic Design Awards. Studio przestaje być znane tylko z polecenia, zaczyna pojawiać się w briefach z drugiej i trzeciej ręki.</p>
                     </div>
                 </li>
                 <li class="kron-entry">
                     <div class="kron-year">2019</div>
                     <div class="kron-body">
-                        <h4 class="serif">Drugie biuro w Lizbonie</h4>
-                        <p>Tomasz przeprowadza się na rok do Portugalii. Rok zostaje pięcioma. Dziś biuro w Lizbonie obsługuje klientów z półwyspu iberyjskiego i Ameryki Łacińskiej. Każdy projekt z Lizbony zaczyna się od kawy w Bambino.</p>
+                        <h4 class="serif">Drugi punkt w Lizbonie</h4>
+                        <p>Studio uruchamia satelitarny punkt pracy w Lizbonie — głównie po to, by obsługiwać klientów z półwyspu iberyjskiego, a także żeby zmienić perspektywę. Każda sesja kreatywna z Lizbony zaczyna się od długiej kawy.</p>
                     </div>
                 </li>
                 <li class="kron-entry">
                     <div class="kron-year">2021</div>
                     <div class="kron-body">
                         <h4 class="serif">Decyzja: 6 zleceń rocznie</h4>
-                        <p>Po roku covidowych remote-projektów decyzja jest wewnętrzna i ostateczna: studio nie urośnie. Maksymalnie sześć pełnych brandingów rocznie. Nigdy więcej. Lista oczekujących wydłuża się do 14 miesięcy.</p>
+                        <p>Po roku remote-projektów wewnętrzna decyzja jest ostateczna: studio nie urośnie. Maksymalnie sześć pełnych brandingów rocznie. Lista oczekujących wydłuża się do kilkunastu miesięcy — i to jest test, nie problem.</p>
                     </div>
                 </li>
                 <li class="kron-entry">
                     <div class="kron-year">2024</div>
                     <div class="kron-body">
                         <h4 class="serif">Pierwszy Studio Notes</h4>
-                        <p>Newsletter studyjny — kwartalnik, esej, jeden temat. Bez reklam, bez CTA. Po dwóch latach 2 800 subskrybentów, 64% open rate. Studio Notes staje się drugim językiem marki.</p>
+                        <p>Newsletter studyjny — kwartalnik, esej, jeden temat. Bez reklam, bez CTA. Studio Notes staje się drugim językiem marki, równie ważnym co praca z klientami.</p>
                     </div>
                 </li>
                 <li class="kron-entry">
                     <div class="kron-year">2026</div>
                     <div class="kron-body">
                         <h4 class="serif">Director's Cut V26</h4>
-                        <p>Strona studia przeprojektowana od zera. Pięć aktów, jeden manifest, siedem case studies. Towarzyszy jej książka „Narracja jako rzemiosło" — wydanie limitowane 600 egzemplarzy, druk Drukarnia Oficyna, papier Munken Pure 120g.</p>
+                        <p>Strona studia przeprojektowana od zera. Pięć aktów, jeden manifest. Wraz z nią drukowany manifest na papierze Munken Pure — wydanie limitowane, druk lokalna drukarnia.</p>
                     </div>
                 </li>
             </ol>
@@ -1143,7 +1169,7 @@
                             <div class="office-info">
                                 <h4>Warszawa</h4>
                                 <div class="office-meta">52°13′N · 21°00′E</div>
-                                <div class="office-addr">Krucza 16/22, lok. 304<br>00-526 Warszawa</div>
+                                <div class="office-addr">Pracownia w centrum miasta.<br>Adres po umówieniu spotkania.</div>
                                 <div class="office-time" id="officeTimeWAW">— —:—</div>
                             </div>
                         </div>
@@ -1152,7 +1178,7 @@
                             <div class="office-info">
                                 <h4>Lizbona</h4>
                                 <div class="office-meta">38°43′N · 9°08′W</div>
-                                <div class="office-addr">Rua Poiais de S. Bento, 47<br>1200-345 Lisboa</div>
+                                <div class="office-addr">Punkt satelitarny.<br>Spotkania kreatywne na zamówienie.</div>
                                 <div class="office-time" id="officeTimeLIS">— —:—</div>
                             </div>
                         </div>
@@ -1220,10 +1246,10 @@
                 <div>
                     <h5>Now in Studio</h5>
                     <div class="footer-now">
-                        <span>Reading: Tokarczuk</span>
-                        <span>Watching: Wenders</span>
-                        <span>Drinking: Bambino, Lizbona</span>
-                        <span>Designing: dla Cervo Maison v2</span>
+                        <span>Reading: studyjny stos · zima 2026</span>
+                        <span>Watching: kino slow</span>
+                        <span>Drinking: kawa, czarna, podwójna</span>
+                        <span>Designing: następny rozdział</span>
                     </div>
                     <a href="#notes" style="color: var(--accent); padding-top: 14px; display: inline-block;">Studio Notes →</a>
                 </div>
@@ -1464,13 +1490,19 @@
                 });
             }
         });
-        // Cycle showreel + sync caption + reel counter
+        // Cycle showreel + sync caption + reel counter + glitch layers
         const heroCaptionEl = document.getElementById('heroCaption');
         const reelEl = document.getElementById('reelCounter');
-        let heroIdx = 0, heroCycleTimer = null;
+        const glitchR = document.getElementById('heroGlitchR');
+        const glitchB = document.getElementById('heroGlitchB');
+        let heroIdx = 0, heroCycleTimer = null, glitchTimer = null;
         function syncHeroFrame() {
             heroLayers.forEach((l, i) => l.classList.toggle('active', i === heroIdx));
             const cap = heroLayers[heroIdx].dataset.caption;
+            const photo = heroLayers[heroIdx].dataset.photo;
+            // Sync glitch layers to current photo
+            if (glitchR && photo) glitchR.style.backgroundImage = `url('${photo}')`;
+            if (glitchB && photo) glitchB.style.backgroundImage = `url('${photo}')`;
             if (heroCaptionEl) {
                 heroCaptionEl.style.opacity = '0';
                 setTimeout(() => {
@@ -1481,6 +1513,26 @@
             if (reelEl) reelEl.textContent = `Reel ${String(heroIdx + 1).padStart(2,'0')} / ${String(heroLayers.length).padStart(2,'0')}`;
         }
         syncHeroFrame();
+        // Periodic glitch shudder — every 6-10s while hero is in view
+        function triggerGlitch() {
+            if (!glitchR || !glitchB || reduceMotion) return;
+            glitchR.classList.add('shudder'); glitchB.classList.add('shudder');
+            setTimeout(() => { glitchR.classList.remove('shudder'); glitchB.classList.remove('shudder'); }, 350);
+        }
+        function glitchCycleStart() {
+            if (reduceMotion || glitchTimer) return;
+            const tick = () => {
+                triggerGlitch();
+                glitchTimer = setTimeout(tick, 6000 + Math.random() * 4000);
+            };
+            glitchTimer = setTimeout(tick, 3000);
+        }
+        function glitchCycleStop() { if (glitchTimer) { clearTimeout(glitchTimer); glitchTimer = null; } }
+        ScrollTrigger.create({
+            trigger: '#hero', start: 'top bottom', end: 'bottom top',
+            onEnter: glitchCycleStart, onEnterBack: glitchCycleStart,
+            onLeave: glitchCycleStop, onLeaveBack: glitchCycleStop
+        });
         function heroCycleStart() {
             if (reduceMotion || heroCycleTimer) return;
             heroCycleTimer = setInterval(() => {
@@ -1924,15 +1976,15 @@
         /* ---------- CASE STUDY MODAL ---------- */
         const projects = {
             'cervo-maison': {
-                title: 'Cervo Maison', client: 'Cervo Maison Sp. z o.o.', year: '2026',
-                location: 'Warszawa', scope: 'Tożsamość · Editorial · Web',
+                title: 'Studium № 014 — Manufaktura', client: 'Klient pod NDA', year: '2026',
+                location: 'Polska', scope: 'Tożsamość · Editorial · Web',
                 hero: 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=1800&q=90&auto=format&fit=crop',
                 intro: 'Biżuteria, która pamięta dłonie. Trzy pokolenia rzemiosła w jednym zdaniu.',
                 text: [
-                    'Manufaktura biżuterii z trzeciego pokolenia. Klient szukał języka, który połączy atelierowe rzemiosło z polską codziennością — bez popadania w nostalgię ani w sterylność galerii.',
+                    'Manufaktura biżuterii z trzeciego pokolenia. Klient szukał języka, który połączy atelierowe rzemiosło z codziennością — bez popadania w nostalgię ani w sterylność galerii.',
                     'Zaczęliśmy od dwóch dni w pracowni. Słuchaliśmy, jak ojciec rozmawia z synem o szczególe szlifu, jak klientka pyta o etymologię nazwy. Z tego wyjęliśmy zdanie, na którym oparła się cała marka: <em style="color:var(--accent);font-style:italic;">„Biżuteria, która pamięta dłonie."</em>',
                     'Słowo „pamięta" stało się fundamentem manifestu, struktury content-strategy i tonu wszystkich materiałów. System wizualny: typografia Fraunces z polską diakrytyką, paleta sage / cream / oxblood, fotografia w świetle dnia bez retuszu. Web jednoekranowy z manifestem, e-commerce w drugiej warstwie.',
-                    'Sześć miesięcy po launchu marka odnotowała 3.4× wzrost średniej wartości koszyka i prasę w Eye Magazine. Najważniejsze: właściciele odzyskali poczucie, że marka mówi ich głosem.'
+                    'Sześć miesięcy po launchu marka odnotowała znaczący wzrost średniej wartości koszyka. Najważniejsze: właściciele odzyskali poczucie, że marka mówi ich głosem.'
                 ],
                 gallery: [
                     'https://images.unsplash.com/photo-1542838132-92c53300491e?w=1600&q=85&auto=format&fit=crop',
@@ -1942,21 +1994,21 @@
                     'https://images.unsplash.com/photo-1596944946297-f0d6df1116a8?w=1200&q=85&auto=format&fit=crop'
                 ],
                 credits: [
-                    ['Strategia narracyjna', 'Studio Storyline'],
-                    ['Identyfikacja wizualna', 'Studio Storyline'],
-                    ['Fotografia', 'Marta Wojciechowska'],
-                    ['Editorial / Copy', 'Aleksandra Czerwiec'],
-                    ['Web', 'Studio Storyline + Paweł Kowalski'],
-                    ['Klient', 'Maja Cerventes, CEO']
+                    ['Strategia narracyjna', 'studio'],
+                    ['Identyfikacja wizualna', 'studio'],
+                    ['Fotografia', 'partner zewnętrzny'],
+                    ['Editorial / Copy', 'studio'],
+                    ['Web', 'studio'],
+                    ['Klient', 'pod NDA']
                 ]
             },
             'atelier-norhe': {
-                title: 'Atelier Norhe', client: 'Norhe Studio', year: '2025',
-                location: 'Kopenhaga · Warszawa', scope: 'Manifest · Web · Editorial',
+                title: 'Studium № 022 — Pracownia', client: 'Klient pod NDA', year: '2025',
+                location: 'Europa Północna', scope: 'Manifest · Web · Editorial',
                 hero: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1800&q=90&auto=format&fit=crop',
                 intro: 'Pracownia ceramiki, która nie chciała być modna. Tylko trwała.',
                 text: [
-                    'Norhe to mały studio ceramiki użytkowej, prowadzony przez parę projektantek w pierwszych pięciu latach działalności. Brief brzmiał: „chcemy stronę, której nie będziemy musiały zmieniać za dwa lata."',
+                    'To była mała pracownia ceramiki użytkowej, prowadzony przez parę projektantek w pierwszych pięciu latach działalności. Brief brzmiał: „chcemy stronę, której nie będziemy musieli zmieniać za dwa lata."',
                     'Odpowiedź zaczęła się od strategii: lista rzeczy, których strona NIE robi. Nie krzyczy. Nie pokazuje wszystkiego. Nie sprzedaje agresywnie. To pozwoliło zaprojektować strukturę powolną, niemal redaktorską — z manifestem na górze i katalogiem dostępnym dopiero po świadomej decyzji.',
                     'Web jest binarny: czerń-krem, jedna kolumna, typografia EB Garamond, brak animacji ozdobnych. Pierwsze, co użytkownik widzi, to esej o glinie. Dopiero po przewinięciu — produkty.',
                     'Konwersja zwolniła. Średni czas na stronie wzrósł 6×. Klient wraca dwa razy częściej.'
@@ -1969,23 +2021,23 @@
                     'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=1200&q=85&auto=format&fit=crop'
                 ],
                 credits: [
-                    ['Strategia', 'Studio Storyline'],
-                    ['Manifest / Esej', 'Aleksandra Czerwiec'],
-                    ['Web Design', 'Studio Storyline'],
-                    ['Web Development', 'Joanna Modlin'],
-                    ['Klient', 'Anja Holm + Marta Kowalik']
+                    ['Strategia', 'studio'],
+                    ['Manifest / Esej', 'studio'],
+                    ['Web Design', 'studio'],
+                    ['Web Development', 'studio + partner'],
+                    ['Klient', 'pod NDA']
                 ]
             },
             'polifonia': {
-                title: 'Polifonia Warszawa', client: 'Polifonia Festival', year: '2025',
-                location: 'Warszawa', scope: 'Reżyseria · Film · Tożsamość',
+                title: 'Studium № 041 — Festiwal', client: 'Klient pod NDA', year: '2025',
+                location: 'Polska', scope: 'Reżyseria · Film · Tożsamość',
                 hero: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1800&q=90&auto=format&fit=crop',
                 intro: 'Festiwal muzyki kameralnej, który chciał porozmawiać z publicznością koncertowych klubów.',
                 text: [
-                    'Polifonia od dwudziestu lat była festiwalem kameralnej muzyki współczesnej dla wąskiej publiczności melomanów. W 2025 dyrekcja postanowiła otworzyć go na widzów, którzy nigdy nie byli w filharmonii — bez utraty rdzenia.',
+                    'Festiwal od dwudziestu lat była festiwalem kameralnej muzyki współczesnej dla wąskiej publiczności melomanów. W 2025 dyrekcja postanowiła otworzyć go na widzów, którzy nigdy nie byli w filharmonii — bez utraty rdzenia.',
                     'Nasze zadanie: wyreżyserować trzy 90-sekundowe filmy, które są zapowiedzią festiwalu i jednocześnie samodzielnymi miniaturami. Bez muzyki oryginalnej z koncertów. Bez voice-overu.',
                     'Każdy film jest portretem jednego instrumentu i jednej wykonawczyni — w jej domu, w jej tempie, w ciszy między ćwiczeniami. To, co publiczność słyszy w foyer, to kontekst, nie produkt.',
-                    'Filmy zostały wybrane na D&AD New Blood i otworzyły publiczności poniżej 30 roku życia o 41% szerszą.'
+                    'Filmy zostały zwiększyły udział publiczności poniżej 30 roku życia o ponad 40%.'
                 ],
                 gallery: [
                     'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1600&q=85&auto=format&fit=crop',
@@ -1995,23 +2047,23 @@
                     'https://images.unsplash.com/photo-1485579149621-3123dd979885?w=1200&q=85&auto=format&fit=crop'
                 ],
                 credits: [
-                    ['Reżyseria', 'Studio Storyline'],
-                    ['Operator', 'Wiktor Skorupa'],
-                    ['Montaż', 'Hanna Lipińska'],
-                    ['Produkcja', 'Studio Storyline'],
-                    ['Klient', 'Polifonia Festival']
+                    ['Reżyseria', 'studio'],
+                    ['Operator', 'partner zewnętrzny'],
+                    ['Montaż', 'partner zewnętrzny'],
+                    ['Produkcja', 'studio'],
+                    ['Klient', 'pod NDA']
                 ]
             },
             'salt-marrow': {
-                title: 'Salt & Marrow', client: 'Salt &amp; Marrow Restaurants', year: '2024',
-                location: 'Gdańsk', scope: 'Strategia · Branding · Menu',
+                title: 'Studium № 053 — Bistro', client: 'Klient pod NDA', year: '2024',
+                location: 'Polska, wybrzeże', scope: 'Strategia · Branding · Menu',
                 hero: 'https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?w=1800&q=90&auto=format&fit=crop',
                 intro: 'Bistro, które gotuje z resztek. Nie z biedy — z postawy.',
                 text: [
-                    'Salt & Marrow to projekt szefa kuchni, który po dwunastu latach w Michelin-starred kuchniach wrócił do Polski z ideą zero-waste bistro. Brief nie powstał — była tylko rozmowa nad herbatą.',
-                    'Z tej rozmowy wyłonił się ton: marka nie przeprasza ani nie chwali się. Mówi po prostu, co serwuje i czego nie. Nazwa — Salt & Marrow — odsyła do dwóch składników, które kucharze tradycyjnie wyrzucają.',
-                    'Identyfikacja: jeden krój (Söhne), jedna paleta (off-white + ochra), karta menu drukowana co dwa tygodnie na arkuszu offsetu, każda strona inna. Nawet skrawki papieru po cięciu trafiają do podstawek.',
-                    'Bistro otworzyło się w marcu 2024. W ciągu ośmiu miesięcy: pełna rezerwacja na trzy tygodnie naprzód, recenzja w Monocle, zaproszenie do kolektywu zero-waste w Kopenhadze.'
+                    'Projekt szefa kuchni — to projekt szefa kuchni, który po dwunastu latach w Michelin-starred kuchniach wrócił do Polski z ideą zero-waste bistro. Brief nie powstał — była tylko rozmowa nad herbatą.',
+                    'Z tej rozmowy wyłonił się ton: marka nie przeprasza ani nie chwali się. Mówi po prostu, co serwuje i czego nie. Nazwa odsyła do dwóch składników, które kucharze tradycyjnie wyrzucają.',
+                    'Identyfikacja: jeden krój, jedna paleta (off-white + ochra), karta menu drukowana co dwa tygodnie na arkuszu offsetu, każda strona inna. Nawet skrawki papieru po cięciu trafiają do podstawek.',
+                    'Bistro otworzyło się z pełną rezerwacją na trzy tygodnie naprzód, recenzje w branżowej prasie międzynarodowej w pierwszym kwartale.'
                 ],
                 gallery: [
                     'https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?w=1600&q=85&auto=format&fit=crop',
@@ -2021,23 +2073,23 @@
                     'https://images.unsplash.com/photo-1502301197179-65228ab57f78?w=1200&q=85&auto=format&fit=crop'
                 ],
                 credits: [
-                    ['Strategia', 'Studio Storyline'],
-                    ['Branding', 'Studio Storyline'],
-                    ['Menu System', 'Studio Storyline + Drukarnia Oficyna'],
-                    ['Fotografia', 'Tomasz Woźniak'],
-                    ['Klient', 'Marek Żelazny, szef kuchni']
+                    ['Strategia', 'studio'],
+                    ['Branding', 'studio'],
+                    ['Menu System', 'studio + drukarnia partnerska'],
+                    ['Fotografia', 'partner zewnętrzny'],
+                    ['Klient', 'pod NDA']
                 ]
             },
             'hotel-lume': {
-                title: 'Hotel Lume', client: 'Lume Hospitality Group', year: '2024',
-                location: 'Sopot', scope: 'Tożsamość · Kampania · Wnętrze (consult)',
+                title: 'Studium № 067 — Hotel', client: 'Klient pod NDA', year: '2024',
+                location: 'Polska, wybrzeże', scope: 'Tożsamość · Kampania · Wnętrze (consult)',
                 hero: 'https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?w=1800&q=90&auto=format&fit=crop',
                 intro: 'Butikowy hotel w Sopocie, który chciał istnieć poza sezonem.',
                 text: [
-                    'Lume to dwudziestoczteropokojowy hotel w starej kamienicy. Inwestor — wykształcony za granicą filolog, który po latach w hotelarstwie kupił kamienicę przy plaży i nie chciał robić „kolejnego butiku z białymi ścianami".',
-                    'Zaczęliśmy od strategii sezonowości. Większość hoteli w Sopocie żyje sześć miesięcy. Lume miał działać dwanaście — co oznaczało, że marka nie może być zbudowana wokół plaży.',
-                    'Tożsamość: nazwa „Lume" (od portugalskiego światła) prowadzi do języka, który mówi o porach dnia, nie o porach roku. Identyfikacja używa rzemieślniczej typografii Reckless, palety burnt umber + sea-foam, fotografii zimowej jako głównej.',
-                    'W pierwszą zimę po launchu obłożenie listopadowe wyniosło 73% (rok wcześniej: 38%). Co istotniejsze — średnia długość pobytu wzrosła z 1.6 do 2.4 nocy.'
+                    'Dwudziestoczteropokojowy hotel w starej kamienicy. Inwestor — wykształcony za granicą filolog, który po latach w hotelarstwie kupił kamienicę przy plaży i nie chciał robić „kolejnego butiku z białymi ścianami".',
+                    'Zaczęliśmy od strategii sezonowości. Większość hoteli w tej kategorii żyje sześć miesięcy. Miał działać dwanaście — co oznaczało, że marka nie może być zbudowana wokół plaży.',
+                    'Tożsamość: nazwa odsyła do światła prowadzi do języka, który mówi o porach dnia, nie o porach roku. Identyfikacja używa rzemieślniczej typografii serifowej, palety burnt umber + sea-foam, fotografii zimowej jako głównej.',
+                    'W pierwszą zimę po launchu obłożenie listopadowe wyniosło 73% (rok wcześniej: 38%). Co istotniejsze — średnia długość pobytu wzrosła o ponad pół nocy.'
                 ],
                 gallery: [
                     'https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?w=1600&q=85&auto=format&fit=crop',
@@ -2047,23 +2099,23 @@
                     'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=85&auto=format&fit=crop'
                 ],
                 credits: [
-                    ['Strategia', 'Studio Storyline'],
-                    ['Tożsamość', 'Studio Storyline'],
-                    ['Kampania', 'Studio Storyline'],
-                    ['Konsultacje wnętrza', 'Studio Storyline + Pracownia Knot'],
-                    ['Klient', 'Filip Wójcik, CEO']
+                    ['Strategia', 'studio'],
+                    ['Tożsamość', 'studio'],
+                    ['Kampania', 'studio'],
+                    ['Konsultacje wnętrza', 'studio + pracownia partnerska'],
+                    ['Klient', 'pod NDA']
                 ]
             },
             'refugium-press': {
-                title: 'Refugium Press', client: 'Refugium Press Wydawnictwo', year: '2023',
-                location: 'Lizbona', scope: 'Editorial · System wydawniczy',
+                title: 'Studium № 081 — Wydawnictwo', client: 'Klient pod NDA', year: '2023',
+                location: 'Półwysep Iberyjski', scope: 'Editorial · System wydawniczy',
                 hero: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1800&q=90&auto=format&fit=crop',
                 intro: 'Niezależne wydawnictwo, które publikuje cztery tytuły rocznie. I pracuje nad każdym dwa lata.',
                 text: [
-                    'Refugium Press została założona przez polską redaktorkę i portugalskiego edytora w 2019 roku. Wydaje literaturę środkowoeuropejską w portugalskim tłumaczeniu — i odwrotnie. Pracuje powoli.',
-                    'W 2023 roku przyszli z prośbą o przeprojektowanie systemu okładkowego. Mieli wszystko: pisarzy, tłumaczy, drukarnię, papier z Saksonii. Brakowało im „jednego rytmu, który byłby widoczny przez sześć tytułów wydanych w odstępie pięciu lat".',
-                    'Zaprojektowaliśmy system oparty na typografii (Lyon Text + Söhne Mono) i konsekwentnym zarządzaniu polem typu na froncie. Każda okładka ma identyczne marginesy, identyczną hierarchię, identyczne miejsce na zdjęcie. Treść — autora, tytuł, ilustrację — daje życie. System schodzi w cień.',
-                    'Trzy lata po wdrożeniu Refugium Press jest rozpoznawalna na półkach księgarskich z odległości pięciu metrów — bez logo na grzbiecie.'
+                    'Wydawnictwo zostało założone w drugiej połowie poprzedniej dekady. Wydaje literaturę środkowoeuropejską w portugalskim tłumaczeniu — i odwrotnie. Pracuje powoli.',
+                    'Przyszli z prośbą o przeprojektowanie systemu okładkowego. Mieli wszystko: pisarzy, tłumaczy, drukarnię, papier z Saksonii. Brakowało im „jednego rytmu, który byłby widoczny przez sześć tytułów wydanych w odstępie pięciu lat".',
+                    'Zaprojektowaliśmy system oparty na typografii i konsekwentnym zarządzaniu polem typu na froncie. Każda okładka ma identyczne marginesy, identyczną hierarchię, identyczne miejsce na zdjęcie. Treść — autora, tytuł, ilustrację — daje życie. System schodzi w cień.',
+                    'Trzy lata po wdrożeniu wydawnictwo jest rozpoznawalna na półkach księgarskich z odległości pięciu metrów — bez logo na grzbiecie.'
                 ],
                 gallery: [
                     'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1600&q=85&auto=format&fit=crop',
@@ -2073,22 +2125,22 @@
                     'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200&q=85&auto=format&fit=crop'
                 ],
                 credits: [
-                    ['Editorial system', 'Studio Storyline'],
-                    ['Typografia', 'Studio Storyline'],
-                    ['Druk', 'Drukarnia Oficyna + Tipografia Damasceno'],
-                    ['Klient', 'Marta Sosnowska + João Damasceno']
+                    ['Editorial system', 'studio'],
+                    ['Typografia', 'studio'],
+                    ['Druk', 'drukarnie partnerskie'],
+                    ['Klient', 'pod NDA']
                 ]
             },
             'korzen-sol': {
-                title: 'Korzeń & Sól', client: 'Korzeń &amp; Sól Sp. z o.o.', year: '2022',
-                location: 'Lublin', scope: 'Branding · Packaging · Web',
+                title: 'Studium № 092 — Manufaktura przetworów', client: 'Klient pod NDA', year: '2022',
+                location: 'Polska, wschód', scope: 'Branding · Packaging · Web',
                 hero: 'https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=1800&q=90&auto=format&fit=crop',
                 intro: 'Manufaktura przetworów, która sprzedaje przeszłość bez sentymentu.',
                 text: [
-                    'Korzeń & Sól robi pikle, kiszonki i miody pitne na podstawie lubelskich receptur z lat 50-tych. Ich problem: rynek lokalnych manufaktur w 2022 to dwie estetyki — „rustykalna" (rafia, sztuczne pieczęcie) lub „ironicznie czysta" (Helvetica, biało-czarne minimalizmy).',
+                    'Manufaktura robi pikle, kiszonki i miody pitne na podstawie regionalnych receptur z lat 50-tych. Ich problem: rynek lokalnych manufaktur z tamtej dekady to dwie estetyki — „rustykalna" (rafia, sztuczne pieczęcie) lub „ironicznie czysta" (Helvetica, biało-czarne minimalizmy).',
                     'Klient nie chciał ani jednego, ani drugiego. Chciał, żeby produkt mówił prawdę: że to faktycznie jest stara receptura, ale wykonana dziś, świadomie, dla dzisiejszego stołu.',
-                    'Zaprojektowaliśmy system etykiet, który łączy litery wzorowane na drukowanych pocztówkach Lublina z lat 50-tych z czystym układem informacyjnym. Każdy słoik ma na etykiecie nazwę babki lub dziadka, od którego receptura pochodzi — wraz z rokiem.',
-                    'W 2024 marka weszła na półki sklepów spożywczych w Berlinie i Pradze.'
+                    'Zaprojektowaliśmy system etykiet, który łączy litery wzorowane na drukowanych pocztówkach regionu z lat 50-tych z czystym układem informacyjnym. Każdy słoik ma na etykiecie wskazanie pokolenia, od którego receptura pochodzi — wraz z rokiem.',
+                    'W kolejnym roku marka weszła na półki sklepów spożywczych w wybranych miastach Europy Środkowej.'
                 ],
                 gallery: [
                     'https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=1600&q=85&auto=format&fit=crop',
@@ -2098,11 +2150,11 @@
                     'https://images.unsplash.com/photo-1542838332-7d05ac9f7dd5?w=1200&q=85&auto=format&fit=crop'
                 ],
                 credits: [
-                    ['Strategia', 'Studio Storyline'],
-                    ['Branding', 'Studio Storyline'],
-                    ['Packaging', 'Studio Storyline'],
-                    ['Web', 'Studio Storyline + Joanna Modlin'],
-                    ['Klient', 'Tomasz Korzeń + Anna Sól']
+                    ['Strategia', 'studio'],
+                    ['Branding', 'studio'],
+                    ['Packaging', 'studio'],
+                    ['Web', 'studio + partner'],
+                    ['Klient', 'pod NDA']
                 ]
             }
         };
@@ -2138,7 +2190,7 @@
             els.loc.textContent = p.location;
             els.intro.textContent = p.intro;
             els.text.innerHTML = p.text.map(t => `<p>${t}</p>`).join('');
-            els.gallery.innerHTML = p.gallery.map(g => `<img src="${g}" alt="${p.title} — kadr" loading="lazy">`).join('');
+            els.gallery.innerHTML = p.gallery.map(g => `<img src="${g}" alt="${p.title} — studyjny kadr" loading="lazy">`).join('');
             els.credits.innerHTML = p.credits.map(c => `<div class="case-credit"><span class="role">${c[0]}</span><span class="name">${c[1]}</span></div>`).join('');
             const nextKey = projectKeys[(projectKeys.indexOf(id) + 1) % projectKeys.length];
             els.next.dataset.project = nextKey;
@@ -2176,6 +2228,22 @@
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeCase();
         });
+
+        /* ---------- MARQUEE PARTICLE FIELD ---------- */
+        const particleField = document.getElementById('marqueeParticles');
+        if (particleField && !reduceMotion) {
+            const N = 36;
+            const frag = document.createDocumentFragment();
+            for (let i = 0; i < N; i++) {
+                const dot = document.createElement('span');
+                dot.style.left = (Math.random() * 100) + '%';
+                dot.style.top = (Math.random() * 100) + '%';
+                dot.style.animationDelay = (Math.random() * 9) + 's';
+                dot.style.animationDuration = (7 + Math.random() * 6) + 's';
+                frag.appendChild(dot);
+            }
+            particleField.appendChild(frag);
+        }
 
         /* ---------- QUOTE ROTATION ---------- */
         const quoteContainer = document.getElementById('quoteRotation');
