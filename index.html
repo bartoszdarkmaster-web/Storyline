@@ -8,6 +8,7 @@
     <meta property="og:title" content="Storyline Studio — V26 Director's Cut">
     <meta property="og:description" content="Studio narracji marki. Pięć aktów, jedna obsesja: historia, której nie da się streścić w jednym zdaniu.">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%23010101'/%3E%3Ctext x='600' y='320' font-family='serif' font-size='180' font-style='italic' text-anchor='middle' fill='%23f3ede1' font-weight='300'%3EStoryline%3C/text%3E%3Ctext x='600' y='400' font-family='sans-serif' font-size='28' letter-spacing='12' text-anchor='middle' fill='%237a7670'%3ESTUDIO NARRACJI MARKI%3C/text%3E%3Ccircle cx='600' cy='480' r='4' fill='%23d92525'/%3E%3C/svg%3E">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23010101'/%3E%3Ctext x='50' y='70' font-family='serif' font-size='80' font-weight='700' text-anchor='middle' fill='%23d92525'%3ES%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,13 +26,17 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         @media (pointer: fine) { *:not(input):not(textarea) { cursor: none; } }
 
+        html { background: var(--bg); }
         html, body {
-            background: var(--bg); color: var(--text);
+            color: var(--text);
             font-family: 'Manrope', sans-serif;
             -webkit-font-smoothing: antialiased;
             overscroll-behavior: none;
         }
-        body { width: 100%; min-height: 100%; position: relative; }
+        body { background: transparent; width: 100%; min-height: 100%; position: relative; }
+
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+        input:focus-visible, textarea:focus-visible { outline: none; }
 
         .visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
@@ -70,30 +75,30 @@
         /* Top UI */
         .top-bar { position: fixed; top: 24px; left: 0; right: 0; padding: 0 28px; z-index: 9000; display: flex; justify-content: space-between; align-items: center; mix-blend-mode: difference; pointer-events: none; }
         .top-bar > * { pointer-events: auto; }
-        .ui-brand { font-family: 'Fraunces', serif; letter-spacing: 0.08em; font-size: 1.05rem; display: flex; gap: 14px; align-items: center; }
+        .ui-brand { font-family: 'Fraunces', serif; letter-spacing: 0.08em; font-size: 1.05rem; display: flex; align-items: center; }
         .ui-brand .accent-slash { color: var(--accent); }
-        .ui-brand .active-act { font-family: 'Manrope', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dim); padding-left: 14px; border-left: 1px solid rgba(255,255,255,0.2); transition: color 0.4s; }
+        .ui-brand .active-act { font-family: 'Manrope', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dim); padding-left: 14px; margin-left: 14px; border-left: 1px solid rgba(255,255,255,0.2); transition: color 0.4s; }
         @media (max-width: 720px) { .ui-brand .active-act { display: none; } }
 
         .ui-controls { display: flex; gap: 14px; align-items: center; }
-        .audio-toggle { width: 44px; height: 44px; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; transition: all 0.3s; user-select: none; }
+        .audio-toggle { padding: 0 18px; height: 44px; border: 1px solid rgba(255,255,255,0.3); border-radius: 30px; display: flex; justify-content: center; align-items: center; gap: 10px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em; transition: background 0.3s, color 0.3s, border-color 0.3s; user-select: none; }
         @media (pointer: fine) { .audio-toggle:hover { background: var(--text); color: var(--bg); border-color: var(--text); } }
-        .audio-toggle .audio-dot { width: 6px; height: 6px; border-radius: 50%; background: transparent; border: 1px solid currentColor; margin-right: 5px; transition: all 0.3s; }
+        .audio-toggle .audio-dot { width: 7px; height: 7px; border-radius: 50%; background: transparent; border: 1px solid currentColor; transition: all 0.3s; flex-shrink: 0; }
         .audio-toggle[aria-pressed="true"] .audio-dot { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 10px var(--accent); animation: pulseDot 1.6s infinite; }
         @keyframes pulseDot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
 
         /* Side rail nav */
-        .side-rail { position: fixed; right: 28px; top: 50%; transform: translateY(-50%); z-index: 9000; display: flex; flex-direction: column; gap: 16px; mix-blend-mode: difference; }
+        .side-rail { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); z-index: 9000; display: flex; flex-direction: column; gap: 6px; mix-blend-mode: difference; }
         @media (max-width: 720px) { .side-rail { display: none; } }
-        .rail-dot { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; position: relative; }
+        .rail-dot { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; position: relative; }
         .rail-dot::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--text-dim); transition: all 0.4s cubic-bezier(0.19,1,0.22,1); }
         .rail-dot.active::before { background: var(--accent); width: 7px; height: 7px; box-shadow: 0 0 14px var(--accent); }
-        .rail-dot .rail-label { position: absolute; right: 38px; top: 50%; transform: translateY(-50%) translateX(8px); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text); white-space: nowrap; opacity: 0; transition: all 0.3s; pointer-events: none; }
+        .rail-dot .rail-label { position: absolute; right: 44px; top: 50%; transform: translateY(-50%) translateX(8px); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text); white-space: nowrap; opacity: 0; transition: all 0.3s; pointer-events: none; }
         @media (pointer: fine) { .rail-dot:hover .rail-label { opacity: 1; transform: translateY(-50%) translateX(0); } }
         .rail-dot:hover::before { background: var(--text); }
 
-        /* WebGL */
-        #webgl-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none; opacity: 0.55; }
+        /* WebGL — visible behind transparent body, peeks through hero (mask) and consume (rgba) */
+        #webgl-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.7; }
 
         /* Loader */
         .loader { position: fixed; inset: 0; background: var(--bg); z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; }
@@ -111,7 +116,7 @@
         @media (max-width: 768px) { .sec-num { top: 3vh; right: 5vw; } }
 
         /* Hero */
-        .hero-pin { height: 100vh; width: 100vw; position: relative; overflow: hidden; padding: 0; }
+        .hero-pin { height: 100vh; width: 100%; position: relative; overflow: hidden; padding: 0; }
         .hero-img-container {
             position: absolute; inset: 0;
             background: url('https://images.unsplash.com/photo-1530819568329-97653eafbbfa?w=1800&q=90&auto=format&fit=crop') center/cover no-repeat;
@@ -159,8 +164,9 @@
         .cine-item.offset { margin-top: 25vh; }
         .cine-img { position: absolute; top: -20%; left: -20%; width: 140%; height: 140%; object-fit: cover; filter: grayscale(100%) contrast(1.15); transition: filter 0.6s; }
         @media (pointer: fine) { .cine-item:hover .cine-img { filter: grayscale(0%) contrast(1.05); } }
-        .cine-caption { position: absolute; bottom: 28px; left: 28px; z-index: 2; font-family: 'Fraunces', serif; font-size: clamp(1.3rem,2.4vw,2.2rem); mix-blend-mode: difference; max-width: 75%; line-height: 1.15; }
-        .cine-meta { position: absolute; top: 28px; right: 28px; z-index: 2; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.22em; mix-blend-mode: difference; }
+        .cine-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 35%, transparent 60%, rgba(0,0,0,0.55) 100%); pointer-events: none; z-index: 1; }
+        .cine-caption { position: absolute; bottom: 28px; left: 28px; z-index: 2; font-family: 'Fraunces', serif; font-size: clamp(1.3rem,2.4vw,2.2rem); color: var(--text); max-width: 75%; line-height: 1.15; text-shadow: 0 1px 12px rgba(0,0,0,0.6); }
+        .cine-meta { position: absolute; top: 28px; right: 28px; z-index: 2; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--text); text-shadow: 0 1px 8px rgba(0,0,0,0.7); }
         @media (max-width: 768px) {
             .cine-grid { grid-template-columns: 1fr; gap: 6vw; }
             .cine-item.offset { margin-top: 0; }
@@ -202,9 +208,10 @@
         .portfolio-list { list-style: none; margin-top: 5vh; border-top: 2px solid var(--text); }
         .portfolio-item { border-bottom: 1px solid var(--line); padding: 3vh 0; display: flex; flex-direction: column; position: relative; transition: padding 0.5s cubic-bezier(0.19,1,0.22,1); }
         @media (min-width: 768px) { .portfolio-item { flex-direction: row; justify-content: space-between; align-items: center; padding: 4vh 0; } }
-        .portfolio-item h3 { font-size: clamp(1.5rem,4vw,5rem); text-transform: uppercase; margin: 0 0 10px 0; transition: color 0.4s; mix-blend-mode: difference; pointer-events: none; will-change: transform; }
+        .portfolio-item h3 { font-size: clamp(1.5rem,4vw,5rem); text-transform: uppercase; margin: 0 0 10px 0; transition: color 0.4s; mix-blend-mode: difference; will-change: transform; }
         @media (min-width: 768px) { .portfolio-item h3 { margin: 0; } }
         .portfolio-item .pi-meta { display: flex; gap: 18px; align-items: center; pointer-events: none; }
+        .portfolio-item h3, .portfolio-item .pi-meta { user-select: none; }
         .portfolio-item .pi-meta span { font-size: 0.82rem; opacity: 0.5; transition: opacity 0.4s; letter-spacing: 0.05em; }
         .portfolio-item .pi-meta .arrow { width: 28px; height: 1px; background: var(--text-dim); position: relative; transition: width 0.4s, background 0.4s; }
         .portfolio-item .pi-meta .arrow::after { content: ''; position: absolute; right: 0; top: -3px; width: 7px; height: 7px; border-top: 1px solid var(--text-dim); border-right: 1px solid var(--text-dim); transform: rotate(45deg); transition: border-color 0.4s; }
@@ -438,7 +445,7 @@
             </div>
         </section>
 
-        <section class="stats-row" aria-label="Dane studia">
+        <section class="stats-row" aria-label="Dane studia" data-act="03">
             <div class="stat">
                 <span class="num"><span data-count-to="142">0</span></span>
                 <span class="label">Premier marek od 2014</span>
@@ -460,7 +467,7 @@
         <section id="praktyka" data-act="04">
             <div class="sec-num">03 — Akt III</div>
             <div class="meta-text" style="margin-bottom: 1.8rem;">— Akt III · Praktyka</div>
-            <h2 class="huge split-target">Wybrane projekty<br>2022—2026</h2>
+            <h2 class="huge split-target">Wybrane projekty<br><em style="color:var(--accent); font-style: italic;">2022—2026</em></h2>
             <ul class="portfolio-list">
                 <li class="portfolio-item" data-thumb="https://images.unsplash.com/photo-1542838132-92c53300491e?w=900&q=80&auto=format&fit=crop" data-cursor="Zobacz">
                     <h3 class="magnetic-target">Cervo Maison</h3>
@@ -722,8 +729,8 @@
                 el.addEventListener('mouseleave', () => setRing('default'));
             });
 
-            // Magnetic
-            document.querySelectorAll('.btn, .magnetic-target').forEach(el => {
+            // Magnetic on buttons
+            document.querySelectorAll('.btn').forEach(el => {
                 el.addEventListener('mousemove', e => {
                     const r = el.getBoundingClientRect();
                     const x = e.clientX - (r.left + r.width / 2);
@@ -732,6 +739,21 @@
                 });
                 el.addEventListener('mouseleave', () => {
                     gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.4)' });
+                });
+            });
+
+            // Magnetic on portfolio h3 (driven by parent LI mousemove since h3 needs to move freely)
+            document.querySelectorAll('.portfolio-item').forEach(item => {
+                const h3 = item.querySelector('h3');
+                if (!h3) return;
+                item.addEventListener('mousemove', e => {
+                    const r = item.getBoundingClientRect();
+                    const x = e.clientX - (r.left + r.width / 2);
+                    const y = e.clientY - (r.top + r.height / 2);
+                    gsap.to(h3, { x: x * 0.18 + 30, y: y * 0.25, duration: 0.55, ease: 'power3.out' });
+                });
+                item.addEventListener('mouseleave', () => {
+                    gsap.to(h3, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.45)' });
                 });
             });
         }
@@ -775,13 +797,15 @@
             el.innerHTML = '';
             el.appendChild(result);
         });
-        document.querySelectorAll('.split-target').forEach(el => {
-            const chars = el.querySelectorAll('.split-char');
-            gsap.fromTo(chars, { y: '110%' }, {
-                y: '0%', duration: 1.0, stagger: 0.012, ease: 'power4.out',
-                scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+        if (!reduceMotion) {
+            document.querySelectorAll('.split-target').forEach(el => {
+                const chars = el.querySelectorAll('.split-char');
+                gsap.fromTo(chars, { y: '110%' }, {
+                    y: '0%', duration: 1.0, stagger: 0.012, ease: 'power4.out',
+                    scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+                });
             });
-        });
+        }
 
         /* ---------- GS-UP REVEAL ---------- */
         document.querySelectorAll('.gs-up').forEach(el => {
@@ -792,8 +816,8 @@
         /* ---------- HERO MASK PIN ---------- */
         const heroImg = document.getElementById('heroImg');
         ScrollTrigger.create({
-            trigger: '#hero', start: 'top top', end: '+=120%',
-            pin: true, scrub: 1,
+            trigger: '#hero', start: 'top top', end: '+=140%',
+            pin: true, scrub: 1, anticipatePin: 1,
             onUpdate: self => {
                 const size = 100 + self.progress * 1900;
                 heroImg.style.maskSize = size + '% ' + size + '%';
@@ -808,7 +832,7 @@
             onUpdate: self => { manifestoFill.style.width = (self.progress * 100) + '%'; }
         });
 
-        /* ---------- DUAL MARQUEE ---------- */
+        /* ---------- DUAL MARQUEE — duplicated content + repeat = seamless ---------- */
         document.querySelectorAll('.dm-track').forEach(track => {
             const dir = track.dataset.marqueeDir === 'right' ? 1 : -1;
             track.innerHTML = track.innerHTML + track.innerHTML;
@@ -816,11 +840,7 @@
             gsap.set(track, { x: dir === 1 ? -distance : 0 });
             gsap.to(track, {
                 x: dir === 1 ? 0 : -distance,
-                duration: 38, ease: 'none', repeat: -1,
-                modifiers: { x: gsap.utils.unitize(x => {
-                    const v = parseFloat(x);
-                    return dir === 1 ? (v % distance) : (v % distance);
-                }) }
+                duration: 38, ease: 'none', repeat: -1
             });
         });
 
@@ -876,12 +896,14 @@
             };
             followLoop();
 
-            document.querySelectorAll('.portfolio-item').forEach(item => {
+            const rotations = [-4, 2, -2, 5, -3, 3, -5];
+            document.querySelectorAll('.portfolio-item').forEach((item, i) => {
+                const rot = rotations[i % rotations.length];
                 item.addEventListener('mouseenter', () => {
                     hoverImg.src = item.dataset.thumb;
                     gsap.to(hoverImgCont, {
-                        opacity: 1, scale: 1, rotation: gsap.utils.random(-5, 5),
-                        duration: 0.5, ease: 'power3.out'
+                        opacity: 1, scale: 1, rotation: rot,
+                        duration: 0.55, ease: 'power3.out'
                     });
                 });
                 item.addEventListener('mouseleave', () => {
@@ -1069,7 +1091,11 @@
             if (act === currentAct) return;
             currentAct = act;
             activeAct.textContent = actLabels[act] || '';
-            railDots.forEach(d => d.classList.toggle('active', d.dataset.act === act));
+            railDots.forEach(d => {
+                const isActive = d.dataset.act === act;
+                d.classList.toggle('active', isActive);
+                d.setAttribute('aria-current', isActive ? 'true' : 'false');
+            });
         }
         document.querySelectorAll('[data-act]').forEach(sec => {
             ScrollTrigger.create({
@@ -1079,12 +1105,18 @@
             });
         });
 
-        // Side rail scroll-to
+        // Side rail + brand scroll-to (consistent with Lenis)
+        const smoothScrollTo = (selector) => {
+            const target = document.querySelector(selector);
+            if (target && lenis) lenis.scrollTo(target, { offset: -20 });
+        };
         railDots.forEach(d => {
-            d.addEventListener('click', e => {
-                e.preventDefault();
-                const target = document.querySelector(d.getAttribute('href'));
-                if (target && lenis) lenis.scrollTo(target, { offset: -20 });
+            d.addEventListener('click', e => { e.preventDefault(); smoothScrollTo(d.getAttribute('href')); });
+        });
+        document.querySelectorAll('.ui-brand, .footer-grid a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const href = a.getAttribute('href');
+                if (href && href.startsWith('#')) { e.preventDefault(); smoothScrollTo(href); }
             });
         });
 
@@ -1107,13 +1139,18 @@
         runLoader().then(() => {
             document.body.style.overflow = '';
             initLenis();
-            if (!reduceMotion) initWebGL();
-            if (!reduceMotion) aberrLoop();
-
-            gsap.from('.hero-meta, .hero-sub', { y: 30, opacity: 0, duration: 1.2, ease: 'power3.out', stagger: 0.1 });
-            gsap.from('#heroImg', { scale: 1.15, duration: 1.6, ease: 'power3.out' });
-            gsap.from('.top-bar, .side-rail', { y: -20, opacity: 0, duration: 1, delay: 0.3, ease: 'power3.out', stagger: 0.1 });
-
+            if (!reduceMotion) {
+                initWebGL();
+                aberrLoop();
+                gsap.from('.hero-meta, .hero-sub', { y: 30, opacity: 0, duration: 1.2, ease: 'power3.out', stagger: 0.1 });
+                gsap.from('#heroImg', { scale: 1.15, duration: 1.6, ease: 'power3.out' });
+                gsap.from('.top-bar, .side-rail', { y: -20, opacity: 0, duration: 1, delay: 0.3, ease: 'power3.out', stagger: 0.1 });
+            } else {
+                // Reduced-motion: snap reveal targets to final state
+                gsap.set('.split-char', { y: '0%' });
+                gsap.set('.gs-up', { opacity: 1, y: 0 });
+                gsap.set('#footerMega', { y: 0, opacity: 1 });
+            }
             ScrollTrigger.refresh();
         });
         window.addEventListener('load', () => ScrollTrigger.refresh());
