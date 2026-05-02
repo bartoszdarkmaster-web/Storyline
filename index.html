@@ -35,7 +35,8 @@
         }
         body { background: transparent; width: 100%; min-height: 100%; position: relative; }
 
-        :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+        .rail-dot:focus-visible, .audio-toggle:focus-visible { outline-offset: 2px; border-radius: 30px; }
         input:focus-visible, textarea:focus-visible { outline: none; }
 
         .visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
@@ -206,7 +207,8 @@
 
         /* Portfolio */
         .portfolio-list { list-style: none; margin-top: 5vh; border-top: 2px solid var(--text); }
-        .portfolio-item { border-bottom: 1px solid var(--line); padding: 3vh 0; display: flex; flex-direction: column; position: relative; transition: padding 0.5s cubic-bezier(0.19,1,0.22,1); }
+        .portfolio-list > li { display: block; }
+        .portfolio-item { border-bottom: 1px solid var(--line); padding: 3vh 0; display: flex; flex-direction: column; position: relative; transition: padding 0.5s cubic-bezier(0.19,1,0.22,1); color: inherit; text-decoration: none; }
         @media (min-width: 768px) { .portfolio-item { flex-direction: row; justify-content: space-between; align-items: center; padding: 4vh 0; } }
         .portfolio-item h3 { font-size: clamp(1.5rem,4vw,5rem); text-transform: uppercase; margin: 0 0 10px 0; transition: color 0.4s; mix-blend-mode: difference; will-change: transform; }
         @media (min-width: 768px) { .portfolio-item h3 { margin: 0; } }
@@ -308,11 +310,11 @@
     </header>
 
     <nav class="side-rail" aria-label="Nawigacja po sekcjach">
-        <a href="#consume" class="rail-dot active" data-act="01"><span class="rail-label">Akt I — Punkt wyjścia</span></a>
-        <a href="#manifesto" class="rail-dot" data-act="02"><span class="rail-label">Akt II — Forma</span></a>
-        <a href="#process" class="rail-dot" data-act="03"><span class="rail-label">Akt III — Proces</span></a>
-        <a href="#praktyka" class="rail-dot" data-act="04"><span class="rail-label">Akt IV — Praktyka</span></a>
-        <a href="#kontakt" class="rail-dot" data-act="05"><span class="rail-label">Akt V — Spotkanie</span></a>
+        <a href="#consume" class="rail-dot active" data-act="01" aria-current="true"><span class="rail-label">Akt I — Punkt wyjścia</span></a>
+        <a href="#manifesto" class="rail-dot" data-act="02" aria-current="false"><span class="rail-label">Akt II — Forma</span></a>
+        <a href="#process" class="rail-dot" data-act="03" aria-current="false"><span class="rail-label">Akt III — Proces</span></a>
+        <a href="#praktyka" class="rail-dot" data-act="04" aria-current="false"><span class="rail-label">Akt IV — Praktyka</span></a>
+        <a href="#kontakt" class="rail-dot" data-act="05" aria-current="false"><span class="rail-label">Akt V — Spotkanie</span></a>
     </nav>
 
     <canvas id="webgl-bg" aria-hidden="true"></canvas>
@@ -469,34 +471,34 @@
             <div class="meta-text" style="margin-bottom: 1.8rem;">— Akt III · Praktyka</div>
             <h2 class="huge split-target">Wybrane projekty<br><em style="color:var(--accent); font-style: italic;">2022—2026</em></h2>
             <ul class="portfolio-list">
-                <li class="portfolio-item" data-thumb="https://images.unsplash.com/photo-1542838132-92c53300491e?w=900&q=80&auto=format&fit=crop" data-cursor="Zobacz">
+                <li><a href="#" class="portfolio-item" data-thumb="https://images.unsplash.com/photo-1542838132-92c53300491e?w=900&q=80&auto=format&fit=crop" data-cursor="Zobacz" aria-label="Cervo Maison — Tożsamość, Editorial, 2026">
                     <h3 class="magnetic-target">Cervo Maison</h3>
                     <div class="pi-meta"><span>Tożsamość · Editorial</span><span>2026</span><div class="arrow"></div></div>
-                </li>
-                <li class="portfolio-item" data-thumb="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=80&auto=format&fit=crop" data-cursor="Zobacz">
+                </a></li>
+                <li><a href="#" class="portfolio-item" data-thumb="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=80&auto=format&fit=crop" data-cursor="Zobacz" aria-label="Atelier Norhe — Manifest, Web, 2025">
                     <h3 class="magnetic-target">Atelier Norhe</h3>
                     <div class="pi-meta"><span>Manifest · Web</span><span>2025</span><div class="arrow"></div></div>
-                </li>
-                <li class="portfolio-item" data-thumb="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=900&q=80&auto=format&fit=crop" data-cursor="Zobacz">
+                </a></li>
+                <li><a href="#" class="portfolio-item" data-thumb="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=900&q=80&auto=format&fit=crop" data-cursor="Zobacz" aria-label="Polifonia Warszawa — Reżyseria, Film, 2025">
                     <h3 class="magnetic-target">Polifonia Warszawa</h3>
                     <div class="pi-meta"><span>Reżyseria · Film</span><span>2025</span><div class="arrow"></div></div>
-                </li>
-                <li class="portfolio-item" data-thumb="https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?w=900&q=80&auto=format&fit=crop" data-cursor="Zobacz">
+                </a></li>
+                <li><a href="#" class="portfolio-item" data-thumb="https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?w=900&q=80&auto=format&fit=crop" data-cursor="Zobacz" aria-label="Salt &amp; Marrow — Strategia, Branding, 2024">
                     <h3 class="magnetic-target">Salt &amp; Marrow</h3>
                     <div class="pi-meta"><span>Strategia · Branding</span><span>2024</span><div class="arrow"></div></div>
-                </li>
-                <li class="portfolio-item" data-thumb="https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?w=900&q=80&auto=format&fit=crop" data-cursor="Zobacz">
+                </a></li>
+                <li><a href="#" class="portfolio-item" data-thumb="https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?w=900&q=80&auto=format&fit=crop" data-cursor="Zobacz" aria-label="Hotel Lume — Tożsamość, Kampania, 2024">
                     <h3 class="magnetic-target">Hotel Lume</h3>
                     <div class="pi-meta"><span>Tożsamość · Kampania</span><span>2024</span><div class="arrow"></div></div>
-                </li>
-                <li class="portfolio-item" data-thumb="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=900&q=80&auto=format&fit=crop" data-cursor="Zobacz">
+                </a></li>
+                <li><a href="#" class="portfolio-item" data-thumb="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=900&q=80&auto=format&fit=crop" data-cursor="Zobacz" aria-label="Refugium Press — Editorial, Wydawnictwo, 2023">
                     <h3 class="magnetic-target">Refugium Press</h3>
                     <div class="pi-meta"><span>Editorial · Wydawnictwo</span><span>2023</span><div class="arrow"></div></div>
-                </li>
-                <li class="portfolio-item" data-thumb="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=900&q=80&auto=format&fit=crop" data-cursor="Zobacz">
+                </a></li>
+                <li><a href="#" class="portfolio-item" data-thumb="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=900&q=80&auto=format&fit=crop" data-cursor="Zobacz" aria-label="Korzeń i Sól — Branding, Packaging, 2022">
                     <h3 class="magnetic-target">Korzeń &amp; Sól</h3>
                     <div class="pi-meta"><span>Branding · Packaging</span><span>2022</span><div class="arrow"></div></div>
-                </li>
+                </a></li>
             </ul>
         </section>
 
@@ -1116,17 +1118,32 @@
         document.querySelectorAll('.ui-brand, .footer-grid a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
                 const href = a.getAttribute('href');
-                if (href && href.startsWith('#')) { e.preventDefault(); smoothScrollTo(href); }
+                if (href && href.startsWith('#') && href.length > 1) { e.preventDefault(); smoothScrollTo(href); }
             });
         });
 
-        /* ---------- HERO LIVE COUNTER ---------- */
-        let reel = 0;
-        setInterval(() => {
-            reel = (reel + 1) % 4;
-            const r = document.getElementById('reelCounter');
-            if (r) r.textContent = `Reel ${String(reel + 1).padStart(2, '0')} / 04`;
-        }, 4200);
+        // Portfolio anchors: prevent default jump (no real destination yet)
+        document.querySelectorAll('.portfolio-item').forEach(a => {
+            a.addEventListener('click', e => e.preventDefault());
+        });
+
+        /* ---------- HERO LIVE COUNTER (paused off-screen) ---------- */
+        const reelEl = document.getElementById('reelCounter');
+        let reel = 0, reelTimer = null;
+        function startReel() {
+            if (reelTimer) return;
+            reelTimer = setInterval(() => {
+                reel = (reel + 1) % 4;
+                if (reelEl) reelEl.textContent = `Reel ${String(reel + 1).padStart(2, '0')} / 04`;
+            }, 4200);
+        }
+        function stopReel() { if (reelTimer) { clearInterval(reelTimer); reelTimer = null; } }
+        ScrollTrigger.create({
+            trigger: '#hero', start: 'top bottom', end: 'bottom top',
+            onEnter: startReel, onEnterBack: startReel,
+            onLeave: stopReel, onLeaveBack: stopReel
+        });
+        startReel();
 
         /* ---------- FOOTER MEGA REVEAL ---------- */
         gsap.fromTo('#footerMega', { y: 200, opacity: 0 }, {
