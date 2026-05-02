@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Strona zniknęła w narracji · Storyline Studio</title>
+    <meta name="description" content="To nie dziura w sieci. To luka w pamięci.">
+    <meta name="robots" content="noindex">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23010101'/%3E%3Ctext x='50' y='70' font-family='serif' font-size='80' font-weight='700' text-anchor='middle' fill='%23d92525'%3ES%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,400&family=Manrope:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #010101; --text: #f3ede1; --text-dim: #7a7670; --accent: #d92525; --line: rgba(255,255,255,0.08); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { background: var(--bg); }
+        body { background: transparent; color: var(--text); font-family: 'Manrope', sans-serif; min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+        a { color: inherit; text-decoration: none; }
+
+        #grain {
+            position: fixed; inset: -50%; width: 200%; height: 200%; pointer-events: none; opacity: 0.06; z-index: 9;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            animation: grain 8s steps(10) infinite;
+        }
+        @keyframes grain {
+            0%,100% { transform: translate(0,0); }
+            10% { transform: translate(-5%,-10%); } 30% { transform: translate(7%,-25%); }
+            50% { transform: translate(-15%,10%); } 70% { transform: translate(0%,15%); } 90% { transform: translate(-10%,10%); }
+        }
+
+        header { padding: 28px; display: flex; justify-content: space-between; align-items: center; mix-blend-mode: difference; }
+        .brand { font-family: 'Fraunces', serif; letter-spacing: 0.08em; font-size: 1.05rem; }
+        .brand .slash { color: var(--accent); }
+        .meta { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dim); }
+
+        main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0 8vw; max-width: 1400px; margin: 0 auto; width: 100%; }
+
+        .four-oh-four {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(7rem, 28vw, 28rem);
+            font-weight: 300;
+            line-height: 0.85;
+            letter-spacing: -0.02em;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.18);
+            position: relative;
+        }
+        .four-oh-four::after {
+            content: '404';
+            position: absolute; left: 0; top: 0;
+            color: var(--accent);
+            -webkit-text-stroke: 0;
+            width: 0%; overflow: hidden;
+            text-shadow: 0 0 30px rgba(217,37,37,0.4);
+            animation: fillIn 2.4s cubic-bezier(0.83,0,0.17,1) 0.2s forwards;
+        }
+        @keyframes fillIn { to { width: 30%; } }
+
+        .epigraph { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: clamp(1.6rem, 3.4vw, 3rem); line-height: 1.2; max-width: 22ch; margin-top: 4vh; color: var(--text); }
+        .epigraph::before { content: '—'; color: var(--accent); display: block; font-style: normal; margin-bottom: 0.5em; }
+
+        .body-text { font-size: clamp(1rem, 1.4vw, 1.2rem); line-height: 1.65; max-width: 50ch; margin-top: 4vh; color: var(--text); font-weight: 300; }
+        .body-text strong { color: var(--accent); font-weight: 500; }
+
+        .ctas { margin-top: 6vh; display: flex; flex-wrap: wrap; gap: 18px; }
+        .cta { display: inline-flex; align-items: center; gap: 10px; padding: 18px 32px; border: 1px solid var(--text); font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; transition: background 0.3s, color 0.3s, border-color 0.3s; }
+        .cta:hover { background: var(--text); color: var(--bg); }
+        .cta.primary { background: var(--text); color: var(--bg); }
+        .cta.primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .cta::after { content: '→'; }
+
+        footer { padding: 4vh 28px; border-top: 1px solid var(--line); margin-top: 8vh; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); }
+        footer .pulse { display: inline-block; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; margin-right: 9px; vertical-align: middle; }
+        @keyframes pulseDot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+        footer .pulse { animation: pulseDot 1.6s infinite; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .four-oh-four::after { animation: none; width: 30%; }
+            #grain { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div id="grain"></div>
+    <header>
+        <a class="brand" href="/"><span class="slash">S/</span>Storyline</a>
+        <div class="meta">Akt zaginiony · MMXXVI</div>
+    </header>
+
+    <main>
+        <div class="four-oh-four" aria-label="404">404</div>
+        <p class="epigraph">Strona zniknęła w narracji.</p>
+        <p class="body-text">To nie dziura w sieci. To <strong>luka w pamięci</strong> — adres, którego studio nie pamięta, a Ty być może wpisałeś go z notatnika sprzed kilku lat. Bywa tak z markami, które przeszły rebranding. Bywa tak ze stronami, które przeszły redaktorską decyzję, że pewnych historii się już nie opowiada.</p>
+        <p class="body-text">Wracając do początku, najczęściej znajdujemy to, czego szukaliśmy — albo coś bliższego.</p>
+        <div class="ctas">
+            <a class="cta primary" href="/">Wróć do studia</a>
+            <a class="cta" href="mailto:studio@storyline.pl">Napisz do nas</a>
+        </div>
+    </main>
+
+    <footer>
+        <span><span class="pulse"></span>Studio czynne · Warszawa · Lizbona</span>
+        <span>Error 404 · Storyline V26 Director's Cut</span>
+    </footer>
+</body>
+</html>
