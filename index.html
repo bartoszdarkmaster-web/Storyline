@@ -36,7 +36,7 @@
         body { background: transparent; width: 100%; min-height: 100%; position: relative; }
 
         :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-        .rail-dot:focus-visible, .audio-toggle:focus-visible { outline-offset: 2px; border-radius: 30px; }
+        .rail-dot:focus-visible, .clock-pill:focus-visible { outline-offset: 2px; border-radius: 30px; }
         input:focus-visible, textarea:focus-visible { outline: none; }
 
         .visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
@@ -86,10 +86,8 @@
         @media (max-width: 720px) { .ui-brand .active-act { display: none; } }
 
         .ui-controls { display: flex; gap: 14px; align-items: center; }
-        .audio-toggle { padding: 0 18px; height: 44px; border: 1px solid rgba(255,255,255,0.3); border-radius: 30px; display: flex; justify-content: center; align-items: center; gap: 10px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em; transition: background 0.3s, color 0.3s, border-color 0.3s; user-select: none; }
-        @media (pointer: fine) { .audio-toggle:hover { background: var(--text); color: var(--bg); border-color: var(--text); } }
-        .audio-toggle .audio-dot { width: 7px; height: 7px; border-radius: 50%; background: transparent; border: 1px solid currentColor; transition: all 0.3s; flex-shrink: 0; }
-        .audio-toggle[aria-pressed="true"] .audio-dot { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 10px var(--accent); animation: pulseDot 1.6s infinite; }
+        .clock-pill { padding: 0 18px; height: 44px; border: 1px solid rgba(255,255,255,0.2); border-radius: 30px; display: flex; align-items: center; gap: 10px; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text); user-select: none; font-variant-numeric: tabular-nums; }
+        .clock-pill .clock-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); flex-shrink: 0; animation: pulseDot 1.6s infinite; }
         @keyframes pulseDot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
 
         /* Side rail nav */
@@ -167,13 +165,15 @@
         .dm-track span { padding: 0 3vw; color: transparent; -webkit-text-stroke: 1px var(--text-dim); transition: all 0.3s; display: inline-block; }
         @media (pointer: fine) { .dm-track span:hover { color: var(--text); -webkit-text-stroke: 0; text-shadow: 0 0 30px rgba(255,255,255,0.5); } }
 
-        /* Cine Gallery */
-        .cine-gallery { padding: 14vh 5vw; background: var(--bg); position: relative; z-index: 5; }
+        /* Cine Gallery — 3D tilt + cursor light */
+        .cine-gallery { padding: 14vh 5vw; background: var(--bg); position: relative; z-index: 5; perspective: 1400px; }
         .cine-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8vw; align-items: start; }
-        .cine-item { position: relative; width: 100%; height: 70vh; overflow: hidden; border-radius: 4px; }
+        .cine-item { position: relative; width: 100%; height: 70vh; overflow: hidden; border-radius: 4px; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.19,1,0.22,1); will-change: transform; }
         .cine-item.offset { margin-top: 25vh; }
-        .cine-img { position: absolute; top: -20%; left: -20%; width: 140%; height: 140%; object-fit: cover; filter: grayscale(100%) contrast(1.15); transition: filter 0.6s; }
-        @media (pointer: fine) { .cine-item:hover .cine-img { filter: grayscale(0%) contrast(1.05); } }
+        .cine-img { position: absolute; top: -20%; left: -20%; width: 140%; height: 140%; object-fit: cover; filter: grayscale(100%) contrast(1.15); transition: filter 0.6s, transform 0.6s; }
+        @media (pointer: fine) { .cine-item:hover .cine-img { filter: grayscale(0%) contrast(1.05); transform: scale(1.04); } }
+        .cine-item .cine-light { position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0; transition: opacity 0.4s; background: radial-gradient(circle 380px at var(--mx,50%) var(--my,50%), rgba(255,235,205,0.18), transparent 60%); mix-blend-mode: screen; }
+        @media (pointer: fine) { .cine-item:hover .cine-light { opacity: 1; } }
         .cine-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 35%, transparent 60%, rgba(0,0,0,0.55) 100%); pointer-events: none; z-index: 1; }
         .cine-caption { position: absolute; bottom: 28px; left: 28px; z-index: 2; font-family: 'Fraunces', serif; font-size: clamp(1.3rem,2.4vw,2.2rem); color: var(--text); max-width: 75%; line-height: 1.15; text-shadow: 0 1px 12px rgba(0,0,0,0.6); }
         .cine-meta { position: absolute; top: 28px; right: 28px; z-index: 2; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--text); text-shadow: 0 1px 8px rgba(0,0,0,0.7); }
@@ -237,9 +237,10 @@
         @media (pointer: fine) { .hover-img-container { display: block; } }
         .hover-img-container img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Cards Stack */
-        .cards-stack-container { display: flex; flex-direction: column; gap: 3vh; margin-top: 7vh; padding-bottom: 8vh; }
-        .stack-card { position: sticky; top: 12%; background: var(--bg-light); border: 1px solid var(--line); padding: 6vw 5vw; border-radius: 18px; box-shadow: 0 -20px 60px rgba(0,0,0,0.95); transform-origin: top center; will-change: transform, opacity; }
+        /* Cards Stack — perspective + cursor tilt */
+        .cards-stack-container { display: flex; flex-direction: column; gap: 3vh; margin-top: 7vh; padding-bottom: 8vh; perspective: 1500px; }
+        .stack-card { position: sticky; top: 12%; background: var(--bg-light); border: 1px solid var(--line); padding: 6vw 5vw; border-radius: 18px; box-shadow: 0 -20px 60px rgba(0,0,0,0.95); transform-origin: top center; transform-style: preserve-3d; will-change: transform, opacity; transition: box-shadow 0.4s; }
+        @media (pointer: fine) { .stack-card:hover { box-shadow: 0 -20px 60px rgba(0,0,0,0.95), 0 30px 80px rgba(217,37,37,0.06); } }
         .stack-card .num { font-family: 'Fraunces', serif; font-size: clamp(3rem,6vw,6rem); color: var(--accent); margin-bottom: 18px; line-height: 1; }
         .stack-card h3 { font-size: clamp(2rem,4vw,4rem); margin-bottom: 22px; text-transform: uppercase; line-height: 1; }
         .stack-card p { max-width: 70ch; }
@@ -278,6 +279,20 @@
         @media (pointer: fine) { a.inline-link:hover { border-bottom-color: var(--text); } }
 
         .gs-up { opacity: 0; transform: translateY(40px); }
+
+        /* Animated section divider — drawn in on scroll */
+        .sec-divider { display: block; height: 1px; background: var(--line); position: relative; overflow: hidden; margin: 0; }
+        .sec-divider::after { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: linear-gradient(90deg, transparent, var(--accent) 50%, transparent); opacity: 0.7; }
+        .sec-divider.drawn::after { animation: dividerSweep 1.4s cubic-bezier(0.83,0,0.17,1) forwards; }
+        @keyframes dividerSweep { 0% { width: 0%; } 100% { width: 100%; } }
+
+        /* Hero ken-burns — slow zoom on active layer */
+        .hero-img-container.active { animation: kenburns 12s ease-out forwards; }
+        @keyframes kenburns { 0% { background-size: 110% auto; } 100% { background-size: 124% auto; } }
+
+        /* Huge headings — cursor-driven 3D tilt */
+        .huge { transform-style: preserve-3d; will-change: transform; }
+        section { perspective: 1800px; }
 
         /* Footer */
         footer { padding: 7vh 5vw 3vh; background: var(--bg); border-top: 1px solid var(--line); position: relative; z-index: 10; }
@@ -371,10 +386,7 @@
             <span class="active-act" id="activeAct">01 — Akt I</span>
         </a>
         <div class="ui-controls">
-            <button type="button" class="audio-toggle" id="audioBtn" aria-pressed="false" aria-label="Włącz dźwięk otoczenia" data-cursor="Zanurz">
-                <span class="audio-dot" aria-hidden="true"></span>
-                <span>Audio</span>
-            </button>
+            <div class="clock-pill" aria-live="polite" aria-label="Status studia"><span class="clock-dot" aria-hidden="true"></span><span id="topClock">studio czynne</span></div>
         </div>
     </header>
 
@@ -442,6 +454,8 @@
             </div>
         </section>
 
+        <hr class="sec-divider" aria-hidden="true">
+
         <section class="manifesto-scrub" id="manifesto" data-act="02">
             <div class="manifesto-text-wrap">
                 <h2>
@@ -485,6 +499,8 @@
                 </div>
             </div>
         </section>
+
+        <hr class="sec-divider" aria-hidden="true">
 
         <section class="quote-sec" data-act="02">
             <blockquote class="split-target">Marka, której nie da się streścić w jednym zdaniu, nie jest jeszcze marką — jest tylko obietnicą.</blockquote>
@@ -540,6 +556,8 @@
                 <span class="label">Średni mnożnik rezonansu kampanii</span>
             </div>
         </section>
+
+        <hr class="sec-divider" aria-hidden="true">
 
         <section id="praktyka" data-act="04">
             <div class="sec-num">03 — Akt III</div>
@@ -608,6 +626,8 @@
                 </article>
             </div>
         </section>
+
+        <hr class="sec-divider" aria-hidden="true">
 
         <section class="press-sec" data-act="04">
             <div class="meta-text" style="margin-bottom: 2rem;">— Notatki redaktorskie</div>
@@ -1123,18 +1143,45 @@
             uniform vec2 u_res; uniform float u_time; uniform vec2 u_mouse;
             vec3 hash3(vec2 p){ vec3 q = vec3(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3)),dot(p,vec2(419.2,371.9))); return fract(sin(q)*43758.5453); }
             float noise(vec2 p){ vec2 i=floor(p),f=fract(p); vec2 u=f*f*(3.0-2.0*f); float a=hash3(i).x; float b=hash3(i+vec2(1,0)).x; float c=hash3(i+vec2(0,1)).x; float d=hash3(i+vec2(1,1)).x; return mix(mix(a,b,u.x),mix(c,d,u.x),u.y); }
-            float fbm(vec2 p){ float v=0.0,a=0.5; for(int i=0;i<5;i++){ v+=a*noise(p); p*=2.0; a*=0.5; } return v; }
+            float fbm(vec2 p){ float v=0.0,a=0.5; for(int i=0;i<5;i++){ v+=a*noise(p); p*=2.05; a*=0.52; } return v; }
+            // Inigo Quilez domain warping
+            float warp(vec2 p, float t){
+                vec2 q = vec2(fbm(p + t*0.35), fbm(p + vec2(5.2,1.3) + t*0.25));
+                vec2 r = vec2(fbm(p + 4.0*q + vec2(1.7,9.2) - t*0.18), fbm(p + 4.0*q + vec2(8.3,2.8) + t*0.22));
+                return fbm(p + 4.0*r);
+            }
             void main(){
                 vec2 uv = gl_FragCoord.xy/u_res.xy;
                 vec2 p = uv*2.0-1.0; p.x *= u_res.x/u_res.y;
                 vec2 mouse = (u_mouse/u_res.xy)*2.0-1.0; mouse.x *= u_res.x/u_res.y;
-                float t = u_time*0.04;
-                vec2 q = vec2(fbm(p+t), fbm(p-t+5.0));
-                float n = fbm(p+q+length(p-mouse)*0.4+t);
-                vec3 col = mix(vec3(0.005,0.005,0.008), vec3(0.05,0.005,0.005), pow(n,2.0));
-                col += vec3(0.85,0.15,0.15)*smoothstep(0.78,0.95,n)*0.18;
-                col *= smoothstep(1.4,0.4,length(p));
-                gl_FragColor = vec4(col,1.0);
+
+                float t = u_time*0.12;
+                // Mouse repulsion warp
+                float mouseDist = length(p - mouse);
+                vec2 mouseFlow = (p - mouse) / (mouseDist + 0.001) * exp(-mouseDist*1.4) * 0.18;
+
+                float n = warp(p + mouseFlow, t);
+                float n2 = warp(p*1.6 + mouseFlow*0.6 - vec2(2.0,1.0), t*0.7);
+
+                // Layered colour: deep oxblood undertone + ember highlights
+                vec3 base = vec3(0.006, 0.005, 0.008);
+                vec3 ember = vec3(0.65, 0.10, 0.10);
+                vec3 warm = vec3(0.85, 0.30, 0.18);
+                vec3 col = base;
+                col = mix(col, ember*0.30, smoothstep(0.30, 0.70, n));
+                col = mix(col, warm*0.25, smoothstep(0.65, 0.92, n2));
+                col += ember * smoothstep(0.86, 0.99, n) * 0.45;
+
+                // Cursor halo
+                col += ember * 0.22 * smoothstep(0.55, 0.0, mouseDist);
+
+                // Filmic vignette
+                float vig = smoothstep(1.55, 0.30, length(p));
+                col *= vig;
+                // Subtle pulse
+                col *= 0.92 + 0.08 * sin(u_time*0.8);
+
+                gl_FragColor = vec4(col, 1.0);
             }`;
             const compile = (type, src) => { const sh = gl.createShader(type); gl.shaderSource(sh,src); gl.compileShader(sh); return sh; };
             const prog = gl.createProgram();
@@ -1163,50 +1210,112 @@
             render();
         }
 
-        /* ---------- AMBIENT AUDIO ---------- */
-        const audioBtn = document.getElementById('audioBtn');
-        let audioCtx = null, masterGain = null, audioOn = false;
-        function startAmbient() {
-            if (audioCtx) return;
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            masterGain = audioCtx.createGain();
-            masterGain.gain.value = 0;
-            masterGain.connect(audioCtx.destination);
-            const freqs = [55, 82.4, 110];
-            freqs.forEach((f, i) => {
-                const osc = audioCtx.createOscillator();
-                const g = audioCtx.createGain();
-                const lfo = audioCtx.createOscillator();
-                const lfoGain = audioCtx.createGain();
-                osc.frequency.value = f; osc.type = 'sine';
-                lfo.frequency.value = 0.05 + i * 0.02;
-                lfoGain.gain.value = 0.04;
-                lfo.connect(lfoGain).connect(g.gain);
-                g.gain.value = 0.08;
-                osc.connect(g).connect(masterGain);
-                osc.start(); lfo.start();
+        /* (audio removed in v7) */
+
+        /* ---------- HUGE HEADING 3D TILT ---------- */
+        if (isFinePointer && !reduceMotion) {
+            document.querySelectorAll('.huge').forEach(h => {
+                const parent = h.closest('section') || h.parentElement;
+                if (!parent) return;
+                let raf = null;
+                parent.addEventListener('mousemove', e => {
+                    const r = h.getBoundingClientRect();
+                    const cx = r.left + r.width / 2;
+                    const cy = r.top + r.height / 2;
+                    const nx = (e.clientX - cx) / window.innerWidth;
+                    const ny = (e.clientY - cy) / window.innerHeight;
+                    if (raf) cancelAnimationFrame(raf);
+                    raf = requestAnimationFrame(() => {
+                        gsap.to(h, { rotationY: nx * 4, rotationX: -ny * 3, duration: 0.7, ease: 'power3.out' });
+                    });
+                });
+                parent.addEventListener('mouseleave', () => {
+                    gsap.to(h, { rotationY: 0, rotationX: 0, duration: 1.0, ease: 'power3.out' });
+                });
             });
-            const bufSize = 2 * audioCtx.sampleRate;
-            const noiseBuf = audioCtx.createBuffer(1, bufSize, audioCtx.sampleRate);
-            const out = noiseBuf.getChannelData(0);
-            for (let i = 0; i < bufSize; i++) out[i] = (Math.random() * 2 - 1) * 0.3;
-            const noise = audioCtx.createBufferSource();
-            noise.buffer = noiseBuf; noise.loop = true;
-            const filter = audioCtx.createBiquadFilter();
-            filter.type = 'lowpass'; filter.frequency.value = 220;
-            const ng = audioCtx.createGain(); ng.gain.value = 0.06;
-            noise.connect(filter).connect(ng).connect(masterGain);
-            noise.start();
+
+            /* ---------- CINE ITEMS — 3D tilt + cursor light ---------- */
+            document.querySelectorAll('.cine-item').forEach(item => {
+                if (!item.querySelector('.cine-light')) {
+                    const light = document.createElement('div');
+                    light.className = 'cine-light';
+                    item.appendChild(light);
+                }
+                item.addEventListener('mousemove', e => {
+                    const r = item.getBoundingClientRect();
+                    const nx = (e.clientX - r.left) / r.width;
+                    const ny = (e.clientY - r.top) / r.height;
+                    item.style.setProperty('--mx', (nx * 100) + '%');
+                    item.style.setProperty('--my', (ny * 100) + '%');
+                    gsap.to(item, { rotationY: (nx - 0.5) * 6, rotationX: -(ny - 0.5) * 6, duration: 0.55, ease: 'power3.out' });
+                });
+                item.addEventListener('mouseleave', () => {
+                    gsap.to(item, { rotationY: 0, rotationX: 0, duration: 0.9, ease: 'power3.out' });
+                });
+            });
+
+            /* ---------- STACK CARDS — gentle tilt on hover ---------- */
+            document.querySelectorAll('.stack-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const r = card.getBoundingClientRect();
+                    const nx = (e.clientX - r.left) / r.width - 0.5;
+                    const ny = (e.clientY - r.top) / r.height - 0.5;
+                    gsap.to(card, { rotationY: nx * 4, rotationX: -ny * 3, duration: 0.55, ease: 'power3.out', overwrite: 'auto' });
+                });
+                card.addEventListener('mouseleave', () => {
+                    gsap.to(card, { rotationY: 0, rotationX: 0, duration: 0.8, ease: 'power3.out', overwrite: 'auto' });
+                });
+            });
         }
-        audioBtn.addEventListener('click', () => {
-            if (!audioCtx) startAmbient();
-            audioOn = !audioOn;
-            audioBtn.setAttribute('aria-pressed', String(audioOn));
-            if (audioCtx) {
-                gsap.to(masterGain.gain, { value: audioOn ? 0.45 : 0, duration: 1.5 });
-                if (audioCtx.state === 'suspended') audioCtx.resume();
-            }
+
+        /* ---------- MARQUEE SCROLL-VELOCITY REACTIVE ---------- */
+        const marqueeTracks = document.querySelectorAll('.dm-track');
+        const marqueeBoosts = new WeakMap();
+        marqueeTracks.forEach(track => marqueeBoosts.set(track, 1));
+        if (!reduceMotion) {
+            ScrollTrigger.create({
+                trigger: '.dual-marquee', start: 'top bottom', end: 'bottom top',
+                onUpdate: self => {
+                    const v = Math.abs(self.getVelocity());
+                    const boost = 1 + Math.min(v / 600, 4);
+                    marqueeTracks.forEach(t => {
+                        const tween = gsap.getTweensOf(t)[0];
+                        if (tween) tween.timeScale(boost);
+                        marqueeBoosts.set(t, boost);
+                    });
+                }
+            });
+            // Decay back to 1 when scroll stops
+            setInterval(() => {
+                marqueeTracks.forEach(t => {
+                    const cur = marqueeBoosts.get(t) || 1;
+                    if (cur <= 1.05) return;
+                    const next = cur * 0.92 + 1 * 0.08;
+                    marqueeBoosts.set(t, next);
+                    const tween = gsap.getTweensOf(t)[0];
+                    if (tween) tween.timeScale(next);
+                });
+            }, 100);
+        }
+
+        /* ---------- SECTION DIVIDER LINES — drawn in on scroll ---------- */
+        document.querySelectorAll('.sec-divider').forEach(div => {
+            ScrollTrigger.create({
+                trigger: div, start: 'top 90%', once: true,
+                onEnter: () => div.classList.add('drawn')
+            });
         });
+
+        /* ---------- TOP CLOCK ---------- */
+        const topClockEl = document.getElementById('topClock');
+        function updateTopClock() {
+            try {
+                const t = new Intl.DateTimeFormat('pl-PL', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Warsaw' }).format(new Date());
+                if (topClockEl) topClockEl.textContent = `Studio · ${t} CET`;
+            } catch (e) {}
+        }
+        updateTopClock();
+        setInterval(updateTopClock, 30000);
 
         /* ---------- ABERRATION ON FAST SCROLL ---------- */
         const aberrTargets = document.querySelectorAll('.aberration');
