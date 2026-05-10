@@ -290,6 +290,14 @@
         /* Hero showreel caption */
         .hero-caption { position: absolute; left: 50%; top: 60%; transform: translate(-50%, 0); z-index: 3; font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-dim); text-align: center; mix-blend-mode: difference; transition: opacity 0.6s ease; }
 
+        /* CINEMATIC LETTERBOX — opens from top + bottom after loader */
+        .letterbox { position: fixed; inset: 0; pointer-events: none; z-index: 9998; }
+        .letterbox::before, .letterbox::after { content: ''; position: absolute; left: 0; right: 0; height: 50vh; background: var(--bg); transition: transform 1.6s cubic-bezier(0.83, 0, 0.17, 1); }
+        .letterbox::before { top: 0; }
+        .letterbox::after { bottom: 0; }
+        .letterbox.open::before { transform: translateY(-100%); }
+        .letterbox.open::after { transform: translateY(100%); }
+
         /* Konami "Director's Cut" mode */
         body.directors-cut { --accent: #d4a574; }
         body.directors-cut .accent-slash, body.directors-cut .case-hero-meta .accent { color: var(--accent); }
@@ -329,23 +337,6 @@
         .tenet::before { counter-increment: tenet; content: "/ 0" counter(tenet); display: block; font-family: 'Fraunces', serif; font-size: 0.95rem; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 1.5rem; }
         .tenet h3 { font-size: clamp(1.6rem, 2.6vw, 2.4rem); line-height: 1.05; margin-bottom: 1.4rem; }
         .tenet p { font-size: clamp(0.95rem, 1.1vw, 1.05rem); line-height: 1.65; color: var(--text); font-weight: 300; }
-
-        /* FAQ */
-        .faq-sec { padding: 14vh 5vw; background: var(--bg); border-top: 1px solid var(--line); position: relative; z-index: 5; }
-        .faq-list { margin-top: 6vh; max-width: 1100px; }
-        .faq-item { border-bottom: 1px solid var(--line); }
-        .faq-question { width: 100%; padding: 3vh 0; display: flex; justify-content: space-between; align-items: baseline; gap: 4vw; text-align: left; cursor: none; transition: padding 0.4s; }
-        @media (pointer: fine) { .faq-item:hover .faq-question { padding-left: 1.5vw; } }
-        .faq-q-text { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(1.3rem, 2.6vw, 2.4rem); line-height: 1.2; }
-        .faq-q-icon { width: 30px; height: 30px; flex-shrink: 0; position: relative; }
-        .faq-q-icon::before, .faq-q-icon::after { content: ''; position: absolute; background: var(--accent); transition: transform 0.4s cubic-bezier(0.83,0,0.17,1); }
-        .faq-q-icon::before { top: 50%; left: 0; right: 0; height: 1px; margin-top: -0.5px; }
-        .faq-q-icon::after { left: 50%; top: 0; bottom: 0; width: 1px; margin-left: -0.5px; }
-        .faq-item[aria-expanded="true"] .faq-q-icon::after { transform: rotate(90deg); }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.83,0,0.17,1); }
-        .faq-item[aria-expanded="true"] .faq-answer { max-height: 600px; }
-        .faq-answer-inner { padding: 0 0 4vh 0; max-width: 65ch; font-size: clamp(0.95rem, 1.2vw, 1.15rem); line-height: 1.65; color: var(--text); font-weight: 300; }
-
         /* STUDIO NOTES preview */
         .notes-sec { padding: 14vh 5vw; background: var(--bg-light); border-top: 1px solid var(--line); position: relative; z-index: 5; }
         .notes-grid { display: grid; grid-template-columns: 1fr; gap: 4vw; margin-top: 6vh; }
@@ -511,6 +502,8 @@
     <div class="cursor-trail"></div>
     <div class="cursor-dot" aria-hidden="true"></div>
     <div class="cursor-ring" aria-hidden="true"><span class="cursor-text"></span></div>
+
+    <div class="letterbox" id="letterbox" aria-hidden="true"></div>
 
     <div class="loader" id="loaderBlock">
         <div class="loader-perc" id="perc">0%</div>
@@ -706,79 +699,6 @@
         <hr class="sec-divider" aria-hidden="true">
 
         
-
-        <section class="faq-sec" data-act="04">
-            <div class="meta-text" style="margin-bottom: 2rem;">— Najczęściej zadawane</div>
-            <h2 class="huge split-target" style="max-width: 14ch;">Pytania, które słyszymy.</h2>
-            <div class="faq-list" id="faqList">
-                <div class="faq-item" aria-expanded="false">
-                    <button type="button" class="faq-question">
-                        <span class="faq-q-text">Ile trwa typowa współpraca?</span>
-                        <span class="faq-q-icon" aria-hidden="true"></span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            <p>Pełny branding to projekt kilkumiesięczny. Pojedyncze rzeczy — film, strona, manifest — to zwykle kilka tygodni. Krócej nie pracujemy: powolność jest częścią metody, nie efektem ubocznym.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item" aria-expanded="false">
-                    <button type="button" class="faq-question">
-                        <span class="faq-q-text">Jaki jest minimalny budżet?</span>
-                        <span class="faq-q-icon" aria-hidden="true"></span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            <p>Każdy projekt jest wyceniany indywidualnie po pierwszej rozmowie. Nie sprzedajemy pakietów ani godzin — tylko decyzje, które studio podejmuje wraz z klientem. Zawsze rozmawiamy o budżecie zanim usiądziemy do pracy. Jeśli się nie zgadzamy, polecamy kogoś innego.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item" aria-expanded="false">
-                    <button type="button" class="faq-question">
-                        <span class="faq-q-text">Czy bierzecie międzynarodowych klientów?</span>
-                        <span class="faq-q-icon" aria-hidden="true"></span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            <p>Tak. Pracujemy po polsku, angielsku i portugalsku. Strategia zaczyna się w języku ojczystym klienta — nawet jeśli marka będzie ostatecznie po angielsku. Strategia zaczyna się w języku ojczystym klienta — nawet jeśli marka będzie ostatecznie po angielsku.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item" aria-expanded="false">
-                    <button type="button" class="faq-question">
-                        <span class="faq-q-text">Co jeśli marka nie jest jeszcze gotowa?</span>
-                        <span class="faq-q-icon" aria-hidden="true"></span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            <p>To często najlepszy moment. Strategia narracyjna napisana przed launchem oszczędza miesięcy błądzenia. Pracujemy też w formacie pre-launch — krótszym, intensywniejszym, skupionym na fundamentach marki, zanim cokolwiek zostanie wydrukowane.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item" aria-expanded="false">
-                    <button type="button" class="faq-question">
-                        <span class="faq-q-text">Czy podpisujecie NDA?</span>
-                        <span class="faq-q-icon" aria-hidden="true"></span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            <p>Standardowo. Mamy własny szablon dwustronicowy, który nie wymaga prawnika. Jeśli Twój zespół prawny ma własny — czytamy i podpisujemy w tym samym tygodniu.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item" aria-expanded="false">
-                    <button type="button" class="faq-question">
-                        <span class="faq-q-text">Co po zakończeniu projektu?</span>
-                        <span class="faq-q-icon" aria-hidden="true"></span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            <p>Pierwszy rok jesteśmy w trybie „echo" — odpowiadamy na pytania zespołu klienta, audytujemy materiały tworzone in-house pod kątem zgodności z systemem, towarzyszymy w pierwszych dużych kampaniach. Po roku decydujemy razem, czy kontynuujemy retainer, czy marka radzi sobie sama.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <section class="lexicon-sec" data-act="04">
             <div class="meta-text" style="margin-bottom: 2rem;">— Słownik studyjny</div>
@@ -1090,12 +1010,42 @@
             el.innerHTML = '';
             el.appendChild(result);
         });
+        // Scramble reveal — chars cycle through random glyphs before resolving
+        const SCRAMBLE_GLYPHS = '!<>-_\\/[]{}=+*^?#$&%@';
+        function scrambleReveal(chars) {
+            const startTime = performance.now();
+            const finals = [];
+            chars.forEach((c, i) => {
+                finals.push(c.textContent);
+                c.textContent = '';
+            });
+            const tick = () => {
+                const elapsed = performance.now() - startTime;
+                let stillScrambling = false;
+                chars.forEach((c, i) => {
+                    const charDelay = i * 22;
+                    const charScrambleEnd = charDelay + 380;
+                    if (elapsed < charDelay) { c.textContent = ''; stillScrambling = true; }
+                    else if (elapsed < charScrambleEnd) {
+                        c.textContent = SCRAMBLE_GLYPHS[Math.floor(Math.random() * SCRAMBLE_GLYPHS.length)];
+                        stillScrambling = true;
+                    } else {
+                        c.textContent = finals[i];
+                    }
+                });
+                if (stillScrambling) requestAnimationFrame(tick);
+            };
+            tick();
+        }
         if (!reduceMotion) {
             document.querySelectorAll('.split-target').forEach(el => {
-                const chars = el.querySelectorAll('.split-char');
+                const chars = Array.from(el.querySelectorAll('.split-char'));
                 gsap.fromTo(chars, { y: '110%' }, {
                     y: '0%', duration: 1.0, stagger: 0.012, ease: 'power4.out',
-                    scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+                    scrollTrigger: {
+                        trigger: el, start: 'top 85%', once: true,
+                        onEnter: () => scrambleReveal(chars)
+                    }
                 });
             });
         }
@@ -1105,6 +1055,30 @@
             gsap.to(el, { opacity: 1, y: 0, duration: 0.95, ease: 'power3.out',
                 scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
         });
+
+        /* ---------- HERO PARALLAX DEPTH (cursor-driven counter-shift) ---------- */
+        if (isFinePointer && !reduceMotion) {
+            const heroSection = document.getElementById('hero');
+            const heroLeft = heroSection.querySelector('.hero-meta.left');
+            const heroRight = heroSection.querySelector('.hero-meta.right');
+            const heroSub = heroSection.querySelector('.hero-sub');
+            const heroCap = heroSection.querySelector('.hero-caption');
+            let heroInView = false;
+            ScrollTrigger.create({
+                trigger: heroSection, start: 'top bottom', end: 'bottom top',
+                onEnter: () => { heroInView = true; }, onLeave: () => { heroInView = false; },
+                onEnterBack: () => { heroInView = true; }, onLeaveBack: () => { heroInView = false; }
+            });
+            window.addEventListener('mousemove', e => {
+                if (!heroInView) return;
+                const x = (e.clientX / window.innerWidth - 0.5);
+                const y = (e.clientY / window.innerHeight - 0.5);
+                gsap.to(heroLeft,  { x: -x * 14, y: -y * 8,  duration: 1.4, ease: 'power3.out', overwrite: 'auto' });
+                gsap.to(heroRight, { x:  x * 14, y:  y * 8,  duration: 1.4, ease: 'power3.out', overwrite: 'auto' });
+                gsap.to(heroSub,   { x:  x * 6,  y:  y * 4,  duration: 1.6, ease: 'power3.out', overwrite: 'auto' });
+                gsap.to(heroCap,   { x:  x * 8,  y: -y * 6,  duration: 1.5, ease: 'power3.out', overwrite: 'auto' });
+            });
+        }
 
         /* ---------- HERO MASK PIN + SHOWREEL ---------- */
         const heroLayers = Array.from(document.querySelectorAll('.hero-img-container'));
@@ -1589,15 +1563,23 @@
 
         /* ---------- BOOT ---------- */
         document.body.style.overflow = 'hidden';
+        const letterbox = document.getElementById('letterbox');
         runLoader().then(() => {
             document.body.style.overflow = '';
             initLenis();
+            // Cinematic letterbox: bars retreat top + bottom over 1.6s
+            if (letterbox && !reduceMotion) {
+                requestAnimationFrame(() => letterbox.classList.add('open'));
+                setTimeout(() => letterbox.style.display = 'none', 1700);
+            } else if (letterbox) {
+                letterbox.style.display = 'none';
+            }
             if (!reduceMotion) {
                 initWebGL();
                 aberrLoop();
-                gsap.from('.hero-meta, .hero-sub', { y: 30, opacity: 0, duration: 1.2, ease: 'power3.out', stagger: 0.1 });
+                gsap.from('.hero-meta, .hero-sub', { y: 30, opacity: 0, duration: 1.2, ease: 'power3.out', stagger: 0.1, delay: 0.6 });
                 gsap.from('.hero-stack', { scale: 1.15, duration: 1.6, ease: 'power3.out' });
-                gsap.from('.top-bar, .side-rail', { y: -20, opacity: 0, duration: 1, delay: 0.3, ease: 'power3.out', stagger: 0.1 });
+                gsap.from('.top-bar, .side-rail', { y: -20, opacity: 0, duration: 1, delay: 1.0, ease: 'power3.out', stagger: 0.1 });
             } else {
                 // Reduced-motion: snap reveal targets to final state
                 gsap.set('.split-char', { y: '0%' });
