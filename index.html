@@ -217,21 +217,6 @@
         .stack-card p { max-width: 70ch; }
         .stack-card .card-tag { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4vh; display: flex; gap: 18px; }
         .stack-card .card-tag::before { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--accent); margin-top: 7px; }
-
-        /* Press section */
-        .press-sec { padding: 14vh 5vw; background: var(--bg); border-top: 1px solid var(--line); position: relative; z-index: 5; }
-        .press-list { list-style: none; margin-top: 5vh; }
-        .press-item { display: grid; grid-template-columns: 0.4fr 1fr 0.3fr; gap: 4vw; align-items: center; padding: 2.4vh 0; border-bottom: 1px solid var(--line); transition: background 0.3s, padding 0.3s; }
-        .press-item .press-source { font-family: 'Fraunces', serif; font-size: clamp(1.2rem,2.2vw,2rem); }
-        .press-item .press-title { font-style: italic; font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(1rem,1.5vw,1.4rem); color: var(--text); }
-        .press-item .press-year { font-size: 0.78rem; letter-spacing: 0.2em; color: var(--text-dim); text-align: right; text-transform: uppercase; }
-        @media (max-width: 768px) {
-            .press-item { grid-template-columns: 1fr; gap: 6px; }
-            .press-item .press-year { text-align: left; }
-        }
-        @media (pointer: fine) { .press-item:hover { padding-left: 1.5vw; background: linear-gradient(90deg, rgba(217,37,37,0.05), transparent); } }
-        .press-item:hover .press-source { color: var(--accent); }
-
         /* Contact */
         .contact-sec { background: var(--bg); border-top: 1px solid var(--line); padding-bottom: 6vh; z-index: 10; }
         .c-grid { display: grid; grid-template-columns: 1fr; gap: 8vw; }
@@ -300,7 +285,7 @@
 
         /* Konami "Director's Cut" mode */
         body.directors-cut { --accent: #d4a574; }
-        body.directors-cut .accent-slash, body.directors-cut .case-hero-meta .accent { color: var(--accent); }
+        body.directors-cut .accent-slash { color: var(--accent); }
         .konami-flash { position: fixed; inset: 0; z-index: 9999; background: var(--accent); opacity: 0; pointer-events: none; }
 
         /* HERO RGB GLITCH layers — periodic chromatic shudder on the masked text */
@@ -337,18 +322,6 @@
         .tenet::before { counter-increment: tenet; content: "/ 0" counter(tenet); display: block; font-family: 'Fraunces', serif; font-size: 0.95rem; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 1.5rem; }
         .tenet h3 { font-size: clamp(1.6rem, 2.6vw, 2.4rem); line-height: 1.05; margin-bottom: 1.4rem; }
         .tenet p { font-size: clamp(0.95rem, 1.1vw, 1.05rem); line-height: 1.65; color: var(--text); font-weight: 300; }
-        /* STUDIO NOTES preview */
-        .notes-sec { padding: 14vh 5vw; background: var(--bg-light); border-top: 1px solid var(--line); position: relative; z-index: 5; }
-        .notes-grid { display: grid; grid-template-columns: 1fr; gap: 4vw; margin-top: 6vh; }
-        @media (min-width: 768px) { .notes-grid { grid-template-columns: repeat(3, 1fr); } }
-        .note-card { padding: 3vh 0; border-top: 1px solid var(--line); transition: border-color 0.4s; }
-        @media (pointer: fine) { .note-card:hover { border-top-color: var(--accent); } }
-        .note-card .note-num { font-family: 'Fraunces', serif; font-size: 0.9rem; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 1.2rem; }
-        .note-card h3 { font-size: clamp(1.3rem, 1.8vw, 1.7rem); line-height: 1.1; margin-bottom: 1.2rem; }
-        .note-card p { font-size: 0.95rem; line-height: 1.65; color: var(--text); font-weight: 300; }
-        .note-card .read-more { display: inline-block; margin-top: 1.5rem; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--line); padding-bottom: 4px; transition: color 0.3s, border-color 0.3s; }
-        @media (pointer: fine) { .note-card:hover .read-more { color: var(--accent); border-color: var(--accent); } }
-
         /* OFFICE MAP */
         .offices { display: grid; grid-template-columns: 1fr; gap: 5vh; margin-top: 6vh; padding-top: 5vh; border-top: 1px solid var(--line); }
         @media (min-width: 768px) { .offices { grid-template-columns: 1fr; max-width: 36rem; } }
@@ -407,25 +380,6 @@
         .influences-list li { display: flex; justify-content: space-between; gap: 2vw; padding: 1.4vh 0; border-bottom: 1px dotted var(--line); break-inside: avoid; font-size: 0.95rem; }
         .influences-list li .name { font-family: 'Fraunces', serif; font-size: 1.05rem; }
         .influences-list li .what { font-size: 0.75rem; letter-spacing: 0.18em; color: var(--text-dim); text-transform: uppercase; align-self: end; padding-bottom: 4px; }
-
-        /* KRONIKA timeline */
-        .kronika-sec { padding: 14vh 5vw; background: var(--bg); border-top: 1px solid var(--line); position: relative; z-index: 5; }
-        .kronika-list { list-style: none; margin-top: 6vh; position: relative; }
-        .kronika-list::before { content: ''; position: absolute; left: 4.5em; top: 1.5vh; bottom: 1.5vh; width: 1px; background: var(--line); }
-        @media (max-width: 600px) { .kronika-list::before { left: 3em; } }
-        .kron-entry { display: grid; grid-template-columns: 4em 1fr; gap: 2vw; padding: 3vh 0; border-bottom: 1px solid var(--line); align-items: baseline; position: relative; }
-        @media (max-width: 600px) { .kron-entry { grid-template-columns: 3em 1fr; gap: 1.2rem; } }
-        .kron-year { font-family: 'Fraunces', serif; font-size: clamp(1.4rem, 2.5vw, 2rem); color: var(--accent); position: relative; }
-        .kron-year::after { content: ''; position: absolute; right: -1px; top: 0.4em; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--bg); }
-        .kron-body h4 { font-family: 'Fraunces', serif; font-size: clamp(1.2rem, 1.8vw, 1.6rem); margin-bottom: 0.6rem; line-height: 1.15; }
-        .kron-body p { font-size: 0.92rem; line-height: 1.55; color: var(--text); font-weight: 300; max-width: 60ch; }
-
-        /* ANNALS — poetic numbers */
-        .annals-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4vh 4vw; padding: 9vh 5vw; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-light); position: relative; z-index: 5; }
-        @media (min-width: 768px) { .annals-row { grid-template-columns: repeat(4, 1fr); } }
-        .annal .num { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(2rem, 3.6vw, 3.2rem); line-height: 1; color: var(--text); display: block; }
-        .annal .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--text-dim); margin-top: 0.7rem; display: block; max-width: 22ch; line-height: 1.5; }
-
         /* COLOPHON */
         .colophon { padding: 5vh 5vw; border-top: 1px solid var(--line); background: var(--bg); }
         .colophon-grid { display: grid; grid-template-columns: 1fr; gap: 3vh; max-width: 1280px; margin: 0 auto; }
@@ -442,11 +396,11 @@
             #grain-overlay, #webgl-bg, .top-bar, .side-rail, .cursor-dot, .cursor-ring, .cursor-trail, .konami-flash, .mobile-menu, .menu-toggle, #scrollProgress { display: none !important; }
             * { animation: none !important; transition: none !important; box-shadow: none !important; }
             .huge { color: #111; -webkit-text-stroke: 0; }
-            .meta-text, .accent, .accent-slash, .case-credit .role, .lex-term::after { color: #d92525 !important; }
+            .meta-text, .accent, .accent-slash, .lex-term::after { color: #d92525 !important; }
             section, footer { padding: 4cm 2cm; page-break-inside: avoid; }
             .hero-pin { height: auto; min-height: 24cm; page-break-after: always; }
             .hero-img-container { opacity: 1 !important; filter: grayscale(100%); }
-            .body-text, .case-text, .tenet p, .lex-def, .kron-body p { color: #111 !important; }
+            .body-text, .tenet p, .lex-def { color: #111 !important; }
             .colophon { border-top: 0.5pt solid #999; }
             .footer-mega { color: #111; font-size: 18cm; opacity: 0.05; position: absolute; }
         }
@@ -525,7 +479,6 @@
             <div class="hero-caption" id="heroCaption">Mood · Editorial</div>
             <div class="hero-meta left">
                 <div id="heroClockWAW">Warszawa · 12:34</div>
-                
             </div>
             <div class="hero-meta right">
                 <div>MMXXVI · Manifest</div>
@@ -623,7 +576,7 @@
                 <blockquote>Powolność jest najdroższym surowcem epoki algorytmów.</blockquote>
                 <blockquote>Projektujemy nie po to, żeby coś dodać do świata. Po to, żeby coś z niego nie zniknęło.</blockquote>
                 <blockquote>Klient kupuje produkt. Wraca po historię.</blockquote>
-                <cite id="quoteCite">Z notatek studyjnych, 2024</cite>
+                <cite id="quoteCite">Z notatek studyjnych</cite>
             </div>
         </section>
 
@@ -691,7 +644,7 @@
                     <div class="card-tag">Zasada 04</div>
                     <div class="num">04</div>
                     <h3>Marka jako system, nie kampania.</h3>
-                    <p class="body-text">Nie projektujemy dla jednego launchu. Projektujemy zasady, które zniosą zmianę CEO, nową kategorię produktową i pięć kolejnych refreshy. To, co robimy, ma żyć dziesięć lat.</p>
+                    <p class="body-text">Nie projektujemy dla jednego launchu. Projektujemy zasady, które zniosą zmianę CEO, nową kategorię produktową i pięć kolejnych refreshy. Co projektujemy, ma żyć dziesięć lat.</p>
                 </article>
             </div>
         </section>
@@ -734,7 +687,7 @@
         <section class="influences-sec" data-act="04">
             <div class="meta-text" style="margin-bottom: 2rem;">— Wpływy</div>
             <h2 class="huge split-target" style="max-width: 18ch;">Półka, której nie ruszamy.</h2>
-            <p class="body-text gs-up" style="max-width: 60ch; margin-top: 3vh;">Autorzy, projektanci, reżyserzy i miejsca, które nas ukształtowały. Wracamy do nich między projektami — by sprawdzić, czy nadal myślimy.</p>
+            <p class="body-text gs-up" style="max-width: 60ch; margin-top: 3vh;">Autorzy, projektanci, reżyserzy i miejsca, które nas ukształtowały. Wracamy do nich, by sprawdzić, czy nadal myślimy.</p>
             <ul class="influences-list">
                 <li><span class="name">Olga Tokarczuk</span><span class="what">Czuły narrator</span></li>
                 <li><span class="name">Kenya Hara</span><span class="what">White</span></li>
@@ -751,11 +704,7 @@
             </ul>
         </section>
 
-        
 
-        
-
-        
 
         <section class="contact-sec" id="kontakt" data-act="05">
             <div class="sec-num">05 — Akt V</div>
@@ -766,8 +715,8 @@
                     <p class="body-text lead gs-up" style="margin-bottom: 4vh;">Nie sprzedajemy pakietów. Każda współpraca zaczyna się od jednej rozmowy — bez briefu, bez prezentacji, bez zegarka.</p>
                     <p class="meta-text gs-up" style="color: var(--text-dim); margin-bottom: 0.7rem;">Bezpośrednio</p>
                     <p class="body-text gs-up" style="margin-bottom: 1.8rem;"><a href="mailto:studio@storyline.pl" class="inline-link">studio@storyline.pl</a></p>
-                    <p class="meta-text gs-up" style="color: var(--text-dim); margin-bottom: 0.7rem;">Dostępność</p>
-                    <p class="body-text gs-up">Q3 2026 — przyjmujemy 2 nowe marki.</p>
+                    <p class="meta-text gs-up" style="color: var(--text-dim); margin-bottom: 0.7rem;">Status</p>
+                    <p class="body-text gs-up">Studio w przygotowaniu. Chętnie rozmawiamy o pierwszych projektach — bez briefu, bez prezentacji, bez zegarka.</p>
 
                     <div class="offices">
                         <div class="office">
@@ -779,7 +728,6 @@
                                 <div class="office-time" id="officeTimeWAW">— —:—</div>
                             </div>
                         </div>
-</div>
                     </div>
                 </div>
                 <form id="contactForm" novalidate>
@@ -808,12 +756,11 @@
             <div class="colophon-grid">
                 <div class="colophon-title">Colophon</div>
                 <div class="colophon-text">
-                    <p>Ta strona została napisana, zaprojektowana i wydana przez <strong>Storyline Studio</strong> w Warszawie i Lizbonie, między grudniem 2025 a kwietniem 2026.</p>
+                    <p>Ta strona została napisana, zaprojektowana i wydana w Warszawie, między grudniem 2025 a kwietniem 2026.</p>
                     <p>Typografia: <strong>Fraunces</strong> (Phaedra Charles, 2020) jako rdzeń serifowy oraz <strong>Manrope</strong> (Mikhail Sharanda, 2018) jako sans-serif tekstowy. Diakrytyka polska weryfikowana ręcznie.</p>
-                    <p>Akcent: <strong>Oxblood Red #D92525</strong>. Trzy lata na palecie studyjnej. W trybie „Director's Cut" przechodzi w <strong>Burnt Amber #D4A574</strong>.</p>
+                    <p>Akcent: <strong>Oxblood Red #D92525</strong>. W trybie „Director's Cut" — easter-egg przez Konami code — przechodzi w <strong>Burnt Amber #D4A574</strong>.</p>
                     <p>Build: czysty HTML / CSS / JavaScript. Bez frameworka. <strong>GSAP 3.12</strong> dla choreografii, <strong>Lenis 1.1</strong> dla smooth scroll, <strong>WebGL</strong> dla tła z domain-warpingiem (po I.Q.).</p>
                     <p>Krój testowy w nagłówkach: 160 px, 800 wagi, masa optyczna 144. Kompozycja siatki: clamp() bez breakpointów twardych, perspective 1800 px na każdej sekcji. Kolejność stosu: hero → manifest → forma → proces → metoda → spotkanie.</p>
-                    <p>Towarzyszy stronie publikacja <em>„Narracja jako rzemiosło"</em>, druk: <strong>Drukarnia Oficyna</strong>, Warszawa. Papier: Munken Pure 120 g. Nakład: 600 egz. numerowanych.</p>
                 </div>
             </div>
         </aside>
@@ -836,10 +783,10 @@
                 </div>
                 <div>
                     <h5>Społeczność</h5>
-                    <a href="#" rel="noopener">Instagram</a>
-                    <a href="#" rel="noopener">Are.na</a>
-                    <a href="#" rel="noopener">Vimeo</a>
-                    <a href="#" rel="noopener">LinkedIn</a>
+                    <a href="#" rel="noopener" aria-disabled="true" style="opacity:0.55;cursor:default;">Instagram (wkrótce)</a>
+                    <a href="#" rel="noopener" aria-disabled="true" style="opacity:0.55;cursor:default;">Are.na (wkrótce)</a>
+                    <a href="#" rel="noopener" aria-disabled="true" style="opacity:0.55;cursor:default;">Vimeo (wkrótce)</a>
+                    <a href="#" rel="noopener" aria-disabled="true" style="opacity:0.55;cursor:default;">LinkedIn (wkrótce)</a>
                 </div>
                 <div>
                     <h5>Now in Studio</h5>
@@ -849,7 +796,6 @@
                         <span>Drinking: kawa, czarna, podwójna</span>
                         <span>Designing: następny rozdział</span>
                     </div>
-                    <a href="#notes" style="color: var(--accent); padding-top: 14px; display: inline-block;">Studio Notes →</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -1102,7 +1048,6 @@
         });
         // Cycle showreel + sync caption + reel counter + glitch layers
         const heroCaptionEl = document.getElementById('heroCaption');
-        const reelEl = null; // reel counter removed in v16 (no past work to show)
         const glitchR = document.getElementById('heroGlitchR');
         const glitchB = document.getElementById('heroGlitchB');
         let heroIdx = 0, heroCycleTimer = null, glitchTimer = null;
@@ -1120,7 +1065,6 @@
                     heroCaptionEl.style.opacity = '1';
                 }, 300);
             }
-            if (reelEl) reelEl.textContent = `Reel ${String(heroIdx + 1).padStart(2,'0')} / ${String(heroLayers.length).padStart(2,'0')}`;
         }
         syncHeroFrame();
         // Periodic glitch shudder — every 6-10s while hero is in view
@@ -1501,8 +1445,6 @@
                 if (href && href.startsWith('#') && href.length > 1) { e.preventDefault(); smoothScrollTo(href); }
             });
         });
-
-        /* (Reel counter is now driven by syncHeroFrame inside the showreel cycle) */
 
         /* ---------- SCROLL PROGRESS HAIRLINE ---------- */
         const progressBar = document.querySelector('#scrollProgress .bar');
