@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Storyline Studio — V26 Director's Cut</title>
+    <title>Storyline — Studio Narracji Marki</title>
     <meta name="description" content="Storyline — studio narracji marki. Tworzymy historie, które ludzie zapamiętują, a algorytmy wzmacniają.">
-    <meta property="og:title" content="Storyline Studio — V26 Director's Cut">
+    <meta property="og:title" content="Storyline — Studio Narracji Marki">
     <meta property="og:description" content="Studio narracji marki. Pięć aktów, jedna obsesja: historia, której nie da się streścić w jednym zdaniu.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%23010101'/%3E%3Ctext x='600' y='320' font-family='serif' font-size='180' font-style='italic' text-anchor='middle' fill='%23f3ede1' font-weight='300'%3EStoryline%3C/text%3E%3Ctext x='600' y='400' font-family='sans-serif' font-size='28' letter-spacing='12' text-anchor='middle' fill='%237a7670'%3ESTUDIO NARRACJI MARKI%3C/text%3E%3Ccircle cx='600' cy='480' r='4' fill='%23d92525'/%3E%3C/svg%3E">
@@ -330,21 +330,6 @@
         .tenet h3 { font-size: clamp(1.6rem, 2.6vw, 2.4rem); line-height: 1.05; margin-bottom: 1.4rem; }
         .tenet p { font-size: clamp(0.95rem, 1.1vw, 1.05rem); line-height: 1.65; color: var(--text); font-weight: 300; }
 
-        /* TEAM */
-        .team-sec { padding: 14vh 5vw; background: var(--bg-light); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); position: relative; z-index: 5; }
-        .team-grid { display: grid; grid-template-columns: 1fr; gap: 5vh; margin-top: 6vh; }
-        @media (min-width: 768px) { .team-grid { grid-template-columns: repeat(2, 1fr); gap: 4vw 4vw; } }
-        @media (min-width: 1100px) { .team-grid { grid-template-columns: repeat(4, 1fr); } }
-        .team-card { display: flex; flex-direction: column; gap: 1.2rem; }
-        .role-emblem { width: 100%; aspect-ratio: 4/5; border: 1px solid var(--line); border-radius: 3px; display: flex; align-items: flex-end; justify-content: flex-start; padding: 1.4rem; font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(2rem, 4vw, 3.2rem); color: var(--text); transition: color 0.6s, border-color 0.6s, filter 0.6s, transform 0.6s; line-height: 1; position: relative; overflow: hidden; background-size: cover; background-position: center; background-repeat: no-repeat; filter: grayscale(85%) contrast(1.05); will-change: transform; }
-        .role-emblem::before { content: ''; position: absolute; inset: -50%; background: radial-gradient(circle at 50% 50%, rgba(217,37,37,0.22), transparent 55%); opacity: 0; transition: opacity 0.6s; pointer-events: none; }
-        @media (pointer: fine) { .team-card:hover .role-emblem { color: var(--accent); border-color: var(--accent); filter: grayscale(0%) contrast(1.05); transform: scale(1.02); } .team-card:hover .role-emblem::before { opacity: 1; } }
-        .team-card h3 { font-size: clamp(1.3rem, 1.8vw, 1.7rem); line-height: 1; margin-bottom: 0.4rem; }
-        .team-card .role { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; display: block; }
-        .team-card .bio { font-size: 0.92rem; line-height: 1.55; color: var(--text); font-weight: 300; }
-        .team-card .now { margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--line); font-size: 0.78rem; color: var(--text-dim); font-style: italic; font-family: 'Fraunces', serif; }
-        .team-card .now strong { color: var(--text); font-style: normal; font-family: 'Manrope', sans-serif; font-weight: 500; letter-spacing: 0.05em; }
-
         /* FAQ */
         .faq-sec { padding: 14vh 5vw; background: var(--bg); border-top: 1px solid var(--line); position: relative; z-index: 5; }
         .faq-list { margin-top: 6vh; max-width: 1100px; }
@@ -375,7 +360,7 @@
 
         /* OFFICE MAP */
         .offices { display: grid; grid-template-columns: 1fr; gap: 5vh; margin-top: 6vh; padding-top: 5vh; border-top: 1px solid var(--line); }
-        @media (min-width: 768px) { .offices { grid-template-columns: 1fr 1fr; gap: 4vw; } }
+        @media (min-width: 768px) { .offices { grid-template-columns: 1fr; max-width: 36rem; } }
         .office { display: grid; grid-template-columns: auto 1fr; gap: 2vw; align-items: start; }
         .office-pin { width: 60px; height: 60px; border: 1px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--accent); position: relative; }
         .office-pin::before { content: ''; position: absolute; inset: -8px; border: 1px solid rgba(217,37,37,0.3); border-radius: 50%; animation: pingPulse 2.4s infinite; }
@@ -505,7 +490,7 @@
         <div class="menu-meta">
             <div>Studio czynne · <span id="menuClock">12:34</span> CET</div>
             <div>studio@storyline.pl</div>
-            <div>Warszawa · Lizbona</div>
+            <div>Warszawa</div>
         </div>
     </div>
 
@@ -537,21 +522,21 @@
 
         <section class="hero-pin" id="hero" data-act="01">
             <div class="hero-stack" id="heroStack">
-                <div class="hero-img-container active" data-photo="https://images.unsplash.com/photo-1530819568329-97653eafbbfa?w=1800&q=90&auto=format&fit=crop" data-caption="Editorial · 01"></div>
-                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1492136344046-866c85e0bf04?w=1800&q=90&auto=format&fit=crop" data-caption="Architektura · 02"></div>
-                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1561070791-2526d30994b8?w=1800&q=90&auto=format&fit=crop" data-caption="Reżyseria · 03"></div>
-                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1800&q=90&auto=format&fit=crop" data-caption="Materia · 04"></div>
+                <div class="hero-img-container active" data-photo="https://images.unsplash.com/photo-1530819568329-97653eafbbfa?w=1800&q=90&auto=format&fit=crop" data-caption="Mood · Editorial"></div>
+                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1492136344046-866c85e0bf04?w=1800&q=90&auto=format&fit=crop" data-caption="Mood · Architektura"></div>
+                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1561070791-2526d30994b8?w=1800&q=90&auto=format&fit=crop" data-caption="Mood · Reżyseria"></div>
+                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1800&q=90&auto=format&fit=crop" data-caption="Mood · Materia"></div>
                 <div class="hero-glitch-layer r" id="heroGlitchR" aria-hidden="true"></div>
                 <div class="hero-glitch-layer b" id="heroGlitchB" aria-hidden="true"></div>
             </div>
-            <div class="hero-caption" id="heroCaption">Editorial · 01</div>
+            <div class="hero-caption" id="heroCaption">Mood · Editorial</div>
             <div class="hero-meta left">
                 <div id="heroClockWAW">Warszawa · 12:34</div>
-                <div class="accent" id="heroClockLIS">Lizbona · 11:34</div>
+                
             </div>
             <div class="hero-meta right">
-                <div>MMXXVI · Director's Cut</div>
-                <div id="reelCounter">Reel 01 / 04</div>
+                <div>MMXXVI · Manifest</div>
+                <div>Studio w przygotowaniu</div>
             </div>
             <div class="hero-sub">Studio Narracji Marki — przewiń, by rozpocząć</div>
         </section>
@@ -626,12 +611,12 @@
             <div class="cine-grid">
                 <div class="cine-item parallax-item">
                     <img class="cine-img parallax-img" loading="lazy" src="https://images.unsplash.com/photo-1492136344046-866c85e0bf04?w=1200&q=85&auto=format&fit=crop" alt="Editorial study">
-                    <div class="cine-meta">№ 014 / Editorial</div>
+                    <div class="cine-meta">Mood · Editorial</div>
                     <div class="cine-caption">Ciche kompozycje, długie ujęcia.</div>
                 </div>
                 <div class="cine-item parallax-item offset">
                     <img class="cine-img parallax-img" loading="lazy" src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=1200&q=85&auto=format&fit=crop" alt="Architectural still">
-                    <div class="cine-meta">№ 022 / Architektura</div>
+                    <div class="cine-meta">Mood · Architektura</div>
                     <div class="cine-caption">Geometria, która prowadzi wzrok.</div>
                 </div>
             </div>
@@ -646,46 +631,6 @@
                 <blockquote>Projektujemy nie po to, żeby coś dodać do świata. Po to, żeby coś z niego nie zniknęło.</blockquote>
                 <blockquote>Klient kupuje produkt. Wraca po historię.</blockquote>
                 <cite id="quoteCite">Z notatek studyjnych, 2024</cite>
-            </div>
-        </section>
-
-        <section class="team-sec" id="zespol" data-act="03">
-            <div class="meta-text" style="margin-bottom: 2rem;">— Studio</div>
-            <h2 class="huge split-target" style="max-width: 14ch;">Cztery role. Jedna wrażliwość.</h2>
-            <p class="body-text gs-up" style="max-width: 60ch; margin-top: 3vh;">Studio pracuje w czterech rolach. Czasami pełni je jedna osoba, czasami cztery. Zawsze zaczyna się od strategii, kończy na technicznym wykonaniu — i wraca z każdym kolejnym projektem.</p>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="role-emblem" style="background-image: linear-gradient(180deg, rgba(1,1,1,0.55) 0%, rgba(1,1,1,0.25) 40%, rgba(1,1,1,0.78) 100%), url('https://images.unsplash.com/photo-1455390582262-044cdead277a?w=900&q=85&auto=format&fit=crop');">/ 01</div>
-                    <div>
-                        <span class="role">Strategia narracyjna</span>
-                        <p class="bio">Audyt języka marki, mapowanie kontekstu kulturowego, projekt manifestu. Praca, która dzieje się w zeszycie i w rozmowie zanim pojawi się jakikolwiek pixel.</p>
-                        <div class="now"><strong>Tools</strong> · zeszyt, Google Docs, dyktafon, archiwa prasy</div>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="role-emblem" style="background-image: linear-gradient(180deg, rgba(1,1,1,0.55) 0%, rgba(1,1,1,0.25) 40%, rgba(1,1,1,0.78) 100%), url('https://images.unsplash.com/photo-1485846234645-a62644f84728?w=900&q=85&auto=format&fit=crop');">/ 02</div>
-                    <div>
-                        <span class="role">Reżyseria kreatywna</span>
-                        <p class="bio">Spinanie strategii z formą. Kierunek artystyczny, art direction kampanii, reżyseria sesji i filmów. Decyzje o tonie, świetle i rytmie historii.</p>
-                        <div class="now"><strong>Tools</strong> · storyboard, lookbook, Vimeo, planowanie produkcji</div>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="role-emblem" style="background-image: linear-gradient(180deg, rgba(1,1,1,0.55) 0%, rgba(1,1,1,0.25) 40%, rgba(1,1,1,0.78) 100%), url('https://images.unsplash.com/photo-1532153975070-2e9ab71f1b14?w=900&q=85&auto=format&fit=crop');">/ 03</div>
-                    <div>
-                        <span class="role">Identyfikacja wizualna</span>
-                        <p class="bio">System typograficzny, paleta, siatka, ruch. Tworzenie języka, który będzie pracować dziesięć lat — od opakowania po manifest, od bilbordu po bilet wizytowy.</p>
-                        <div class="now"><strong>Tools</strong> · Figma, Glyphs, drukarnia, papierownia</div>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="role-emblem" style="background-image: linear-gradient(180deg, rgba(1,1,1,0.55) 0%, rgba(1,1,1,0.25) 40%, rgba(1,1,1,0.78) 100%), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&q=85&auto=format&fit=crop');">/ 04</div>
-                    <div>
-                        <span class="role">Web · Tech</span>
-                        <p class="bio">Frontend, kreatywne kodowanie, WebGL, scroll-driven animations. Każda strona to mała maszyna — projektowana tak, żeby działała w rok i w pięć lat.</p>
-                        <div class="now"><strong>Tools</strong> · vanilla JS, GSAP, Lenis, WebGL, type rendering</div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -746,8 +691,8 @@
                 <article class="stack-card">
                     <div class="card-tag">Zasada 03</div>
                     <div class="num">03</div>
-                    <h3>Jedno studio od początku do końca.</h3>
-                    <p class="body-text">Strategia, identyfikacja, web, film — pod jednym dachem, z jedną wrażliwością. Bez handoffów, bez „prześlemy do drugiego zespołu". Spójność, której nie da się podrobić zewnętrznym ownershipem.</p>
+                    <h3>Jedna ręka, od początku do końca.</h3>
+                    <p class="body-text">Strategia, identyfikacja, web, film — w jednym studiu, z jedną wrażliwością. Bez handoffów. Spójność, której nie da się podrobić zewnętrznym ownershipem.</p>
                 </article>
                 <article class="stack-card">
                     <div class="card-tag">Zasada 04</div>
@@ -914,15 +859,7 @@
                                 <div class="office-time" id="officeTimeWAW">— —:—</div>
                             </div>
                         </div>
-                        <div class="office">
-                            <div class="office-pin">L</div>
-                            <div class="office-info">
-                                <h4>Lizbona</h4>
-                                <div class="office-meta">38°43′N · 9°08′W</div>
-                                <div class="office-addr">Punkt satelitarny.<br>Spotkania kreatywne na zamówienie.</div>
-                                <div class="office-time" id="officeTimeLIS">— —:—</div>
-                            </div>
-                        </div>
+</div>
                     </div>
                 </div>
                 <form id="contactForm" novalidate>
@@ -996,8 +933,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>© MMXXVI Storyline Studio · Wszystkie prawa zastrzeżone</span>
-                <span>Director's Cut V26</span>
+                <span>© MMXXVI Storyline · Manifest 2026</span>
                 <span><span class="live-pulse" aria-hidden="true"></span>Studio czynne</span>
             </div>
         </footer>
@@ -1192,7 +1128,7 @@
         });
         // Cycle showreel + sync caption + reel counter + glitch layers
         const heroCaptionEl = document.getElementById('heroCaption');
-        const reelEl = document.getElementById('reelCounter');
+        const reelEl = null; // reel counter removed in v16 (no past work to show)
         const glitchR = document.getElementById('heroGlitchR');
         const glitchB = document.getElementById('heroGlitchB');
         let heroIdx = 0, heroCycleTimer = null, glitchTimer = null;
@@ -1607,9 +1543,9 @@
             window.addEventListener('resize', updateProgress);
         }
 
-        /* ---------- LIVE CLOCKS (Warszawa / Lizbona) ---------- */
+        /* ---------- LIVE CLOCK (Warszawa) ---------- */
         const wawEl = document.getElementById('heroClockWAW');
-        const lisEl = document.getElementById('heroClockLIS');
+        
         function fmtTime(tz) {
             try {
                 return new Intl.DateTimeFormat('pl-PL', {
@@ -1619,8 +1555,12 @@
             } catch (e) { return '—'; }
         }
         function tickClocks() {
-            if (wawEl) wawEl.textContent = `Warszawa · ${fmtTime('Europe/Warsaw')}`;
-            if (lisEl) lisEl.textContent = `Lizbona · ${fmtTime('Europe/Lisbon')}`;
+            const t = fmtTime('Europe/Warsaw');
+            if (wawEl) wawEl.textContent = `Warszawa · ${t}`;
+            const office = document.getElementById('officeTimeWAW');
+            if (office) office.textContent = `Lokalnie · ${t} CET`;
+            const menu = document.getElementById('menuClock');
+            if (menu) menu.textContent = t;
         }
         tickClocks();
         setInterval(tickClocks, 1000);
