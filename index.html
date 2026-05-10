@@ -146,8 +146,8 @@
         .hero-sub { position: absolute; bottom: 10vh; left: 50%; transform: translateX(-50%); z-index: 2; font-size: clamp(0.7rem,1.2vw,0.9rem); letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-dim); mix-blend-mode: difference; }
 
         /* Typography splits */
-        .split-word { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.05em; }
-        .split-char { display: inline-block; transform: translateY(110%); will-change: transform; }
+        .split-word { display: inline-block; vertical-align: baseline; }
+        .split-char { display: inline-block; transform: translateY(60%); opacity: 0; will-change: transform, opacity; }
 
         /* Akt I (consume) */
         .consume { background: rgba(1,1,1,0.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
@@ -246,9 +246,9 @@
         .hero-img-container.active { animation: kenburns 12s ease-out forwards; }
         @keyframes kenburns { 0% { background-size: 110% auto; } 100% { background-size: 124% auto; } }
 
-        /* Huge headings — cursor-driven 3D tilt */
-        .huge { transform-style: preserve-3d; will-change: transform; }
-        section { perspective: 1800px; }
+        /* Huge headings — cursor-driven 3D tilt (desktop only) */
+        .huge { will-change: transform; }
+        @media (pointer: fine) and (min-width: 900px) { .huge { transform-style: preserve-3d; } section { perspective: 1800px; } }
 
         /* Footer */
         footer { padding: 7vh 5vw 3vh; background: var(--bg); border-top: 1px solid var(--line); position: relative; z-index: 10; }
@@ -374,6 +374,22 @@
         @media (min-width: 768px) { .colophon-text { column-count: 2; } }
         .colophon-text p { margin-bottom: 1em; break-inside: avoid; }
         .colophon-text strong { color: var(--text); font-weight: 500; }
+
+        /* MOBILE FIXES (v21) */
+        @media (max-width: 720px) {
+            /* Hero meta: stack content, hide duplicate accent line */
+            .hero-meta { font-size: 0.62rem; line-height: 1.6; mix-blend-mode: normal; opacity: 0.75; }
+            .hero-meta.left { left: 5vw; right: 5vw; bottom: 14vh; text-align: center; }
+            .hero-meta.left .accent { display: none; }
+            .hero-meta.right { left: 5vw; right: 5vw; bottom: 7vh; text-align: center; }
+            .hero-sub { display: none; }
+            /* Top-bar readable on text-heavy sections */
+            .top-bar { padding: 0 18px; mix-blend-mode: normal; background: linear-gradient(180deg, rgba(1,1,1,0.85) 0%, rgba(1,1,1,0.5) 70%, transparent 100%); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding-top: 10px; padding-bottom: 18px; top: 0; }
+            .ui-brand { color: var(--text); }
+            /* Side rail: not shown on mobile anyway */
+            /* Reduce huge heading wrapping issues */
+            .huge { font-size: clamp(2.2rem, 9vw, 4rem); }
+        }
 
         /* PRINT stylesheet — site reads as editorial when printed */
         @media print {
@@ -951,13 +967,14 @@
             tick();
         }
         if (!reduceMotion) {
+            const allowScramble = window.matchMedia('(min-width: 720px)').matches;
             document.querySelectorAll('.split-target').forEach(el => {
                 const chars = Array.from(el.querySelectorAll('.split-char'));
-                gsap.fromTo(chars, { y: '110%' }, {
-                    y: '0%', duration: 1.0, stagger: 0.012, ease: 'power4.out',
+                gsap.fromTo(chars, { y: '60%', opacity: 0 }, {
+                    y: '0%', opacity: 1, duration: 0.9, stagger: 0.012, ease: 'power3.out',
                     scrollTrigger: {
-                        trigger: el, start: 'top 85%', once: true,
-                        onEnter: () => scrambleReveal(chars)
+                        trigger: el, start: 'top 88%', once: true,
+                        onEnter: allowScramble ? () => scrambleReveal(chars) : null
                     }
                 });
             });
@@ -1494,7 +1511,7 @@
                 gsap.from('.top-bar, .side-rail', { y: -20, opacity: 0, duration: 1, delay: 1.0, ease: 'power3.out', stagger: 0.1 });
             } else {
                 // Reduced-motion: snap reveal targets to final state
-                gsap.set('.split-char', { y: '0%' });
+                gsap.set('.split-char', { y: '0%', opacity: 1 });
                 gsap.set('.gs-up', { opacity: 1, y: 0 });
                 gsap.set('#footerMega', { y: 0, opacity: 1 });
             }
