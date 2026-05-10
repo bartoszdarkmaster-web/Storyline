@@ -365,16 +365,6 @@
         @media (pointer: fine) { .influences-list li:hover { padding-left: 0.6vw; border-bottom-color: var(--accent); } .influences-list li:hover::before { height: 60%; } .influences-list li:hover .name { color: var(--accent); transition: color 0.3s; } }
         .influences-list li .name { font-family: 'Fraunces', serif; font-size: 1.05rem; }
         .influences-list li .what { font-size: 0.75rem; letter-spacing: 0.18em; color: var(--text-dim); text-transform: uppercase; align-self: end; padding-bottom: 4px; }
-        /* COLOPHON */
-        .colophon { padding: 5vh 5vw; border-top: 1px solid var(--line); background: var(--bg); }
-        .colophon-grid { display: grid; grid-template-columns: 1fr; gap: 3vh; max-width: 1280px; margin: 0 auto; }
-        @media (min-width: 900px) { .colophon-grid { grid-template-columns: 1fr 2fr; gap: 4vw; align-items: start; } }
-        .colophon-title { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1rem, 1.4vw, 1.3rem); color: var(--text-dim); }
-        .colophon-text { font-size: 0.85rem; line-height: 1.7; color: var(--text); font-weight: 300; column-count: 1; column-gap: 3vw; }
-        @media (min-width: 768px) { .colophon-text { column-count: 2; } }
-        .colophon-text p { margin-bottom: 1em; break-inside: avoid; }
-        .colophon-text strong { color: var(--text); font-weight: 500; }
-
         /* MOBILE FIXES (v21) */
         @media (max-width: 720px) {
             /* Hero meta: stack content, hide duplicate accent line */
@@ -402,7 +392,6 @@
             .hero-pin { height: auto; min-height: 24cm; page-break-after: always; }
             .hero-img-container { opacity: 1 !important; filter: grayscale(100%); }
             .body-text, .tenet p, .lex-def { color: #111 !important; }
-            .colophon { border-top: 0.5pt solid #999; }
             .footer-mega { color: #111; font-size: 18cm; opacity: 0.05; position: absolute; }
         }
     </style>
@@ -743,20 +732,7 @@
             </div>
         </section>
 
-        <aside class="colophon" aria-label="Colophon">
-            <div class="colophon-grid">
-                <div class="colophon-title">Colophon</div>
-                <div class="colophon-text">
-                    <p>Ta strona została napisana, zaprojektowana i wydana zdalnie, między grudniem 2025 a kwietniem 2026.</p>
-                    <p>Typografia: <strong>Fraunces</strong> (Phaedra Charles, 2020) jako rdzeń serifowy oraz <strong>Manrope</strong> (Mikhail Sharanda, 2018) jako sans-serif tekstowy. Diakrytyka polska weryfikowana ręcznie.</p>
-                    <p>Akcent: <strong>Oxblood Red #D92525</strong>. W trybie „Director's Cut" — easter-egg przez Konami code — przechodzi w <strong>Burnt Amber #D4A574</strong>.</p>
-                    <p>Build: czysty HTML / CSS / JavaScript. Bez frameworka. <strong>GSAP 3.12</strong> dla choreografii, <strong>Lenis 1.1</strong> dla smooth scroll, <strong>WebGL</strong> dla tła z domain-warpingiem (po I.Q.).</p>
-                    <p>Krój testowy w nagłówkach: 160 px, 800 wagi. Kompozycja siatki: clamp() bez breakpointów twardych, perspective 1800 px na każdej sekcji. Kolejność stosu: hero → manifest → platformy → proces → metoda → spotkanie.</p>
-                </div>
-            </div>
-        </aside>
-
-        <footer>
+<footer>
             <div class="footer-mega" id="footerMega">Storyline.</div>
             <div class="footer-grid">
                 <div>
