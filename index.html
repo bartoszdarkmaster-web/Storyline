@@ -213,18 +213,7 @@
         .stat .num { font-family: 'Fraunces', serif; font-size: clamp(2.5rem,5vw,5rem); line-height: 1; color: var(--text); display: block; }
         .stat .num.placeholder { color: var(--text-dim); font-style: italic; }
         .stat .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--text-dim); margin-top: 0.9rem; display: block; max-width: 18ch; }
-
-        /* Portfolio — placeholder scaffolding */
-        .portfolio-list { list-style: none; margin-top: 5vh; border-top: 2px solid var(--text); }
-        .portfolio-list > li { display: block; }
-        .portfolio-item { border-bottom: 1px solid var(--line); padding: 3vh 0; display: flex; flex-direction: column; position: relative; transition: padding 0.5s cubic-bezier(0.19,1,0.22,1); color: inherit; text-decoration: none; opacity: 0.55; cursor: default; }
-        @media (min-width: 768px) { .portfolio-item { flex-direction: row; justify-content: space-between; align-items: center; padding: 4vh 0; } }
-        .portfolio-item h3 { font-size: clamp(1.5rem,4vw,5rem); text-transform: uppercase; margin: 0 0 10px 0; transition: color 0.4s; font-weight: 300; font-family: 'Fraunces', serif; }
-        @media (min-width: 768px) { .portfolio-item h3 { margin: 0; } }
-        .portfolio-item .pi-meta { display: flex; gap: 18px; align-items: center; }
-        .portfolio-item .pi-meta span { font-size: 0.82rem; opacity: 0.5; transition: opacity 0.4s; letter-spacing: 0.05em; font-style: italic; font-family: 'Fraunces', serif; }
-        .portfolio-placeholder-note { font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 4vh; padding-left: 0.6rem; border-left: 2px solid var(--accent); }
-        .stat .num { font-family: 'Fraunces', serif; font-size: clamp(2.5rem,5vw,5rem); line-height: 1; color: var(--text); display: block; }
+.stat .num { font-family: 'Fraunces', serif; font-size: clamp(2.5rem,5vw,5rem); line-height: 1; color: var(--text); display: block; }
         .stat .num sup { font-size: 0.45em; color: var(--accent); vertical-align: super; margin-left: 0.06em; }
         .stat .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--text-dim); margin-top: 0.9rem; display: block; max-width: 18ch; }
 
@@ -519,7 +508,7 @@
             <li><a href="#consume" data-act="01">Akt I — Punkt wyjścia</a></li>
             <li><a href="#manifesto" data-act="02">Akt II — Forma</a></li>
             <li><a href="#process" data-act="03">Akt III — Proces</a></li>
-            <li><a href="#praktyka" data-act="04">Akt IV — Praktyka</a></li>
+            <li><a href="#dlaczego" data-act="04">Akt IV — Metoda</a></li>
             <li><a href="#kontakt" data-act="05">Akt V — Spotkanie</a></li>
         </ul>
         <div class="menu-meta">
@@ -533,7 +522,7 @@
         <a href="#consume" class="rail-dot active" data-act="01" aria-current="true"><span class="rail-label">Akt I — Punkt wyjścia</span></a>
         <a href="#manifesto" class="rail-dot" data-act="02" aria-current="false"><span class="rail-label">Akt II — Forma</span></a>
         <a href="#process" class="rail-dot" data-act="03" aria-current="false"><span class="rail-label">Akt III — Proces</span></a>
-        <a href="#praktyka" class="rail-dot" data-act="04" aria-current="false"><span class="rail-label">Akt IV — Praktyka</span></a>
+        <a href="#dlaczego" class="rail-dot" data-act="04" aria-current="false"><span class="rail-label">Akt IV — Metoda</span></a>
         <a href="#kontakt" class="rail-dot" data-act="05" aria-current="false"><span class="rail-label">Akt V — Spotkanie</span></a>
     </nav>
 
@@ -765,45 +754,10 @@
 
         <hr class="sec-divider" aria-hidden="true">
 
-        <section id="praktyka" data-act="04">
-            <div class="sec-num">04 — Akt IV</div>
-            <div class="meta-text" style="margin-bottom: 1.8rem;">— Akt IV · Praktyka</div>
-            <h2 class="huge split-target">Wybrane projekty.</h2>
-            <ul class="portfolio-list" aria-label="Lista projektów — w przygotowaniu">
-                <li><a href="#" class="portfolio-item" aria-label="Slot na projekt 01">
-                    <h3>Projekt 01</h3>
-                    <div class="pi-meta"><span>Kategoria · Rok</span></div>
-                </a></li>
-                <li><a href="#" class="portfolio-item" aria-label="Slot na projekt 02">
-                    <h3>Projekt 02</h3>
-                    <div class="pi-meta"><span>Kategoria · Rok</span></div>
-                </a></li>
-                <li><a href="#" class="portfolio-item" aria-label="Slot na projekt 03">
-                    <h3>Projekt 03</h3>
-                    <div class="pi-meta"><span>Kategoria · Rok</span></div>
-                </a></li>
-                <li><a href="#" class="portfolio-item" aria-label="Slot na projekt 04">
-                    <h3>Projekt 04</h3>
-                    <div class="pi-meta"><span>Kategoria · Rok</span></div>
-                </a></li>
-                <li><a href="#" class="portfolio-item" aria-label="Slot na projekt 05">
-                    <h3>Projekt 05</h3>
-                    <div class="pi-meta"><span>Kategoria · Rok</span></div>
-                </a></li>
-                <li><a href="#" class="portfolio-item" aria-label="Slot na projekt 06">
-                    <h3>Projekt 06</h3>
-                    <div class="pi-meta"><span>Kategoria · Rok</span></div>
-                </a></li>
-            </ul>
-            <p class="portfolio-placeholder-note">Slot przygotowany do wstawienia konkretnych projektów — nazwa, zakres, rok, link do case study.</p>
-        </section>
-
-        <hr class="sec-divider" aria-hidden="true">
-
         <section id="dlaczego" data-act="04">
             <div class="sec-num">04 — Akt IV</div>
             <div class="meta-text" style="margin-bottom: 1.8rem;">— Akt IV · Metoda</div>
-            <h2 class="huge split-target">Dlaczego ludzie<br>do nas wracają.</h2>
+            <h2 class="huge split-target">Czterema zasadami<br>kierujemy się zawsze.</h2>
             <div class="cards-stack-container">
                 <article class="stack-card">
                     <div class="card-tag">Zasada 01</div>
@@ -1029,7 +983,7 @@
                     <p>Typografia: <strong>Fraunces</strong> (Phaedra Charles, 2020) jako rdzeń serifowy oraz <strong>Manrope</strong> (Mikhail Sharanda, 2018) jako sans-serif tekstowy. Diakrytyka polska weryfikowana ręcznie.</p>
                     <p>Akcent: <strong>Oxblood Red #D92525</strong>. Trzy lata na palecie studyjnej. W trybie „Director's Cut" przechodzi w <strong>Burnt Amber #D4A574</strong>.</p>
                     <p>Build: czysty HTML / CSS / JavaScript. Bez frameworka. <strong>GSAP 3.12</strong> dla choreografii, <strong>Lenis 1.1</strong> dla smooth scroll, <strong>WebGL</strong> dla tła z domain-warpingiem (po I.Q.).</p>
-                    <p>Krój testowy w nagłówkach: 160 px, 800 wagi, masa optyczna 144. Kompozycja siatki: clamp() bez breakpointów twardych, perspective 1800 px na każdej sekcji. Kolejność stosu: hero → manifest → forma → proces → praktyka → metoda → spotkanie.</p>
+                    <p>Krój testowy w nagłówkach: 160 px, 800 wagi, masa optyczna 144. Kompozycja siatki: clamp() bez breakpointów twardych, perspective 1800 px na każdej sekcji. Kolejność stosu: hero → manifest → forma → proces → metoda → spotkanie.</p>
                     <p>Towarzyszy stronie publikacja <em>„Narracja jako rzemiosło"</em>, druk: <strong>Drukarnia Oficyna</strong>, Warszawa. Papier: Munken Pure 120 g. Nakład: 600 egz. numerowanych.</p>
                 </div>
             </div>
@@ -1040,16 +994,16 @@
             <div class="footer-grid">
                 <div>
                     <h5>Studio</h5>
-                    <a href="#hero">Manifest</a>
+                    <a href="#consume">Punkt wyjścia</a>
+                    <a href="#manifesto">Forma</a>
                     <a href="#process">Proces</a>
-                    <a href="#praktyka">Projekty</a>
                     <a href="#dlaczego">Metoda</a>
+                    <a href="#kontakt">Spotkanie</a>
                 </div>
                 <div>
                     <h5>Kontakt</h5>
                     <a href="mailto:studio@storyline.pl">studio@storyline.pl</a>
-                    <a href="tel:+48000000000">+48 000 000 000</a>
-                    <p>Krucza 16/22<br>00-526 Warszawa</p>
+                    <p>Adres po umówieniu spotkania.</p>
                 </div>
                 <div>
                     <h5>Społeczność</h5>
@@ -1677,11 +1631,6 @@
                 const href = a.getAttribute('href');
                 if (href && href.startsWith('#') && href.length > 1) { e.preventDefault(); smoothScrollTo(href); }
             });
-        });
-
-        // Portfolio placeholder items — no destination, no jump
-        document.querySelectorAll('.portfolio-item').forEach(a => {
-            a.addEventListener('click', e => e.preventDefault());
         });
 
         /* (Reel counter is now driven by syncHeroFrame inside the showreel cycle) */
