@@ -207,15 +207,6 @@
             .sd-content { position: relative; top: 0; margin-bottom: 8vh; }
         }
 
-        /* Stats */
-        .stats-row { display: grid; grid-template-columns: repeat(2,1fr); gap: 4vh 4vw; padding: 12vh 5vw; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg); position: relative; z-index: 5; }
-        @media (min-width: 768px) { .stats-row { grid-template-columns: repeat(4,1fr); } }
-        .stat .num { font-family: 'Fraunces', serif; font-size: clamp(2.5rem,5vw,5rem); line-height: 1; color: var(--text); display: block; }
-        .stat .num.placeholder { color: var(--text-dim); font-style: italic; }
-        .stat .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--text-dim); margin-top: 0.9rem; display: block; max-width: 18ch; }
-.stat .num { font-family: 'Fraunces', serif; font-size: clamp(2.5rem,5vw,5rem); line-height: 1; color: var(--text); display: block; }
-        .stat .num sup { font-size: 0.45em; color: var(--accent); vertical-align: super; margin-left: 0.06em; }
-        .stat .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--text-dim); margin-top: 0.9rem; display: block; max-width: 18ch; }
 
         /* Cards Stack — perspective + cursor tilt */
         .cards-stack-container { display: flex; flex-direction: column; gap: 3vh; margin-top: 7vh; padding-bottom: 8vh; perspective: 1500px; }
@@ -732,25 +723,6 @@
         </section>
 
         
-
-        <section class="stats-row" aria-label="Liczby studia (do wstawienia)" data-act="03">
-            <div class="stat">
-                <span class="num placeholder">—</span>
-                <span class="label">Liczba projektów</span>
-            </div>
-            <div class="stat">
-                <span class="num placeholder">—</span>
-                <span class="label">Lat praktyki</span>
-            </div>
-            <div class="stat">
-                <span class="num placeholder">—</span>
-                <span class="label">Krajów rezonansu</span>
-            </div>
-            <div class="stat">
-                <span class="num placeholder">—</span>
-                <span class="label">Wyróżnień branżowych</span>
-            </div>
-        </section>
 
         <hr class="sec-divider" aria-hidden="true">
 
@@ -1316,19 +1288,6 @@
                 trigger: block, start: 'top 60%', end: 'bottom 40%',
                 onEnter: () => activateBlock(block),
                 onEnterBack: () => activateBlock(block)
-            });
-        });
-
-        /* ---------- STATS COUNTER (kept harmlessly — no [data-count-to] left in DOM) ---------- */
-        document.querySelectorAll('[data-count-to]').forEach(el => {
-            const target = parseInt(el.dataset.countTo, 10);
-            const obj = { val: 0 };
-            ScrollTrigger.create({
-                trigger: el, start: 'top 88%', once: true,
-                onEnter: () => {
-                    gsap.to(obj, { val: target, duration: 2, ease: 'power2.out',
-                        onUpdate: () => { el.textContent = Math.floor(obj.val); } });
-                }
             });
         });
 
