@@ -211,6 +211,20 @@
         .stats-row { display: grid; grid-template-columns: repeat(2,1fr); gap: 4vh 4vw; padding: 12vh 5vw; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg); position: relative; z-index: 5; }
         @media (min-width: 768px) { .stats-row { grid-template-columns: repeat(4,1fr); } }
         .stat .num { font-family: 'Fraunces', serif; font-size: clamp(2.5rem,5vw,5rem); line-height: 1; color: var(--text); display: block; }
+        .stat .num.placeholder { color: var(--text-dim); font-style: italic; }
+        .stat .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--text-dim); margin-top: 0.9rem; display: block; max-width: 18ch; }
+
+        /* Portfolio — placeholder scaffolding */
+        .portfolio-list { list-style: none; margin-top: 5vh; border-top: 2px solid var(--text); }
+        .portfolio-list > li { display: block; }
+        .portfolio-item { border-bottom: 1px solid var(--line); padding: 3vh 0; display: flex; flex-direction: column; position: relative; transition: padding 0.5s cubic-bezier(0.19,1,0.22,1); color: inherit; text-decoration: none; opacity: 0.55; cursor: default; }
+        @media (min-width: 768px) { .portfolio-item { flex-direction: row; justify-content: space-between; align-items: center; padding: 4vh 0; } }
+        .portfolio-item h3 { font-size: clamp(1.5rem,4vw,5rem); text-transform: uppercase; margin: 0 0 10px 0; transition: color 0.4s; font-weight: 300; font-family: 'Fraunces', serif; }
+        @media (min-width: 768px) { .portfolio-item h3 { margin: 0; } }
+        .portfolio-item .pi-meta { display: flex; gap: 18px; align-items: center; }
+        .portfolio-item .pi-meta span { font-size: 0.82rem; opacity: 0.5; transition: opacity 0.4s; letter-spacing: 0.05em; font-style: italic; font-family: 'Fraunces', serif; }
+        .portfolio-placeholder-note { font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 4vh; padding-left: 0.6rem; border-left: 2px solid var(--accent); }
+        .stat .num { font-family: 'Fraunces', serif; font-size: clamp(2.5rem,5vw,5rem); line-height: 1; color: var(--text); display: block; }
         .stat .num sup { font-size: 0.45em; color: var(--accent); vertical-align: super; margin-left: 0.06em; }
         .stat .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--text-dim); margin-top: 0.9rem; display: block; max-width: 18ch; }
 
@@ -505,7 +519,7 @@
             <li><a href="#consume" data-act="01">Akt I — Punkt wyjścia</a></li>
             <li><a href="#manifesto" data-act="02">Akt II — Forma</a></li>
             <li><a href="#process" data-act="03">Akt III — Proces</a></li>
-            <li><a href="#dlaczego" data-act="04">Akt IV — Metoda</a></li>
+            <li><a href="#praktyka" data-act="04">Akt IV — Praktyka</a></li>
             <li><a href="#kontakt" data-act="05">Akt V — Spotkanie</a></li>
         </ul>
         <div class="menu-meta">
@@ -519,7 +533,7 @@
         <a href="#consume" class="rail-dot active" data-act="01" aria-current="true"><span class="rail-label">Akt I — Punkt wyjścia</span></a>
         <a href="#manifesto" class="rail-dot" data-act="02" aria-current="false"><span class="rail-label">Akt II — Forma</span></a>
         <a href="#process" class="rail-dot" data-act="03" aria-current="false"><span class="rail-label">Akt III — Proces</span></a>
-        <a href="#dlaczego" class="rail-dot" data-act="04" aria-current="false"><span class="rail-label">Akt IV — Metoda</span></a>
+        <a href="#praktyka" class="rail-dot" data-act="04" aria-current="false"><span class="rail-label">Akt IV — Praktyka</span></a>
         <a href="#kontakt" class="rail-dot" data-act="05" aria-current="false"><span class="rail-label">Akt V — Spotkanie</span></a>
     </nav>
 
@@ -730,9 +744,61 @@
 
         
 
+        <section class="stats-row" aria-label="Liczby studia (do wstawienia)" data-act="03">
+            <div class="stat">
+                <span class="num placeholder">—</span>
+                <span class="label">Liczba projektów</span>
+            </div>
+            <div class="stat">
+                <span class="num placeholder">—</span>
+                <span class="label">Lat praktyki</span>
+            </div>
+            <div class="stat">
+                <span class="num placeholder">—</span>
+                <span class="label">Krajów rezonansu</span>
+            </div>
+            <div class="stat">
+                <span class="num placeholder">—</span>
+                <span class="label">Wyróżnień branżowych</span>
+            </div>
+        </section>
+
         <hr class="sec-divider" aria-hidden="true">
 
-        
+        <section id="praktyka" data-act="04">
+            <div class="sec-num">04 — Akt IV</div>
+            <div class="meta-text" style="margin-bottom: 1.8rem;">— Akt IV · Praktyka</div>
+            <h2 class="huge split-target">Wybrane projekty.</h2>
+            <ul class="portfolio-list" aria-label="Lista projektów — w przygotowaniu">
+                <li><a href="#" class="portfolio-item" aria-label="Slot na projekt 01">
+                    <h3>Projekt 01</h3>
+                    <div class="pi-meta"><span>Kategoria · Rok</span></div>
+                </a></li>
+                <li><a href="#" class="portfolio-item" aria-label="Slot na projekt 02">
+                    <h3>Projekt 02</h3>
+                    <div class="pi-meta"><span>Kategoria · Rok</span></div>
+                </a></li>
+                <li><a href="#" class="portfolio-item" aria-label="Slot na projekt 03">
+                    <h3>Projekt 03</h3>
+                    <div class="pi-meta"><span>Kategoria · Rok</span></div>
+                </a></li>
+                <li><a href="#" class="portfolio-item" aria-label="Slot na projekt 04">
+                    <h3>Projekt 04</h3>
+                    <div class="pi-meta"><span>Kategoria · Rok</span></div>
+                </a></li>
+                <li><a href="#" class="portfolio-item" aria-label="Slot na projekt 05">
+                    <h3>Projekt 05</h3>
+                    <div class="pi-meta"><span>Kategoria · Rok</span></div>
+                </a></li>
+                <li><a href="#" class="portfolio-item" aria-label="Slot na projekt 06">
+                    <h3>Projekt 06</h3>
+                    <div class="pi-meta"><span>Kategoria · Rok</span></div>
+                </a></li>
+            </ul>
+            <p class="portfolio-placeholder-note">Slot przygotowany do wstawienia konkretnych projektów — nazwa, zakres, rok, link do case study.</p>
+        </section>
+
+        <hr class="sec-divider" aria-hidden="true">
 
         <section id="dlaczego" data-act="04">
             <div class="sec-num">04 — Akt IV</div>
@@ -1611,6 +1677,11 @@
                 const href = a.getAttribute('href');
                 if (href && href.startsWith('#') && href.length > 1) { e.preventDefault(); smoothScrollTo(href); }
             });
+        });
+
+        // Portfolio placeholder items — no destination, no jump
+        document.querySelectorAll('.portfolio-item').forEach(a => {
+            a.addEventListener('click', e => e.preventDefault());
         });
 
         /* (Reel counter is now driven by syncHeroFrame inside the showreel cycle) */
