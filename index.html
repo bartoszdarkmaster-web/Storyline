@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Storyline — Studio Narracji Marki</title>
-    <meta name="description" content="Storyline — studio narracji marki. Tworzymy historie, które ludzie zapamiętują, a algorytmy wzmacniają.">
-    <meta property="og:title" content="Storyline — Studio Narracji Marki">
-    <meta property="og:description" content="Studio narracji marki. Pięć aktów, jedna obsesja: historia, której nie da się streścić w jednym zdaniu.">
+    <title>Storyline — Studio reklamy w social mediach i copywritingu</title>
+    <meta name="description" content="Storyline — studio reklamy w social mediach i copywritingu. Słowa, które zatrzymują scroll. Kampanie, które konwertują. Marki, które ludzie pamiętają.">
+    <meta property="og:title" content="Storyline — Studio reklamy w social mediach i copywritingu">
+    <meta property="og:description" content="Studio reklamy w social mediach i copywritingu. Pięć aktów, jedna obsesja: zatrzymać scroll i powiedzieć coś, co zostaje.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%23010101'/%3E%3Ctext x='600' y='320' font-family='serif' font-size='180' font-style='italic' text-anchor='middle' fill='%23f3ede1' font-weight='300'%3EStoryline%3C/text%3E%3Ctext x='600' y='400' font-family='sans-serif' font-size='28' letter-spacing='12' text-anchor='middle' fill='%237a7670'%3ESTUDIO NARRACJI MARKI%3C/text%3E%3Ccircle cx='600' cy='480' r='4' fill='%23d92525'/%3E%3C/svg%3E">
+    <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%23010101'/%3E%3Ctext x='600' y='320' font-family='serif' font-size='180' font-style='italic' text-anchor='middle' fill='%23f3ede1' font-weight='300'%3EStoryline%3C/text%3E%3Ctext x='600' y='400' font-family='sans-serif' font-size='28' letter-spacing='12' text-anchor='middle' fill='%237a7670'%3ESOCIAL %26 COPYWRITING%3C/text%3E%3Ccircle cx='600' cy='480' r='4' fill='%23d92525'/%3E%3C/svg%3E">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23010101'/%3E%3Ctext x='50' y='70' font-family='serif' font-size='80' font-weight='700' text-anchor='middle' fill='%23d92525'%3ES%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -290,7 +290,7 @@
 
         /* HERO RGB GLITCH layers — periodic chromatic shudder on the masked text */
         .hero-glitch-layer { position: absolute; inset: 0; pointer-events: none; opacity: 0;
-            background: url('https://images.unsplash.com/photo-1530819568329-97653eafbbfa?w=1800&q=90&auto=format&fit=crop') center/cover no-repeat;
+            background: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1800&q=90&auto=format&fit=crop') center/cover no-repeat;
             -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 300'%3E%3Ctext x='50%25' y='52%25' font-family='Fraunces' font-size='160' font-weight='800' text-anchor='middle' dominant-baseline='middle'%3ESTORYLINE%3C/text%3E%3C/svg%3E");
             mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 300'%3E%3Ctext x='50%25' y='52%25' font-family='Fraunces' font-size='160' font-weight='800' text-anchor='middle' dominant-baseline='middle'%3ESTORYLINE%3C/text%3E%3C/svg%3E");
             -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
@@ -322,18 +322,6 @@
         .tenet::before { counter-increment: tenet; content: "/ 0" counter(tenet); display: block; font-family: 'Fraunces', serif; font-size: 0.95rem; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 1.5rem; }
         .tenet h3 { font-size: clamp(1.6rem, 2.6vw, 2.4rem); line-height: 1.05; margin-bottom: 1.4rem; }
         .tenet p { font-size: clamp(0.95rem, 1.1vw, 1.05rem); line-height: 1.65; color: var(--text); font-weight: 300; }
-        /* OFFICE MAP */
-        .offices { display: grid; grid-template-columns: 1fr; gap: 5vh; margin-top: 6vh; padding-top: 5vh; border-top: 1px solid var(--line); }
-        @media (min-width: 768px) { .offices { grid-template-columns: 1fr; max-width: 36rem; } }
-        .office { display: grid; grid-template-columns: auto 1fr; gap: 2vw; align-items: start; }
-        .office-pin { width: 60px; height: 60px; border: 1px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--accent); position: relative; }
-        .office-pin::before { content: ''; position: absolute; inset: -8px; border: 1px solid rgba(217,37,37,0.3); border-radius: 50%; animation: pingPulse 2.4s infinite; }
-        @keyframes pingPulse { 0% { transform: scale(0.95); opacity: 0.7; } 100% { transform: scale(1.4); opacity: 0; } }
-        .office-info h4 { font-family: 'Fraunces', serif; font-size: 1.6rem; line-height: 1; margin-bottom: 0.6rem; font-weight: 300; }
-        .office-info .office-meta { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.8rem; }
-        .office-info .office-addr { font-size: 0.95rem; line-height: 1.55; }
-        .office-info .office-time { margin-top: 1rem; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); font-variant-numeric: tabular-nums; }
-
         /* QUOTE rotation */
         .quote-rotation { position: relative; min-height: clamp(8em, 18vh, 14em); }
         .quote-rotation blockquote { position: absolute; top: 0; left: 0; right: 0; opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; pointer-events: none; }
@@ -416,7 +404,7 @@
             <span class="active-act" id="activeAct">01 — Akt I</span>
         </a>
         <div class="ui-controls">
-            <div class="clock-pill" aria-live="polite" aria-label="Status studia"><span class="clock-dot" aria-hidden="true"></span><span id="topClock">studio czynne</span></div>
+            <div class="clock-pill" aria-live="polite" aria-label="Status studia"><span class="clock-dot" aria-hidden="true"></span><span id="topClock">Studio · pre-launch</span></div>
             <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menu">
                 <span class="menu-bars" aria-hidden="true"></span>
                 <span>Menu</span>
@@ -427,21 +415,21 @@
     <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
         <ul>
             <li><a href="#consume" data-act="01">Akt I — Punkt wyjścia</a></li>
-            <li><a href="#manifesto" data-act="02">Akt II — Forma</a></li>
+            <li><a href="#manifesto" data-act="02">Akt II — Platformy</a></li>
             <li><a href="#process" data-act="03">Akt III — Proces</a></li>
             <li><a href="#dlaczego" data-act="04">Akt IV — Metoda</a></li>
             <li><a href="#kontakt" data-act="05">Akt V — Spotkanie</a></li>
         </ul>
         <div class="menu-meta">
-            <div>Studio czynne · <span id="menuClock">12:34</span> CET</div>
+            <div>Studio · pre-launch</div>
             <div>studio@storyline.pl</div>
-            <div>Warszawa</div>
+            <div>Pracujemy zdalnie</div>
         </div>
     </div>
 
     <nav class="side-rail" aria-label="Nawigacja po sekcjach">
         <a href="#consume" class="rail-dot active" data-act="01" aria-current="true"><span class="rail-label">Akt I — Punkt wyjścia</span></a>
-        <a href="#manifesto" class="rail-dot" data-act="02" aria-current="false"><span class="rail-label">Akt II — Forma</span></a>
+        <a href="#manifesto" class="rail-dot" data-act="02" aria-current="false"><span class="rail-label">Akt II — Platformy</span></a>
         <a href="#process" class="rail-dot" data-act="03" aria-current="false"><span class="rail-label">Akt III — Proces</span></a>
         <a href="#dlaczego" class="rail-dot" data-act="04" aria-current="false"><span class="rail-label">Akt IV — Metoda</span></a>
         <a href="#kontakt" class="rail-dot" data-act="05" aria-current="false"><span class="rail-label">Akt V — Spotkanie</span></a>
@@ -462,61 +450,62 @@
     <div class="loader" id="loaderBlock">
         <div class="loader-perc" id="perc">0%</div>
         <div class="loader-bar-wrap"><div class="loader-bar" id="lBar"></div></div>
-        <div class="loader-tag">Storyline / Synteza Sensoryczna</div>
+        <div class="loader-tag">Storyline / Studio · Pre-launch</div>
     </div>
 
 <main id="smooth-wrapper">
 
         <section class="hero-pin" id="hero" data-act="01">
             <div class="hero-stack" id="heroStack">
-                <div class="hero-img-container active" data-photo="https://images.unsplash.com/photo-1530819568329-97653eafbbfa?w=1800&q=90&auto=format&fit=crop" data-caption="Mood · Editorial"></div>
-                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1492136344046-866c85e0bf04?w=1800&q=90&auto=format&fit=crop" data-caption="Mood · Architektura"></div>
-                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1561070791-2526d30994b8?w=1800&q=90&auto=format&fit=crop" data-caption="Mood · Reżyseria"></div>
-                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1800&q=90&auto=format&fit=crop" data-caption="Mood · Materia"></div>
+                <div class="hero-img-container active" data-photo="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1800&q=90&auto=format&fit=crop" data-caption="Social · 01"></div>
+                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1800&q=90&auto=format&fit=crop" data-caption="Copy · 02"></div>
+                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=1800&q=90&auto=format&fit=crop" data-caption="Strategy · 03"></div>
+                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1800&q=90&auto=format&fit=crop" data-caption="Wynik · 04"></div>
                 <div class="hero-glitch-layer r" id="heroGlitchR" aria-hidden="true"></div>
                 <div class="hero-glitch-layer b" id="heroGlitchB" aria-hidden="true"></div>
             </div>
-            <div class="hero-caption" id="heroCaption">Mood · Editorial</div>
+            <div class="hero-caption" id="heroCaption">Social · 01</div>
             <div class="hero-meta left">
-                <div id="heroClockWAW">Warszawa · 12:34</div>
+                <div>Studio · pre-launch</div>
+                <div class="accent">Reklama · Copy · Social</div>
             </div>
             <div class="hero-meta right">
                 <div>MMXXVI · Manifest</div>
                 <div>Studio w przygotowaniu</div>
             </div>
-            <div class="hero-sub">Studio Narracji Marki — przewiń, by rozpocząć</div>
+            <div class="hero-sub">Reklama · Copy · Social — przewiń, by rozpocząć</div>
         </section>
 
         <section class="consume" id="consume" data-act="01">
             <div class="sec-num">01 — Akt I</div>
             <div class="meta-text" style="margin-bottom: 1.8rem;">— Akt I · Punkt wyjścia</div>
-            <h2 class="huge split-target aberration">Naszą pracą<br>jest ją znaleźć.</h2>
+            <h2 class="huge split-target aberration">Skuteczna reklama<br>zaczyna się od zdania.</h2>
             <div class="grid-2" style="margin-top: 7vh;">
                 <div>
-                    <p class="body-text lead gs-up">Nie zaczynamy od briefu. Zaczynamy od pytania, którego brief nie zadał.</p>
+                    <p class="body-text lead gs-up">Algorytm nagradza to, co zatrzymuje scroll. Zatrzymujemy go pierwszą linią.</p>
                 </div>
                 <div>
-                    <p class="body-text drop-cap gs-up" style="margin-bottom: 1.6rem;">Co Twoja marka pamięta, czego klient jeszcze nie wie? Co w niej jest sprzeczne, ciekawe, niedopowiedziane? Tam mieszka historia, którą warto powiedzieć — i którą ktoś usłyszy.</p>
-                    <p class="body-text gs-up">W erze zautomatyzowanego szumu, ludzka perspektywa staje się dobrem luksusowym. Przetwarzamy Twoje dane w architekturę umysłu.</p>
+                    <p class="body-text drop-cap gs-up" style="margin-bottom: 1.6rem;">Co Twoja marka chce powiedzieć — i komu konkretnie? Większość briefów jest o produkcie. Najlepsze są o człowieku po drugiej stronie ekranu. Tam zaczyna się każda dobra kampania.</p>
+                    <p class="body-text gs-up">W erze nadmiaru przekazów, ludzkie zdanie staje się walutą. Piszemy tak, żeby ktoś przerwał scroll. Mierzymy, czy zostało w głowie po tygodniu.</p>
                 </div>
             </div>
         </section>
 
         <section class="manifest-extended" data-act="01">
             <div class="meta-text" style="margin-bottom: 2rem;">— Manifest</div>
-            <p class="lead-quote">Narracja to nie marketing. To sposób, w jaki marka decyduje, co chce zostawić światu.</p>
+            <p class="lead-quote">Dobry copy nie sprzedaje. Buduje rozmowę, która kończy się decyzją.</p>
             <div class="tenets">
                 <article class="tenet">
-                    <h3 class="serif">Narracja zaczyna się od ciszy.</h3>
-                    <p>Najlepsze marki nie mówią pierwsze. Słuchają, co o nich mówi rynek, kultura, klient. Z tych szczelin wyciągają zdanie, którego nikt jeszcze nie wypowiedział. Zanim coś zaprojektujemy, spędzamy z marką tygodnie w trybie nasłuchu — bez briefu, bez deadline'u, bez obietnicy wyniku.</p>
+                    <h3 class="serif">Copy przed kreatywą.</h3>
+                    <p>Forma graficzna jest ważna, ale to słowo decyduje, czy ktoś zatrzyma się przy poście. Najpierw piszemy, potem rysujemy. Pierwsza wersja ma być na papierze — nie w Figmie. Z tej wersji wynika cała reszta: ton, hierarchia, ilustracja, system kampanii.</p>
                 </article>
                 <article class="tenet">
-                    <h3 class="serif">Forma jest argumentem.</h3>
-                    <p>Krój pisma, marginesy, tempo, papier — to wszystko zdania, których nie trzeba czytać, by zrozumieć. Marka, która używa Helveticy w czasach, gdy używa jej każdy, mówi „nie mam zdania". Nawet jeśli ma. Forma to deklaracja przynależności i nieprzynależności jednocześnie.</p>
+                    <h3 class="serif">Audience &gt; algorytm.</h3>
+                    <p>Algorytm wynagradza to, co publiczność rzeczywiście chce zobaczyć. Strategia zaczyna się od zrozumienia widza, nie od reverse-engineeringu platformy. Kto on jest, czego się boi, co w nim drażni reklama. Z tego rodzi się ton, format i częstotliwość — nie z growth-hacka.</p>
                 </article>
                 <article class="tenet">
-                    <h3 class="serif">Marka odpowiada za sens, nie za szum.</h3>
-                    <p>Rynek mierzy reach, impressions, CTR. My mierzymy: czy ktoś po pięciu latach pamięta jedno zdanie z Twojej marki. Jeśli tak — wszystko inne wynika. Jeśli nie — żadna kampania tego nie nadrobi. Sens jest długoterminowy. Szum dziennie odnawia się sam.</p>
+                    <h3 class="serif">Konwersja jest wynikiem, nie celem.</h3>
+                    <p>Najlepsze marki nie krzyczą „kup teraz". Budują relację, która sama prowadzi do decyzji. Sprzedaż jest skutkiem, nie strategią. CTR rośnie, gdy odbiorca chce — nie gdy jesteś agresywny. Pisz tak, żeby ktoś po przeczytaniu sam dopowiedział sobie pointę.</p>
                 </article>
             </div>
         </section>
@@ -526,8 +515,8 @@
         <section class="manifesto-scrub" id="manifesto" data-act="02">
             <div class="manifesto-text-wrap">
                 <h2>
-                    Historia · Forma · Sens
-                    <span class="manifesto-fill" id="manifestoFill" aria-hidden="true">Historia · Forma · Sens</span>
+                    Słowo · Obraz · Reakcja
+                    <span class="manifesto-fill" id="manifestoFill" aria-hidden="true">Słowo · Obraz · Reakcja</span>
                 </h2>
             </div>
         </section>
@@ -535,35 +524,35 @@
         <section class="dual-marquee" aria-hidden="true">
             <div class="marquee-particles" id="marqueeParticles"></div>
             <div class="dm-track" data-marquee-dir="left">
-                <span>Strategia narracyjna</span><span>·</span>
-                <span>Tożsamość</span><span>·</span>
-                <span>Branding</span><span>·</span>
-                <span>Film</span><span>·</span>
-                <span>Web Design</span><span>·</span>
+                <span>Reklamy Meta &amp; Google</span><span>·</span>
+                <span>Copywriting</span><span>·</span>
+                <span>Strategia social</span><span>·</span>
+                <span>Content</span><span>·</span>
+                <span>Email marketing</span><span>·</span>
             </div>
             <div class="dm-track" data-marquee-dir="right">
-                <span>Editorial</span><span>+</span>
-                <span>Reżyseria marki</span><span>+</span>
-                <span>Manifest</span><span>+</span>
-                <span>Kierunek artystyczny</span><span>+</span>
-                <span>Kampania</span><span>+</span>
+                <span>Instagram</span><span>+</span>
+                <span>TikTok</span><span>+</span>
+                <span>LinkedIn</span><span>+</span>
+                <span>Landing page</span><span>+</span>
+                <span>Newsletter</span><span>+</span>
             </div>
         </section>
 
         <section class="cine-gallery" data-act="02">
             <div class="sec-num">02 — Akt II</div>
-            <div class="meta-text" style="margin-bottom: 2.6rem;">— Akt II · Forma</div>
-            <h2 class="huge split-target" style="margin-bottom: 7vh; max-width: 16ch;">Obraz, który wytrzymuje drugie spojrzenie.</h2>
+            <div class="meta-text" style="margin-bottom: 2.6rem;">— Akt II · Platformy</div>
+            <h2 class="huge split-target" style="margin-bottom: 7vh; max-width: 18ch;">Każda platforma<br>ma swój ton.</h2>
             <div class="cine-grid">
                 <div class="cine-item parallax-item">
-                    <img class="cine-img parallax-img" loading="lazy" src="https://images.unsplash.com/photo-1492136344046-866c85e0bf04?w=1200&q=85&auto=format&fit=crop" alt="Editorial study">
-                    <div class="cine-meta">Mood · Editorial</div>
-                    <div class="cine-caption">Ciche kompozycje, długie ujęcia.</div>
+                    <img class="cine-img parallax-img" loading="lazy" src="https://images.unsplash.com/photo-1611162616305-c69b3037b09f?w=1200&q=85&auto=format&fit=crop" alt="Social media post layout">
+                    <div class="cine-meta">Social · Instagram</div>
+                    <div class="cine-caption">Słowa, które zatrzymują scroll.</div>
                 </div>
                 <div class="cine-item parallax-item offset">
-                    <img class="cine-img parallax-img" loading="lazy" src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=1200&q=85&auto=format&fit=crop" alt="Architectural still">
-                    <div class="cine-meta">Mood · Architektura</div>
-                    <div class="cine-caption">Geometria, która prowadzi wzrok.</div>
+                    <img class="cine-img parallax-img" loading="lazy" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&q=85&auto=format&fit=crop" alt="Long-form copy on laptop">
+                    <div class="cine-meta">Copy · Long-form</div>
+                    <div class="cine-caption">Tekst, który ktoś czyta do końca.</div>
                 </div>
             </div>
         </section>
@@ -572,10 +561,10 @@
 
         <section class="quote-sec" data-act="02">
             <div class="quote-rotation" id="quoteRotation">
-                <blockquote class="active">Marka, której nie da się streścić w jednym zdaniu, nie jest jeszcze marką — jest tylko obietnicą.</blockquote>
-                <blockquote>Powolność jest najdroższym surowcem epoki algorytmów.</blockquote>
-                <blockquote>Projektujemy nie po to, żeby coś dodać do świata. Po to, żeby coś z niego nie zniknęło.</blockquote>
-                <blockquote>Klient kupuje produkt. Wraca po historię.</blockquote>
+                <blockquote class="active">Najlepsze reklamy zaczynają się od jednego słowa, które nie pasuje do reszty.</blockquote>
+                <blockquote>Audience to nie demografia. To rozmowa, której słuchasz, zanim coś powiesz.</blockquote>
+                <blockquote>Algorytm nagradza to, co ludzi zatrzymuje. Zatrzymaj ich pierwszą linią.</blockquote>
+                <blockquote>Najmocniejsza marka to ta, której jedno zdanie zostaje w głowie po pięciu latach.</blockquote>
                 <cite id="quoteCite">Z notatek studyjnych</cite>
             </div>
         </section>
@@ -585,30 +574,30 @@
         <section class="sticky-details" id="process" data-act="03">
             <div class="sd-left">
                 <div class="sd-content">
-                    <div class="sd-media" id="sdMedia" style="background-image: url('https://images.unsplash.com/photo-1485628390555-1a7bd3c2f3b4?w=1200&q=85&auto=format&fit=crop');"></div>
+                    <div class="sd-media" id="sdMedia" style="background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&q=85&auto=format&fit=crop');"></div>
                     <div class="meta-text" style="margin-top: 1.8rem;">— Proces · 04 etapy</div>
                 </div>
             </div>
             <div class="sd-right">
-                <div class="sd-text-block active" data-img="https://images.unsplash.com/photo-1485628390555-1a7bd3c2f3b4?w=1200&q=85&auto=format&fit=crop">
+                <div class="sd-text-block active" data-img="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&q=85&auto=format&fit=crop">
                     <div class="num">/ 01</div>
                     <h3 class="serif">Nasłuch.</h3>
-                    <p class="body-text">Spędzamy z Tobą tyle czasu, ile potrzeba, by zrozumieć, czego nie mówisz. Czytamy Twoich klientów, audytujemy język, śledzimy ślady marki w kulturze. Strategia rodzi się z obserwacji, nie z presetu.</p>
+                    <p class="body-text">Dwa tygodnie w słuchaniu publiczności klienta. Komentarze, DM-y, opinie, fora, recenzje. Z prawdziwych słów wyciągamy ton i tematy, które rezonują. Strategia zaczyna się od cytatu z komentarza, nie od buyer persony.</p>
                 </div>
-                <div class="sd-text-block" data-img="https://images.unsplash.com/photo-1499914485622-a88fac536970?w=1200&q=85&auto=format&fit=crop">
+                <div class="sd-text-block" data-img="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&q=85&auto=format&fit=crop">
                     <div class="num">/ 02</div>
-                    <h3 class="serif">Reżyseria.</h3>
-                    <p class="body-text">Każda historia ma swoje światło, tempo i ciszę. Projektujemy strukturę narracji — od pierwszego kadru do ostatniego. Storyboard, ton głosu, system typograficzny. Reżyseria to architektura uwagi.</p>
+                    <h3 class="serif">Strategia treści.</h3>
+                    <p class="body-text">Mapa tematów, ton głosu, częstotliwość, dystrybucja. Co publikujemy, gdzie i dlaczego — zanim cokolwiek pojawi się na feedzie. Każdy post ma swoje miejsce w łańcuchu, który prowadzi do decyzji.</p>
                 </div>
-                <div class="sd-text-block" data-img="https://images.unsplash.com/photo-1561070791-2526d30994b8?w=1200&q=85&auto=format&fit=crop">
+                <div class="sd-text-block" data-img="https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=1200&q=85&auto=format&fit=crop">
                     <div class="num">/ 03</div>
-                    <h3 class="serif">Wykonanie.</h3>
-                    <p class="body-text">Nie outsourcujemy decyzji estetycznych. Każdy krój, każda klatka, każde mikro-przejście — to wybór, za którym stoi człowiek. Budujemy systemy, które przeżyją trend i przetrwają reorganizację marketingu.</p>
+                    <h3 class="serif">Realizacja.</h3>
+                    <p class="body-text">Posty, reklamy Meta i Google, scenariusze video, copy do landing page, newslettery. Jeden zespół od pierwszej wersji do publikacji. Bez agencji w środku, bez handoffów, które rozmywają intencję.</p>
                 </div>
-                <div class="sd-text-block" data-img="https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=1200&q=85&auto=format&fit=crop">
+                <div class="sd-text-block" data-img="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=85&auto=format&fit=crop">
                     <div class="num">/ 04</div>
-                    <h3 class="serif">Echo.</h3>
-                    <p class="body-text">Praca nie kończy się w momencie launchu. Mierzymy rezonans, dopasowujemy ton, towarzyszymy marce w pierwszych miesiącach życia w świecie. Najlepsze historie zostawiają echo — i my po nie wracamy.</p>
+                    <h3 class="serif">Pomiar.</h3>
+                    <p class="body-text">Co tydzień: co działa, co nie, co przemilczeć. Optymalizacja w oparciu o dane — kliknięcia, retencję, zaangażowanie — nie o intuicję managera klienta. Mierzymy całe lejki, nie pojedyncze posty.</p>
                 </div>
             </div>
         </section>
@@ -620,31 +609,31 @@
         <section id="dlaczego" data-act="04">
             <div class="sec-num">04 — Akt IV</div>
             <div class="meta-text" style="margin-bottom: 1.8rem;">— Akt IV · Metoda</div>
-            <h2 class="huge split-target">Czterema zasadami<br>kierujemy się zawsze.</h2>
+            <h2 class="huge split-target">Cztery zasady,<br>na których piszemy.</h2>
             <div class="cards-stack-container">
                 <article class="stack-card">
                     <div class="card-tag">Zasada 01</div>
                     <div class="num">01</div>
-                    <h3>Powolność jako luksus.</h3>
-                    <p class="body-text">Pracujemy w mniejszej skali, by każdy projekt zostawiał ślad. Nie ścigamy się z agencjami sieciowymi i nie udajemy ich procesu. Mała liczba projektów rocznie jest świadomą zasadą — nie konsekwencją braku popytu.</p>
+                    <h3>Pisz dla jednej osoby.</h3>
+                    <p class="body-text">Komunikacja do „wszystkich" trafia donikąd. Każdy post, reklama i landing ma jednego konkretnego adresata. Konkretnego. Z imienia, z lęku, z dnia tygodnia. Reszta sama się znajdzie.</p>
                 </article>
                 <article class="stack-card">
                     <div class="card-tag">Zasada 02</div>
                     <div class="num">02</div>
-                    <h3>Pisanie przed projektowaniem.</h3>
-                    <p class="body-text">Każda decyzja wizualna zaczyna się od zdania. Jeśli marka nie ma zdania, którym może się obronić — design nie zrobi tego za nią. Dlatego najpierw piszemy, potem rysujemy.</p>
+                    <h3>Hook w pierwszych 3 sekundach.</h3>
+                    <p class="body-text">Algorytm daje 3 sekundy, by przekonać kogoś, że warto patrzeć dalej. To są te sekundy, w których zarabia się resztę budżetu. Bez dobrego hooka cała kampania jest luksusem dla nikogo.</p>
                 </article>
                 <article class="stack-card">
                     <div class="card-tag">Zasada 03</div>
                     <div class="num">03</div>
-                    <h3>Jedna ręka, od początku do końca.</h3>
-                    <p class="body-text">Strategia, identyfikacja, web, film — w jednym studiu, z jedną wrażliwością. Bez handoffów. Spójność, której nie da się podrobić zewnętrznym ownershipem.</p>
+                    <h3>Test, mierz, popraw.</h3>
+                    <p class="body-text">Reklama bez metryk to kosztowna intuicja. Każda kampania to seria hipotez, nie wykonanie planu. Trzy wersje hooka, dwa CTA, jeden audiens — i decyzja oparta na liczbach po 72 godzinach.</p>
                 </article>
                 <article class="stack-card">
                     <div class="card-tag">Zasada 04</div>
                     <div class="num">04</div>
-                    <h3>Marka jako system, nie kampania.</h3>
-                    <p class="body-text">Nie projektujemy dla jednego launchu. Projektujemy zasady, które zniosą zmianę CEO, nową kategorię produktową i pięć kolejnych refreshy. Co projektujemy, ma żyć dziesięć lat.</p>
+                    <h3>Marka &gt; kampania.</h3>
+                    <p class="body-text">Najsłabsze marki mają świetne pojedyncze posty. Najmocniejsze konsekwentnie powtarzają jedno zdanie przez lata. System ważniejszy od pojedynczego launcha — bo dziesiąty post działa tylko gdy poprzednie zbudowały wiarygodność.</p>
                 </article>
             </div>
         </section>
@@ -658,28 +647,28 @@
             <h2 class="huge split-target" style="max-width: 16ch;">Słowa, których używamy świadomie.</h2>
             <div class="lexicon-grid">
                 <div class="lex-entry">
-                    <span class="lex-term">narracja</span>
-                    <p class="lex-def">Sposób, w jaki marka decyduje, co chce zostawić światu. Nie kampania — postawa. Nie slogan — ramy, w które wchodzi każda decyzja przez dziesięć kolejnych lat.</p>
+                    <span class="lex-term">hook</span>
+                    <p class="lex-def">Pierwsza linia, pierwszy kadr, pierwsze 3 sekundy. Decyduje o całej reklamie. Bez dobrego hooka reszta nie ma znaczenia — algorytm nie pokaże, a człowiek przewinie.</p>
                 </div>
                 <div class="lex-entry">
-                    <span class="lex-term">manifest</span>
-                    <p class="lex-def">Krótki tekst, w którym marka mówi, czego nie zrobi. Negacje są wyraźniejsze od deklaracji. Manifest pisany w pierwszych godzinach współpracy chroni przed dwoma latami błądzenia.</p>
+                    <span class="lex-term">persona</span>
+                    <p class="lex-def">Nie demografia. Konkretny obraz odbiorcy: co czyta, co go denerwuje, czego się boi, o której godzinie dnia bierze telefon. Reklama pisana do persony brzmi jak rozmowa, nie broszura.</p>
                 </div>
                 <div class="lex-entry">
-                    <span class="lex-term">forma</span>
-                    <p class="lex-def">Wszystko, co czytelnik widzi przed pierwszym słowem. Marginesy, krój, papier, tempo, cisza. Forma jest argumentem — używa go każdy, kto coś projektuje, świadomie albo nie.</p>
+                    <span class="lex-term">claim</span>
+                    <p class="lex-def">Obietnica marki w jednym zdaniu. Jeśli klient nie powtórzy jej własnymi słowami po przeczytaniu — claim jest jeszcze nieskończony. Wraca na biurko, nie do produkcji.</p>
                 </div>
                 <div class="lex-entry">
-                    <span class="lex-term">echo</span>
-                    <p class="lex-def">Wszystko, co dzieje się z marką po launchu. Mierzymy je nie reachem, a powtórzeniem: ile razy klient wraca z tą samą historią w głowie. Echo to ostatni etap procesu.</p>
+                    <span class="lex-term">CTA</span>
+                    <p class="lex-def">Call to Action — jasne wezwanie do działania. „Kup teraz" jest leniwe; dobry CTA brzmi jak naturalna konsekwencja całej reklamy. Konkret, czas, wartość.</p>
                 </div>
                 <div class="lex-entry">
-                    <span class="lex-term">archetyp</span>
-                    <p class="lex-def">Kategoria narracyjna pomocna w pierwszych tygodniach. Później ją porzucamy. Archetypy są wytarte, bo pomagają zacząć rozmowę — ale żadna marka, która została, nie była tylko archetypem.</p>
+                    <span class="lex-term">retencja</span>
+                    <p class="lex-def">Czy ktoś wraca po pierwszym kontakcie z marką. Najmocniejszy wskaźnik. Reach buduje sezon, retencja buduje markę. Obserwacja po 30, 60, 90 dniach — nie po 7.</p>
                 </div>
                 <div class="lex-entry">
-                    <span class="lex-term">cisza</span>
-                    <p class="lex-def">Pole, w którym marka nic nie mówi. To, co świadomie pomija. W projektach editorialnych cisza zajmuje 40-60% strony. W marketingu — 0%. Stąd zmęczenie czytelnika.</p>
+                    <span class="lex-term">voice</span>
+                    <p class="lex-def">Ton głosu marki — spójny w 50 postach, w mailingu, w odpowiedziach na komentarze. Voice to dyscyplina, nie kreatywność. Najlepsze marki nie zaskakują tonem — uspokajają nim.</p>
                 </div>
             </div>
         </section>
@@ -687,20 +676,20 @@
         <section class="influences-sec" data-act="04">
             <div class="meta-text" style="margin-bottom: 2rem;">— Wpływy</div>
             <h2 class="huge split-target" style="max-width: 18ch;">Półka, której nie ruszamy.</h2>
-            <p class="body-text gs-up" style="max-width: 60ch; margin-top: 3vh;">Autorzy, projektanci, reżyserzy i miejsca, które nas ukształtowały. Wracamy do nich, by sprawdzić, czy nadal myślimy.</p>
+            <p class="body-text gs-up" style="max-width: 60ch; margin-top: 3vh;">Autorzy, copywriterzy, strategowie i książki, które nas ukształtowały. Wracamy do nich, by sprawdzić, czy nadal myślimy.</p>
             <ul class="influences-list">
-                <li><span class="name">Olga Tokarczuk</span><span class="what">Czuły narrator</span></li>
-                <li><span class="name">Kenya Hara</span><span class="what">White</span></li>
-                <li><span class="name">Bruno Munari</span><span class="what">Design as art</span></li>
-                <li><span class="name">Italo Calvino</span><span class="what">Six memos</span></li>
-                <li><span class="name">Wim Wenders</span><span class="what">Film</span></li>
-                <li><span class="name">John Berger</span><span class="what">Ways of seeing</span></li>
-                <li><span class="name">Robert Bringhurst</span><span class="what">Elements of typography</span></li>
-                <li><span class="name">Andrzej Tomaszewski</span><span class="what">Polska szkoła plakatu</span></li>
-                <li><span class="name">Studio Dumbar</span><span class="what">Praktyka</span></li>
-                <li><span class="name">Andrei Tarkovsky</span><span class="what">Sculpting in time</span></li>
-                <li><span class="name">Susan Sontag</span><span class="what">On photography</span></li>
-                <li><span class="name">Jasper Morrison</span><span class="what">Super normal</span></li>
+                <li><span class="name">David Ogilvy</span><span class="what">Confessions of an advertising man</span></li>
+                <li><span class="name">Eugene Schwartz</span><span class="what">Breakthrough advertising</span></li>
+                <li><span class="name">Claude Hopkins</span><span class="what">Scientific advertising</span></li>
+                <li><span class="name">Robert Cialdini</span><span class="what">Influence</span></li>
+                <li><span class="name">Joanna Wiebe</span><span class="what">Copyhackers</span></li>
+                <li><span class="name">Seth Godin</span><span class="what">This is marketing</span></li>
+                <li><span class="name">Ann Handley</span><span class="what">Everybody writes</span></li>
+                <li><span class="name">Donald Miller</span><span class="what">StoryBrand</span></li>
+                <li><span class="name">April Dunford</span><span class="what">Obviously awesome</span></li>
+                <li><span class="name">Bill Bernbach</span><span class="what">DDB legacy</span></li>
+                <li><span class="name">Paweł Tkaczyk</span><span class="what">Strategia marki</span></li>
+                <li><span class="name">Russell Brunson</span><span class="what">Hooks</span></li>
             </ul>
         </section>
 
@@ -709,34 +698,23 @@
         <section class="contact-sec" id="kontakt" data-act="05">
             <div class="sec-num">05 — Akt V</div>
             <div class="meta-text" style="margin-bottom: 1.8rem;">— Akt V · Spotkanie</div>
-            <h2 class="huge split-target">Powiedz nam,<br>co Cię trzyma w nocy.</h2>
+            <h2 class="huge split-target">Napisz, co<br>chcesz powiedzieć światu.</h2>
             <div class="c-grid" style="margin-top: 7vh;">
                 <div>
-                    <p class="body-text lead gs-up" style="margin-bottom: 4vh;">Nie sprzedajemy pakietów. Każda współpraca zaczyna się od jednej rozmowy — bez briefu, bez prezentacji, bez zegarka.</p>
+                    <p class="body-text lead gs-up" style="margin-bottom: 4vh;">Pierwsza rozmowa jest bezpłatna i bez briefu. Mówisz, co chcesz osiągnąć. Słuchamy. Po godzinie wiemy, czy możemy pomóc — i mówimy wprost, jeśli nie.</p>
                     <p class="meta-text gs-up" style="color: var(--text-dim); margin-bottom: 0.7rem;">Bezpośrednio</p>
                     <p class="body-text gs-up" style="margin-bottom: 1.8rem;"><a href="mailto:studio@storyline.pl" class="inline-link">studio@storyline.pl</a></p>
                     <p class="meta-text gs-up" style="color: var(--text-dim); margin-bottom: 0.7rem;">Status</p>
                     <p class="body-text gs-up">Studio w przygotowaniu. Chętnie rozmawiamy o pierwszych projektach — bez briefu, bez prezentacji, bez zegarka.</p>
-
-                    <div class="offices">
-                        <div class="office">
-                            <div class="office-pin">W</div>
-                            <div class="office-info">
-                                <h4>Warszawa</h4>
-                                <div class="office-meta">52°13′N · 21°00′E</div>
-                                <div class="office-addr">Pracownia w centrum miasta.<br>Adres po umówieniu spotkania.</div>
-                                <div class="office-time" id="officeTimeWAW">— —:—</div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <form id="contactForm" novalidate>
                     <p class="meta-text" style="color: var(--text-dim); margin-bottom: 0.9rem;">Co Cię tu sprowadza?</p>
                     <div class="pills" id="topicPills" role="radiogroup" aria-label="Temat współpracy">
-                        <button type="button" class="pill" data-topic="brand" role="radio" aria-checked="false">Nowa marka</button>
-                        <button type="button" class="pill" data-topic="rebrand" role="radio" aria-checked="false">Rebranding</button>
-                        <button type="button" class="pill" data-topic="film" role="radio" aria-checked="false">Film &amp; reżyseria</button>
-                        <button type="button" class="pill" data-topic="web" role="radio" aria-checked="false">Web</button>
+                        <button type="button" class="pill" data-topic="ads" role="radio" aria-checked="false">Reklamy</button>
+                        <button type="button" class="pill" data-topic="copy" role="radio" aria-checked="false">Copywriting</button>
+                        <button type="button" class="pill" data-topic="social" role="radio" aria-checked="false">Strategia social</button>
+                        <button type="button" class="pill" data-topic="content" role="radio" aria-checked="false">Content</button>
                         <button type="button" class="pill" data-topic="other" role="radio" aria-checked="false">Co innego</button>
                     </div>
                     <label class="visually-hidden" for="cf-name">Imię</label>
@@ -756,11 +734,11 @@
             <div class="colophon-grid">
                 <div class="colophon-title">Colophon</div>
                 <div class="colophon-text">
-                    <p>Ta strona została napisana, zaprojektowana i wydana w Warszawie, między grudniem 2025 a kwietniem 2026.</p>
+                    <p>Ta strona została napisana, zaprojektowana i wydana zdalnie, między grudniem 2025 a kwietniem 2026.</p>
                     <p>Typografia: <strong>Fraunces</strong> (Phaedra Charles, 2020) jako rdzeń serifowy oraz <strong>Manrope</strong> (Mikhail Sharanda, 2018) jako sans-serif tekstowy. Diakrytyka polska weryfikowana ręcznie.</p>
                     <p>Akcent: <strong>Oxblood Red #D92525</strong>. W trybie „Director's Cut" — easter-egg przez Konami code — przechodzi w <strong>Burnt Amber #D4A574</strong>.</p>
                     <p>Build: czysty HTML / CSS / JavaScript. Bez frameworka. <strong>GSAP 3.12</strong> dla choreografii, <strong>Lenis 1.1</strong> dla smooth scroll, <strong>WebGL</strong> dla tła z domain-warpingiem (po I.Q.).</p>
-                    <p>Krój testowy w nagłówkach: 160 px, 800 wagi, masa optyczna 144. Kompozycja siatki: clamp() bez breakpointów twardych, perspective 1800 px na każdej sekcji. Kolejność stosu: hero → manifest → forma → proces → metoda → spotkanie.</p>
+                    <p>Krój testowy w nagłówkach: 160 px, 800 wagi. Kompozycja siatki: clamp() bez breakpointów twardych, perspective 1800 px na każdej sekcji. Kolejność stosu: hero → manifest → platformy → proces → metoda → spotkanie.</p>
                 </div>
             </div>
         </aside>
@@ -791,16 +769,16 @@
                 <div>
                     <h5>Now in Studio</h5>
                     <div class="footer-now">
-                        <span>Reading: studyjny stos · zima 2026</span>
-                        <span>Watching: kino slow</span>
+                        <span>Reading: copy z 1960 roku</span>
+                        <span>Watching: nowe kampanie Meta</span>
                         <span>Drinking: kawa, czarna, podwójna</span>
-                        <span>Designing: następny rozdział</span>
+                        <span>Designing: następny hook</span>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <span>© MMXXVI Storyline · Manifest 2026</span>
-                <span><span class="live-pulse" aria-hidden="true"></span>Studio czynne</span>
+                <span><span class="live-pulse" aria-hidden="true"></span>Studio w przygotowaniu</span>
             </div>
         </footer>
 
@@ -1460,7 +1438,6 @@
         }
 
         /* ---------- LIVE CLOCK (Warszawa) ---------- */
-        const wawEl = document.getElementById('heroClockWAW');
         
         function fmtTime(tz) {
             try {
@@ -1472,9 +1449,6 @@
         }
         function tickClocks() {
             const t = fmtTime('Europe/Warsaw');
-            if (wawEl) wawEl.textContent = `Warszawa · ${t}`;
-            const office = document.getElementById('officeTimeWAW');
-            if (office) office.textContent = `Lokalnie · ${t} CET`;
             const menu = document.getElementById('menuClock');
             if (menu) menu.textContent = t;
         }
