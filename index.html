@@ -96,7 +96,7 @@
         .rail-dot { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; position: relative; }
         .rail-dot::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--text-dim); transition: all 0.4s cubic-bezier(0.19,1,0.22,1); }
         .rail-dot.active::before { background: var(--accent); width: 7px; height: 7px; box-shadow: 0 0 14px var(--accent); }
-        .rail-dot .rail-label { position: absolute; right: 44px; top: 50%; transform: translateY(-50%) translateX(8px); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text); white-space: nowrap; opacity: 0; transition: all 0.3s; pointer-events: none; }
+        .rail-dot .rail-label { position: absolute; right: 44px; top: 50%; transform: translateY(-50%) translateX(12px); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text); white-space: nowrap; opacity: 0; transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.19,1,0.22,1); pointer-events: none; }
         @media (pointer: fine) { .rail-dot:hover .rail-label { opacity: 1; transform: translateY(-50%) translateX(0); } }
         .rail-dot:hover::before { background: var(--text); }
 
@@ -254,7 +254,7 @@
         footer { padding: 7vh 5vw 3vh; background: var(--bg); border-top: 1px solid var(--line); position: relative; z-index: 10; }
         .footer-mega { font-family: 'Fraunces', serif; font-size: clamp(4rem,18vw,22rem); line-height: 0.85; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 4vh; will-change: transform; }
         .footer-grid { display: grid; grid-template-columns: 1fr; gap: 4vh; padding-top: 3vh; border-top: 1px solid var(--line); }
-        @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(4,1fr); gap: 2vw; } }
+        @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(3,1fr); gap: 3vw; } }
         .footer-grid h5 { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1.4rem; font-weight: 600; font-family: 'Manrope', sans-serif; }
         .footer-grid a, .footer-grid p { display: block; padding: 4px 0; font-size: 0.92rem; transition: color 0.3s, padding 0.3s; }
         @media (pointer: fine) { .footer-grid a:hover { color: var(--accent); padding-left: 8px; } }
@@ -310,7 +310,7 @@
         .marquee-particles { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
         .dm-track { position: relative; z-index: 1; }
         .marquee-particles span { position: absolute; width: 2px; height: 2px; background: var(--accent); border-radius: 50%; opacity: 0; box-shadow: 0 0 8px var(--accent); animation: floatParticle 9s ease-in-out infinite; }
-        @keyframes floatParticle { 0%, 100% { opacity: 0; transform: translate(0, 0); } 25% { opacity: 0.7; } 50% { opacity: 0.5; transform: translate(8px, -28px); } 75% { opacity: 0.3; } }
+        @keyframes floatParticle { 0%, 100% { opacity: 0; transform: translate(0, 0); } 20% { opacity: 0.8; transform: translate(4px, -10px); } 50% { opacity: 0.5; transform: translate(14px, -36px); } 80% { opacity: 0.3; transform: translate(8px, -50px); } }
 
         /* MANIFEST extended */
         .manifest-extended { padding: 16vh 5vw; background: var(--bg); position: relative; z-index: 5; }
@@ -344,19 +344,14 @@
         .mobile-menu li { border-bottom: 1px solid var(--line); }
         .mobile-menu a { display: block; padding: 3vh 0; font-family: 'Fraunces', serif; font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1; }
         .mobile-menu .menu-meta { margin-top: 6vh; padding-top: 4vh; border-top: 1px solid var(--line); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); line-height: 1.7; }
-
-        /* FOOTER "NOW" */
-        .footer-now { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.8rem; }
-        .footer-now span { font-size: 0.78rem; color: var(--text); font-style: italic; font-family: 'Fraunces', serif; }
-        .footer-now span::before { content: '· '; color: var(--accent); font-style: normal; }
-
         /* LEXICON */
         .lexicon-sec { padding: 14vh 5vw; background: var(--bg); border-top: 1px solid var(--line); position: relative; z-index: 5; }
         .lexicon-grid { display: grid; grid-template-columns: 1fr; gap: 0; margin-top: 6vh; max-width: 1100px; }
         @media (min-width: 768px) { .lexicon-grid { grid-template-columns: repeat(2, 1fr); column-gap: 4vw; } }
         .lex-entry { padding: 3vh 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr; gap: 1vh; }
         @media (min-width: 600px) { .lex-entry { grid-template-columns: 0.5fr 1fr; gap: 2vw; align-items: baseline; } }
-        .lex-term { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1.3rem, 2vw, 1.8rem); }
+        .lex-term { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1.3rem, 2vw, 1.8rem); transition: color 0.4s, transform 0.4s cubic-bezier(0.19,1,0.22,1); display: inline-block; }
+        @media (pointer: fine) { .lex-entry:hover .lex-term { color: var(--accent); transform: translateX(8px); } }
         .lex-term::after { content: ' /n./'; color: var(--accent); font-size: 0.7em; font-style: normal; letter-spacing: 0.1em; }
         .lex-def { font-size: clamp(0.92rem, 1.1vw, 1.05rem); line-height: 1.55; color: var(--text); font-weight: 300; }
 
@@ -365,7 +360,9 @@
         .influences-list { list-style: none; margin-top: 5vh; column-count: 1; column-gap: 4vw; }
         @media (min-width: 768px) { .influences-list { column-count: 2; } }
         @media (min-width: 1100px) { .influences-list { column-count: 3; } }
-        .influences-list li { display: flex; justify-content: space-between; gap: 2vw; padding: 1.4vh 0; border-bottom: 1px dotted var(--line); break-inside: avoid; font-size: 0.95rem; }
+        .influences-list li { display: flex; justify-content: space-between; gap: 2vw; padding: 1.4vh 0; border-bottom: 1px dotted var(--line); break-inside: avoid; font-size: 0.95rem; position: relative; transition: padding 0.3s ease, border-color 0.3s; }
+        .influences-list li::before { content: ''; position: absolute; left: -8px; top: 50%; width: 3px; height: 0; background: var(--accent); transform: translateY(-50%); transition: height 0.3s cubic-bezier(0.19,1,0.22,1); }
+        @media (pointer: fine) { .influences-list li:hover { padding-left: 0.6vw; border-bottom-color: var(--accent); } .influences-list li:hover::before { height: 60%; } .influences-list li:hover .name { color: var(--accent); transition: color 0.3s; } }
         .influences-list li .name { font-family: 'Fraunces', serif; font-size: 1.05rem; }
         .influences-list li .what { font-size: 0.75rem; letter-spacing: 0.18em; color: var(--text-dim); text-transform: uppercase; align-self: end; padding-bottom: 4px; }
         /* COLOPHON */
@@ -473,7 +470,7 @@
                 <div>MMXXVI · Manifest</div>
                 <div>Studio w przygotowaniu</div>
             </div>
-            <div class="hero-sub">Reklama · Copy · Social — przewiń, by rozpocząć</div>
+            <div class="hero-sub">Reklama · Copy · Social</div>
         </section>
 
         <section class="consume" id="consume" data-act="01">
@@ -497,15 +494,15 @@
             <div class="tenets">
                 <article class="tenet">
                     <h3 class="serif">Copy przed kreatywą.</h3>
-                    <p>Forma graficzna jest ważna, ale to słowo decyduje, czy ktoś zatrzyma się przy poście. Najpierw piszemy, potem rysujemy. Pierwsza wersja ma być na papierze — nie w Figmie. Z tej wersji wynika cała reszta: ton, hierarchia, ilustracja, system kampanii.</p>
+                    <p>Forma decyduje, jak coś wygląda. Słowo decyduje, czy ktoś przerwie scroll. Najpierw piszemy — potem rysujemy. Z dobrego zdania wynika cała reszta: ton, hierarchia, system kampanii.</p>
                 </article>
                 <article class="tenet">
                     <h3 class="serif">Audience &gt; algorytm.</h3>
-                    <p>Algorytm wynagradza to, co publiczność rzeczywiście chce zobaczyć. Strategia zaczyna się od zrozumienia widza, nie od reverse-engineeringu platformy. Kto on jest, czego się boi, co w nim drażni reklama. Z tego rodzi się ton, format i częstotliwość — nie z growth-hacka.</p>
+                    <p>Algorytm wynagradza to, co widz wybrał. Strategia zaczyna się od zrozumienia człowieka po drugiej stronie ekranu — nie od reverse-engineeringu platformy. Kto on jest, czego się boi, co w nim drażni reklama. Reszta z tego wynika.</p>
                 </article>
                 <article class="tenet">
                     <h3 class="serif">Konwersja jest wynikiem, nie celem.</h3>
-                    <p>Najlepsze marki nie krzyczą „kup teraz". Budują relację, która sama prowadzi do decyzji. Sprzedaż jest skutkiem, nie strategią. CTR rośnie, gdy odbiorca chce — nie gdy jesteś agresywny. Pisz tak, żeby ktoś po przeczytaniu sam dopowiedział sobie pointę.</p>
+                    <p>Najlepsze marki nie krzyczą „kup teraz". Budują relację, która sama prowadzi do decyzji. CTR rośnie, gdy odbiorca chce — nie gdy jesteś agresywny. Pisz tak, żeby ktoś po przeczytaniu sam dopowiedział sobie pointę.</p>
                 </article>
             </div>
         </section>
@@ -565,7 +562,7 @@
                 <blockquote>Audience to nie demografia. To rozmowa, której słuchasz, zanim coś powiesz.</blockquote>
                 <blockquote>Algorytm nagradza to, co ludzi zatrzymuje. Zatrzymaj ich pierwszą linią.</blockquote>
                 <blockquote>Najmocniejsza marka to ta, której jedno zdanie zostaje w głowie po pięciu latach.</blockquote>
-                <cite id="quoteCite">Z notatek studyjnych</cite>
+                
             </div>
         </section>
 
@@ -648,27 +645,27 @@
             <div class="lexicon-grid">
                 <div class="lex-entry">
                     <span class="lex-term">hook</span>
-                    <p class="lex-def">Pierwsza linia, pierwszy kadr, pierwsze 3 sekundy. Decyduje o całej reklamie. Bez dobrego hooka reszta nie ma znaczenia — algorytm nie pokaże, a człowiek przewinie.</p>
+                    <p class="lex-def">Pierwsza linia, pierwszy kadr, pierwsze 3 sekundy. Bez dobrego hooka reszta reklamy nie ma znaczenia — algorytm nie pokaże, człowiek przewinie.</p>
                 </div>
                 <div class="lex-entry">
                     <span class="lex-term">persona</span>
-                    <p class="lex-def">Nie demografia. Konkretny obraz odbiorcy: co czyta, co go denerwuje, czego się boi, o której godzinie dnia bierze telefon. Reklama pisana do persony brzmi jak rozmowa, nie broszura.</p>
+                    <p class="lex-def">Nie demografia. Konkretny obraz odbiorcy: czego się boi, co go denerwuje, o której godzinie bierze telefon. Reklama pisana do persony brzmi jak rozmowa, nie jak broszura.</p>
                 </div>
                 <div class="lex-entry">
                     <span class="lex-term">claim</span>
-                    <p class="lex-def">Obietnica marki w jednym zdaniu. Jeśli klient nie powtórzy jej własnymi słowami po przeczytaniu — claim jest jeszcze nieskończony. Wraca na biurko, nie do produkcji.</p>
+                    <p class="lex-def">Obietnica marki w jednym zdaniu. Jeśli klient nie powtórzy go własnymi słowami po pierwszym przeczytaniu — wraca na biurko, nie do produkcji.</p>
                 </div>
                 <div class="lex-entry">
                     <span class="lex-term">CTA</span>
-                    <p class="lex-def">Call to Action — jasne wezwanie do działania. „Kup teraz" jest leniwe; dobry CTA brzmi jak naturalna konsekwencja całej reklamy. Konkret, czas, wartość.</p>
+                    <p class="lex-def">Call to Action. „Kup teraz" jest leniwe — dobry CTA brzmi jak naturalna konsekwencja całej reklamy. Konkret, czas, wartość.</p>
                 </div>
                 <div class="lex-entry">
                     <span class="lex-term">retencja</span>
-                    <p class="lex-def">Czy ktoś wraca po pierwszym kontakcie z marką. Najmocniejszy wskaźnik. Reach buduje sezon, retencja buduje markę. Obserwacja po 30, 60, 90 dniach — nie po 7.</p>
+                    <p class="lex-def">Czy ktoś wraca po pierwszym kontakcie. Reach buduje sezon, retencja buduje markę. Mierzymy po 30, 60, 90 dniach — nie po 7.</p>
                 </div>
                 <div class="lex-entry">
                     <span class="lex-term">voice</span>
-                    <p class="lex-def">Ton głosu marki — spójny w 50 postach, w mailingu, w odpowiedziach na komentarze. Voice to dyscyplina, nie kreatywność. Najlepsze marki nie zaskakują tonem — uspokajają nim.</p>
+                    <p class="lex-def">Spójny ton w 50 postach, w mailingu, w odpowiedziach na komentarze. Voice to dyscyplina, nie kreatywność — najlepsze marki nie zaskakują nim, uspokajają.</p>
                 </div>
             </div>
         </section>
@@ -701,7 +698,7 @@
             <h2 class="huge split-target">Napisz, co<br>chcesz powiedzieć światu.</h2>
             <div class="c-grid" style="margin-top: 7vh;">
                 <div>
-                    <p class="body-text lead gs-up" style="margin-bottom: 4vh;">Pierwsza rozmowa jest bezpłatna i bez briefu. Mówisz, co chcesz osiągnąć. Słuchamy. Po godzinie wiemy, czy możemy pomóc — i mówimy wprost, jeśli nie.</p>
+                    <p class="body-text lead gs-up" style="margin-bottom: 4vh;">Pierwsza rozmowa jest bezpłatna i bez briefu. Po godzinie wiemy, czy możemy pomóc — i mówimy wprost, jeśli nie.</p>
                     <p class="meta-text gs-up" style="color: var(--text-dim); margin-bottom: 0.7rem;">Bezpośrednio</p>
                     <p class="body-text gs-up" style="margin-bottom: 1.8rem;"><a href="mailto:studio@storyline.pl" class="inline-link">studio@storyline.pl</a></p>
                     <p class="meta-text gs-up" style="color: var(--text-dim); margin-bottom: 0.7rem;">Status</p>
@@ -766,15 +763,7 @@
                     <a href="#" rel="noopener" aria-disabled="true" style="opacity:0.55;cursor:default;">Vimeo (wkrótce)</a>
                     <a href="#" rel="noopener" aria-disabled="true" style="opacity:0.55;cursor:default;">LinkedIn (wkrótce)</a>
                 </div>
-                <div>
-                    <h5>Now in Studio</h5>
-                    <div class="footer-now">
-                        <span>Reading: copy z 1960 roku</span>
-                        <span>Watching: nowe kampanie Meta</span>
-                        <span>Drinking: kawa, czarna, podwójna</span>
-                        <span>Designing: następny hook</span>
-                    </div>
-                </div>
+
             </div>
             <div class="footer-bottom">
                 <span>© MMXXVI Storyline · Manifest 2026</span>
@@ -947,8 +936,8 @@
                 const elapsed = performance.now() - startTime;
                 let stillScrambling = false;
                 chars.forEach((c, i) => {
-                    const charDelay = i * 22;
-                    const charScrambleEnd = charDelay + 380;
+                    const charDelay = i * 16;
+                    const charScrambleEnd = charDelay + 280;
                     if (elapsed < charDelay) { c.textContent = ''; stillScrambling = true; }
                     else if (elapsed < charScrambleEnd) {
                         c.textContent = SCRAMBLE_GLYPHS[Math.floor(Math.random() * SCRAMBLE_GLYPHS.length)];
@@ -1472,10 +1461,17 @@
         });
 
         /* ---------- FOOTER MEGA REVEAL ---------- */
-        gsap.fromTo('#footerMega', { y: 200, opacity: 0 }, {
-            y: 0, opacity: 1, duration: 1.4, ease: 'power4.out',
+        gsap.fromTo('#footerMega', { y: 200, opacity: 0, scale: 0.94 }, {
+            y: 0, opacity: 1, scale: 1, duration: 1.4, ease: 'power4.out',
             scrollTrigger: { trigger: '#footerMega', start: 'top 90%', once: true }
         });
+        // Subtle scroll-driven micro-scale as user approaches footer
+        if (!reduceMotion) {
+            gsap.to('#footerMega', {
+                letterSpacing: '-0.04em',
+                scrollTrigger: { trigger: '#footerMega', start: 'top 70%', end: 'top 30%', scrub: 1 }
+            });
+        }
 
         /* ---------- BOOT ---------- */
         document.body.style.overflow = 'hidden';
