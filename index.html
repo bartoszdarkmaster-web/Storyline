@@ -214,29 +214,6 @@
         .stat .num sup { font-size: 0.45em; color: var(--accent); vertical-align: super; margin-left: 0.06em; }
         .stat .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--text-dim); margin-top: 0.9rem; display: block; max-width: 18ch; }
 
-        /* Portfolio */
-        .portfolio-list { list-style: none; margin-top: 5vh; border-top: 2px solid var(--text); }
-        .portfolio-list > li { display: block; }
-        .portfolio-item { border-bottom: 1px solid var(--line); padding: 3vh 0; display: flex; flex-direction: column; position: relative; transition: padding 0.5s cubic-bezier(0.19,1,0.22,1); color: inherit; text-decoration: none; }
-        @media (min-width: 768px) { .portfolio-item { flex-direction: row; justify-content: space-between; align-items: center; padding: 4vh 0; } }
-        .portfolio-item h3 { font-size: clamp(1.5rem,4vw,5rem); text-transform: uppercase; margin: 0 0 10px 0; transition: color 0.4s; mix-blend-mode: difference; will-change: transform; }
-        @media (min-width: 768px) { .portfolio-item h3 { margin: 0; } }
-        .portfolio-item .pi-meta { display: flex; gap: 18px; align-items: center; pointer-events: none; }
-        .portfolio-item h3, .portfolio-item .pi-meta { user-select: none; }
-        .portfolio-item .pi-meta span { font-size: 0.82rem; opacity: 0.5; transition: opacity 0.4s; letter-spacing: 0.05em; }
-        .portfolio-item .pi-meta .arrow { width: 28px; height: 1px; background: var(--text-dim); position: relative; transition: width 0.4s, background 0.4s; }
-        .portfolio-item .pi-meta .arrow::after { content: ''; position: absolute; right: 0; top: -3px; width: 7px; height: 7px; border-top: 1px solid var(--text-dim); border-right: 1px solid var(--text-dim); transform: rotate(45deg); transition: border-color 0.4s; }
-        @media (pointer: fine) {
-            .portfolio-item:hover { padding-left: 1.5vw; padding-right: 1.5vw; }
-            .portfolio-item:hover h3 { color: var(--accent); }
-            .portfolio-item:hover .pi-meta span { opacity: 1; }
-            .portfolio-item:hover .pi-meta .arrow { width: 56px; background: var(--accent); }
-            .portfolio-item:hover .pi-meta .arrow::after { border-color: var(--accent); }
-        }
-        .hover-img-container { display: none; position: fixed; top: 0; left: 0; width: 360px; height: 460px; pointer-events: none; z-index: 2; opacity: 0; overflow: hidden; border-radius: 3px; will-change: transform; }
-        @media (pointer: fine) { .hover-img-container { display: block; } }
-        .hover-img-container img { width: 100%; height: 100%; object-fit: cover; }
-
         /* Cards Stack — perspective + cursor tilt */
         .cards-stack-container { display: flex; flex-direction: column; gap: 3vh; margin-top: 7vh; padding-bottom: 8vh; perspective: 1500px; }
         .stack-card { position: sticky; top: 12%; background: var(--bg-light); border: 1px solid var(--line); padding: 6vw 5vw; border-radius: 18px; box-shadow: 0 -20px 60px rgba(0,0,0,0.95); transform-origin: top center; transform-style: preserve-3d; will-change: transform, opacity; transition: box-shadow 0.4s; }
@@ -318,57 +295,6 @@
 
         /* Hero showreel caption */
         .hero-caption { position: absolute; left: 50%; top: 60%; transform: translate(-50%, 0); z-index: 3; font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-dim); text-align: center; mix-blend-mode: difference; transition: opacity 0.6s ease; }
-
-        /* Case Study Modal */
-        .case-modal {
-            position: fixed; inset: 0; z-index: 9500;
-            background: var(--bg); overflow-y: auto; overflow-x: hidden;
-            transform: translateY(100%); pointer-events: none;
-            transition: transform 0.85s cubic-bezier(0.83, 0, 0.17, 1);
-        }
-        .case-modal[aria-hidden="false"] { transform: translateY(0); pointer-events: auto; }
-        .case-modal::-webkit-scrollbar { width: 8px; }
-        .case-modal::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); }
-
-        .case-close { position: fixed; top: 24px; right: 28px; z-index: 9510; padding: 0 20px; height: 44px; border: 1px solid rgba(255,255,255,0.3); border-radius: 30px; color: var(--text); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; background: rgba(1,1,1,0.6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s; }
-        @media (pointer: fine) { .case-close:hover { background: var(--accent); border-color: var(--accent); color: #fff; } }
-        .case-close::before { content: '×'; font-size: 1.4rem; line-height: 0; margin-top: -2px; }
-
-        .case-hero { width: 100%; height: 92vh; position: relative; background-size: cover; background-position: center; }
-        .case-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(1,1,1,0.4) 0%, transparent 30%, transparent 60%, var(--bg) 100%); }
-        .case-hero-meta { position: absolute; left: 5vw; bottom: 12vh; z-index: 2; font-size: 0.78rem; letter-spacing: 0.22em; color: var(--text-dim); text-transform: uppercase; line-height: 1.8; }
-        .case-hero-meta .accent { color: var(--accent); }
-
-        .case-title { position: relative; z-index: 3; font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(3rem, 9vw, 8rem); line-height: 0.92; text-transform: uppercase; margin-top: -14vh; padding: 0 5vw; max-width: 16ch; }
-
-        .case-body { padding: 8vh 5vw 4vh; max-width: 1280px; margin: 0 auto; }
-        .case-meta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4vh 4vw; padding-bottom: 5vh; margin-bottom: 5vh; border-bottom: 1px solid var(--line); }
-        @media (min-width: 768px) { .case-meta-grid { grid-template-columns: repeat(4, 1fr); } }
-        .case-meta-cell .label { font-size: 0.7rem; letter-spacing: 0.22em; color: var(--text-dim); text-transform: uppercase; display: block; margin-bottom: 0.7rem; }
-        .case-meta-cell .val { font-family: 'Fraunces', serif; font-size: 1.05rem; line-height: 1.3; }
-
-        .case-intro { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: clamp(1.4rem, 2.8vw, 2.4rem); line-height: 1.3; max-width: 28ch; color: var(--text); margin-bottom: 6vh; }
-        .case-intro::before { content: '"'; color: var(--accent); display: block; font-size: 1.6em; line-height: 0.4; margin-bottom: 0.4em; }
-
-        .case-text { font-size: clamp(1rem, 1.3vw, 1.2rem); line-height: 1.7; max-width: 65ch; font-weight: 300; }
-        .case-text p { margin-bottom: 1.6em; }
-        .case-text p:last-child { margin-bottom: 0; }
-
-        .case-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 2vw; margin: 8vh 0; }
-        .case-gallery img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 3px; filter: grayscale(15%) contrast(1.05); }
-        .case-gallery img:first-child { grid-column: 1 / -1; aspect-ratio: 16/9; }
-        @media (max-width: 768px) { .case-gallery { grid-template-columns: 1fr; } .case-gallery img:first-child { grid-column: auto; } }
-
-        .case-credits { margin-top: 8vh; padding-top: 4vh; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr; gap: 0; }
-        @media (min-width: 768px) { .case-credits { grid-template-columns: 1fr 1fr; column-gap: 4vw; } }
-        .case-credit { display: grid; grid-template-columns: 0.7fr 1fr; gap: 2vw; align-items: baseline; padding: 1.6vh 0; border-bottom: 1px solid var(--line); }
-        .case-credit .role { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.22em; text-transform: uppercase; }
-        .case-credit .name { font-family: 'Fraunces', serif; font-size: 1rem; }
-
-        .case-next { margin-top: 10vh; padding: 8vh 5vw; text-align: center; border-top: 1px solid var(--line); cursor: pointer; transition: padding 0.5s cubic-bezier(0.19,1,0.22,1); }
-        .case-next .label { font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.28em; text-transform: uppercase; }
-        .case-next .next-title { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(2.5rem, 6vw, 5rem); margin-top: 1.5vh; text-transform: uppercase; line-height: 1; transition: color 0.4s; }
-        @media (pointer: fine) { .case-next:hover { padding: 9vh 5vw; } .case-next:hover .next-title { color: var(--accent); } }
 
         /* Konami "Director's Cut" mode */
         body.directors-cut { --accent: #d4a574; }
@@ -472,10 +398,6 @@
         .quote-rotation cite { display: block; margin-top: 4vh; font-style: normal; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); transition: opacity 0.5s; }
         .quote-rotation cite::before { content: '— '; color: var(--accent); }
 
-        /* MODAL READING PROGRESS */
-        .case-progress { position: sticky; top: 0; left: 0; right: 0; height: 2px; background: rgba(255,255,255,0.06); z-index: 9505; }
-        .case-progress .bar { height: 100%; background: var(--accent); width: 0%; box-shadow: 0 0 6px var(--accent); }
-
         /* MOBILE MENU */
         .menu-toggle { display: none; padding: 0 18px; height: 44px; border: 1px solid rgba(255,255,255,0.3); border-radius: 30px; align-items: center; gap: 10px; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; }
         @media (max-width: 720px) { .menu-toggle { display: inline-flex; } .clock-pill { display: none; } }
@@ -547,7 +469,7 @@
         /* PRINT stylesheet — site reads as editorial when printed */
         @media print {
             html, body { background: #fff; color: #111; }
-            #grain-overlay, #webgl-bg, .top-bar, .side-rail, .cursor-dot, .cursor-ring, .cursor-trail, .hover-img-container, .case-modal, .konami-flash, .mobile-menu, .menu-toggle, #scrollProgress, .audio-toggle { display: none !important; }
+            #grain-overlay, #webgl-bg, .top-bar, .side-rail, .cursor-dot, .cursor-ring, .cursor-trail, .konami-flash, .mobile-menu, .menu-toggle, #scrollProgress { display: none !important; }
             * { animation: none !important; transition: none !important; box-shadow: none !important; }
             .huge { color: #111; -webkit-text-stroke: 0; }
             .meta-text, .accent, .accent-slash, .case-credit .role, .lex-term::after { color: #d92525 !important; }
@@ -583,7 +505,7 @@
             <li><a href="#consume" data-act="01">Akt I — Punkt wyjścia</a></li>
             <li><a href="#manifesto" data-act="02">Akt II — Forma</a></li>
             <li><a href="#process" data-act="03">Akt III — Proces</a></li>
-            <li><a href="#praktyka" data-act="04">Akt IV — Praktyka</a></li>
+            <li><a href="#dlaczego" data-act="04">Akt IV — Metoda</a></li>
             <li><a href="#kontakt" data-act="05">Akt V — Spotkanie</a></li>
         </ul>
         <div class="menu-meta">
@@ -597,7 +519,7 @@
         <a href="#consume" class="rail-dot active" data-act="01" aria-current="true"><span class="rail-label">Akt I — Punkt wyjścia</span></a>
         <a href="#manifesto" class="rail-dot" data-act="02" aria-current="false"><span class="rail-label">Akt II — Forma</span></a>
         <a href="#process" class="rail-dot" data-act="03" aria-current="false"><span class="rail-label">Akt III — Proces</span></a>
-        <a href="#praktyka" class="rail-dot" data-act="04" aria-current="false"><span class="rail-label">Akt IV — Praktyka</span></a>
+        <a href="#dlaczego" class="rail-dot" data-act="04" aria-current="false"><span class="rail-label">Akt IV — Metoda</span></a>
         <a href="#kontakt" class="rail-dot" data-act="05" aria-current="false"><span class="rail-label">Akt V — Spotkanie</span></a>
     </nav>
 
@@ -617,22 +539,18 @@
         <div class="loader-tag">Storyline / Synteza Sensoryczna</div>
     </div>
 
-    <div class="hover-img-container" id="hoverImgCont" aria-hidden="true">
-        <img id="hoverImg" alt="">
-    </div>
-
-    <main id="smooth-wrapper">
+<main id="smooth-wrapper">
 
         <section class="hero-pin" id="hero" data-act="01">
             <div class="hero-stack" id="heroStack">
-                <div class="hero-img-container active" data-photo="https://images.unsplash.com/photo-1530819568329-97653eafbbfa?w=1800&q=90&auto=format&fit=crop" data-caption="Studium · № 014 · Editorial"></div>
-                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1492136344046-866c85e0bf04?w=1800&q=90&auto=format&fit=crop" data-caption="Studium · № 022 · Architektura"></div>
-                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1561070791-2526d30994b8?w=1800&q=90&auto=format&fit=crop" data-caption="Studium · № 041 · Reżyseria"></div>
-                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1800&q=90&auto=format&fit=crop" data-caption="Studium · № 053 · Materia"></div>
+                <div class="hero-img-container active" data-photo="https://images.unsplash.com/photo-1530819568329-97653eafbbfa?w=1800&q=90&auto=format&fit=crop" data-caption="Editorial · 01"></div>
+                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1492136344046-866c85e0bf04?w=1800&q=90&auto=format&fit=crop" data-caption="Architektura · 02"></div>
+                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1561070791-2526d30994b8?w=1800&q=90&auto=format&fit=crop" data-caption="Reżyseria · 03"></div>
+                <div class="hero-img-container" data-photo="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1800&q=90&auto=format&fit=crop" data-caption="Materia · 04"></div>
                 <div class="hero-glitch-layer r" id="heroGlitchR" aria-hidden="true"></div>
                 <div class="hero-glitch-layer b" id="heroGlitchB" aria-hidden="true"></div>
             </div>
-            <div class="hero-caption" id="heroCaption">Studium · № 014 · Editorial</div>
+            <div class="hero-caption" id="heroCaption">Editorial · 01</div>
             <div class="hero-meta left">
                 <div id="heroClockWAW">Warszawa · 12:34</div>
                 <div class="accent" id="heroClockLIS">Lizbona · 11:34</div>
@@ -810,62 +728,11 @@
             </div>
         </section>
 
-        <section class="stats-row" aria-label="Dane studia" data-act="03">
-            <div class="stat">
-                <span class="num"><span data-count-to="142">0</span></span>
-                <span class="label">Premier marek od 2014</span>
-            </div>
-            <div class="stat">
-                <span class="num"><span data-count-to="38">0</span></span>
-                <span class="label">Krajów rezonansu</span>
-            </div>
-            <div class="stat">
-                <span class="num"><span data-count-to="27">0</span></span>
-                <span class="label">Nagród branżowych</span>
-            </div>
-            <div class="stat">
-                <span class="num"><span data-count-to="9">0</span><sup>×</sup></span>
-                <span class="label">Średni mnożnik rezonansu kampanii</span>
-            </div>
-        </section>
+        
 
         <hr class="sec-divider" aria-hidden="true">
 
-        <section id="praktyka" data-act="04">
-            <div class="sec-num">03 — Akt III</div>
-            <div class="meta-text" style="margin-bottom: 1.8rem;">— Akt III · Praktyka</div>
-            <h2 class="huge split-target">Wybrane projekty<br><em style="color:var(--accent); font-style: italic;">2022—2026</em></h2>
-            <ul class="portfolio-list">
-                <li><a href="#" class="portfolio-item" data-project="cervo-maison" data-thumb="https://images.unsplash.com/photo-1542838132-92c53300491e?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Studium № 014 — Manufaktura, Tożsamość · Editorial, 2026">
-                    <h3 class="magnetic-target">Studium № 014</h3>
-                    <div class="pi-meta"><span>Tożsamość · Editorial</span><span>2026</span><div class="arrow"></div></div>
-                </a></li>
-                <li><a href="#" class="portfolio-item" data-project="atelier-norhe" data-thumb="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Studium № 022 — Pracownia, Manifest · Web, 2025">
-                    <h3 class="magnetic-target">Studium № 022</h3>
-                    <div class="pi-meta"><span>Manifest · Web</span><span>2025</span><div class="arrow"></div></div>
-                </a></li>
-                <li><a href="#" class="portfolio-item" data-project="polifonia" data-thumb="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Studium № 041 — Festiwal, Reżyseria · Film, 2025">
-                    <h3 class="magnetic-target">Studium № 041</h3>
-                    <div class="pi-meta"><span>Reżyseria · Film</span><span>2025</span><div class="arrow"></div></div>
-                </a></li>
-                <li><a href="#" class="portfolio-item" data-project="salt-marrow" data-thumb="https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Studium № 053 — Bistro, Strategia · Branding, 2024">
-                    <h3 class="magnetic-target">Studium № 053</h3>
-                    <div class="pi-meta"><span>Strategia · Branding</span><span>2024</span><div class="arrow"></div></div>
-                </a></li>
-                <li><a href="#" class="portfolio-item" data-project="hotel-lume" data-thumb="https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Studium № 067 — Hotel, Tożsamość · Kampania, 2024">
-                    <h3 class="magnetic-target">Studium № 067</h3>
-                    <div class="pi-meta"><span>Tożsamość · Kampania</span><span>2024</span><div class="arrow"></div></div>
-                </a></li>
-                <li><a href="#" class="portfolio-item" data-project="refugium-press" data-thumb="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Studium № 081 — Wydawnictwo, Editorial, 2023">
-                    <h3 class="magnetic-target">Studium № 081</h3>
-                    <div class="pi-meta"><span>Editorial · Wydawnictwo</span><span>2023</span><div class="arrow"></div></div>
-                </a></li>
-                <li><a href="#" class="portfolio-item" data-project="korzen-sol" data-thumb="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=900&q=80&auto=format&fit=crop" data-cursor="Otwórz" aria-label="Studium № 092 — Manufaktura, Branding · Packaging, 2022">
-                    <h3 class="magnetic-target">Studium № 092</h3>
-                    <div class="pi-meta"><span>Branding · Packaging</span><span>2022</span><div class="arrow"></div></div>
-                </a></li>
-            </ul>
-        </section>
+        
 
         <section id="dlaczego" data-act="04">
             <div class="sec-num">04 — Akt IV</div>
@@ -876,7 +743,7 @@
                     <div class="card-tag">Zasada 01</div>
                     <div class="num">01</div>
                     <h3>Powolność jako luksus.</h3>
-                    <p class="body-text">Pracujemy w mniejszej skali, by każdy projekt zostawiał ślad. Nie ścigamy się z agencjami sieciowymi i nie udajemy ich procesu. Bierzemy 6 zleceń rocznie — nie 60.</p>
+                    <p class="body-text">Pracujemy w mniejszej skali, by każdy projekt zostawiał ślad. Nie ścigamy się z agencjami sieciowymi i nie udajemy ich procesu. Mała liczba projektów rocznie jest świadomą zasadą — nie konsekwencją braku popytu.</p>
                 </article>
                 <article class="stack-card">
                     <div class="card-tag">Zasada 02</div>
@@ -901,38 +768,7 @@
 
         <hr class="sec-divider" aria-hidden="true">
 
-        <section class="press-sec" data-act="04">
-            <div class="meta-text" style="margin-bottom: 2rem;">— Półka redakcyjna</div>
-            <h2 class="huge split-target" style="max-width: 14ch;">Co czytamy.</h2>
-            <p class="body-text gs-up" style="max-width: 60ch; margin-top: 3vh;">Publikacje, do których wracamy między projektami. Nie reprezentują naszej pracy — kształtują naszą uwagę. Listę aktualizujemy raz na pół roku.</p>
-            <ul class="press-list">
-                <li class="press-item">
-                    <div class="press-source">Eye Magazine</div>
-                    <div class="press-title">Kwartalnik o typografii i editorialu — od 1990. Najmocniejsza redakcja, która wciąż pisze o designie poważnie.</div>
-                    <div class="press-year">UK · Kwartalnik</div>
-                </li>
-                <li class="press-item">
-                    <div class="press-source">It's Nice That</div>
-                    <div class="press-title">Codzienny serwis o pracy studyjnej. Obrazek + dobrze prowadzony tekst. Najlepsze studia świata, prawie zawsze pierwsze.</div>
-                    <div class="press-year">UK · Daily</div>
-                </li>
-                <li class="press-item">
-                    <div class="press-source">Brand New</div>
-                    <div class="press-title">Recenzje rebrandingów z perspektywy zawodowca — bezlitosne, ale uczciwe. Najlepszy probierz, czy projekt obroni się przez dziesięć lat.</div>
-                    <div class="press-year">US · Daily</div>
-                </li>
-                <li class="press-item">
-                    <div class="press-source">Are.na</div>
-                    <div class="press-title">Zamiast feedu — kolekcje. Cierpliwa platforma dla osób, które myślą wolniej. Tu uczymy się, jak czyta się kulturowy szum.</div>
-                    <div class="press-year">US · Platforma</div>
-                </li>
-                <li class="press-item">
-                    <div class="press-source">Awwwards</div>
-                    <div class="press-title">Codzienne katalog stron, które warto rozłożyć na czynniki. Czasem techniczna ekstrawagancja, czasem lekcja typografii.</div>
-                    <div class="press-year">US · Daily</div>
-                </li>
-            </ul>
-        </section>
+        
 
         <section class="faq-sec" data-act="04">
             <div class="meta-text" style="margin-bottom: 2rem;">— Najczęściej zadawane</div>
@@ -945,7 +781,7 @@
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            <p>Od 12 do 26 tygodni dla pełnego brandingu. Dla pojedynczego projektu (np. tylko film, tylko web) — od 6 tygodni. Krócej nie pracujemy. Odmówiliśmy 14 brandingów w 2024 roku, bo klient potrzebował „za dwa tygodnie".</p>
+                            <p>Pełny branding to projekt kilkumiesięczny. Pojedyncze rzeczy — film, strona, manifest — to zwykle kilka tygodni. Krócej nie pracujemy: powolność jest częścią metody, nie efektem ubocznym.</p>
                         </div>
                     </div>
                 </div>
@@ -956,7 +792,7 @@
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            <p>Strategia + tożsamość zaczyna się od 95 000 PLN netto. Pełny system marki (strategia, tożsamość, web, kampania launchowa) — od 280 000 PLN. Zawsze rozmawiamy o budżecie zanim usiądziemy do pracy. Jeśli się nie zgadzamy, polecamy kogoś innego.</p>
+                            <p>Każdy projekt jest wyceniany indywidualnie po pierwszej rozmowie. Nie sprzedajemy pakietów ani godzin — tylko decyzje, które studio podejmuje wraz z klientem. Zawsze rozmawiamy o budżecie zanim usiądziemy do pracy. Jeśli się nie zgadzamy, polecamy kogoś innego.</p>
                         </div>
                     </div>
                 </div>
@@ -967,7 +803,7 @@
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            <p>Tak. 38% naszych klientów to marki spoza Polski — głównie Niemcy, Portugalia, Czechy, Holandia. Pracujemy po polsku, angielsku i portugalsku. Strategia zawsze zaczyna się w języku ojczystym klienta — nawet jeśli marka będzie ostatecznie po angielsku.</p>
+                            <p>Tak. Pracujemy po polsku, angielsku i portugalsku. Strategia zaczyna się w języku ojczystym klienta — nawet jeśli marka będzie ostatecznie po angielsku. Strategia zaczyna się w języku ojczystym klienta — nawet jeśli marka będzie ostatecznie po angielsku.</p>
                         </div>
                     </div>
                 </div>
@@ -978,7 +814,7 @@
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            <p>To często najlepszy moment. Dwie trzecie naszych projektów zaczyna się przed launchem produktu. Strategia narracyjna napisana wcześnie zaoszczędzi Ci dwóch lat błądzenia po launchu. Mamy osobny format „Pre-launch Studio" — krótszy, tańszy, intensywniejszy.</p>
+                            <p>To często najlepszy moment. Strategia narracyjna napisana przed launchem oszczędza miesięcy błądzenia. Pracujemy też w formacie pre-launch — krótszym, intensywniejszym, skupionym na fundamentach marki, zanim cokolwiek zostanie wydrukowane.</p>
                         </div>
                     </div>
                 </div>
@@ -1058,98 +894,11 @@
             </ul>
         </section>
 
-        <section class="kronika-sec" data-act="04">
-            <div class="meta-text" style="margin-bottom: 2rem;">— Kronika studia</div>
-            <h2 class="huge split-target" style="max-width: 14ch;">Dwanaście lat, sześć rozdziałów.</h2>
-            <ol class="kronika-list">
-                <li class="kron-entry">
-                    <div class="kron-year">2014</div>
-                    <div class="kron-body">
-                        <h4 class="serif">Założenie studia</h4>
-                        <p>Studio otwiera pracownię w kamienicy w centrum Warszawy. Pierwszy projekt — identyfikacja niezależnego wydawnictwa — definiuje to, co później nazwiemy „pisaniem przed projektowaniem".</p>
-                    </div>
-                </li>
-                <li class="kron-entry">
-                    <div class="kron-year">2017</div>
-                    <div class="kron-body">
-                        <h4 class="serif">Pierwsze wyróżnienia branżowe</h4>
-                        <p>Pierwsze nominacje na European Design Awards i Polish Graphic Design Awards. Studio przestaje być znane tylko z polecenia, zaczyna pojawiać się w briefach z drugiej i trzeciej ręki.</p>
-                    </div>
-                </li>
-                <li class="kron-entry">
-                    <div class="kron-year">2019</div>
-                    <div class="kron-body">
-                        <h4 class="serif">Drugi punkt w Lizbonie</h4>
-                        <p>Studio uruchamia satelitarny punkt pracy w Lizbonie — głównie po to, by obsługiwać klientów z półwyspu iberyjskiego, a także żeby zmienić perspektywę. Każda sesja kreatywna z Lizbony zaczyna się od długiej kawy.</p>
-                    </div>
-                </li>
-                <li class="kron-entry">
-                    <div class="kron-year">2021</div>
-                    <div class="kron-body">
-                        <h4 class="serif">Decyzja: 6 zleceń rocznie</h4>
-                        <p>Po roku remote-projektów wewnętrzna decyzja jest ostateczna: studio nie urośnie. Maksymalnie sześć pełnych brandingów rocznie. Lista oczekujących wydłuża się do kilkunastu miesięcy — i to jest test, nie problem.</p>
-                    </div>
-                </li>
-                <li class="kron-entry">
-                    <div class="kron-year">2024</div>
-                    <div class="kron-body">
-                        <h4 class="serif">Pierwszy Studio Notes</h4>
-                        <p>Newsletter studyjny — kwartalnik, esej, jeden temat. Bez reklam, bez CTA. Studio Notes staje się drugim językiem marki, równie ważnym co praca z klientami.</p>
-                    </div>
-                </li>
-                <li class="kron-entry">
-                    <div class="kron-year">2026</div>
-                    <div class="kron-body">
-                        <h4 class="serif">Director's Cut V26</h4>
-                        <p>Strona studia przeprojektowana od zera. Pięć aktów, jeden manifest. Wraz z nią drukowany manifest na papierze Munken Pure — wydanie limitowane, druk lokalna drukarnia.</p>
-                    </div>
-                </li>
-            </ol>
-        </section>
+        
 
-        <section class="annals-row" aria-label="Studio Annals 2014–2026" data-act="04">
-            <div class="annal">
-                <span class="num">4 800</span>
-                <span class="label">filiżanek kawy w pracowni od 2014</span>
-            </div>
-            <div class="annal">
-                <span class="num">142</span>
-                <span class="label">książek przeczytanych zespołowo</span>
-            </div>
-            <div class="annal">
-                <span class="num">37 400</span>
-                <span class="label">kilometrów do klientów</span>
-            </div>
-            <div class="annal">
-                <span class="num">6 / rok</span>
-                <span class="label">przyjętych projektów. Lista oczekujących: 14 miesięcy</span>
-            </div>
-        </section>
+        
 
-        <section class="notes-sec" id="notes" data-act="04">
-            <div class="meta-text" style="margin-bottom: 2rem;">— Studio Notes</div>
-            <h2 class="huge split-target" style="max-width: 16ch;">Mini-eseje, raz na kwartał.</h2>
-            <div class="notes-grid">
-                <article class="note-card">
-                    <div class="note-num">№ 14 / 2026</div>
-                    <h3 class="serif">Powolność jako luksus.</h3>
-                    <p>Branża rośnie, terminy się skracają, klient chce „w dwa tygodnie". My mówimy: cztery miesiące. Każdy klient, który zostaje, zostaje na lata. Esej o tym, dlaczego prędkość jest najtańszym surowcem na rynku, a uwaga — najdroższym.</p>
-                    <a href="#" class="read-more">Czytaj ↗</a>
-                </article>
-                <article class="note-card">
-                    <div class="note-num">№ 13 / 2025</div>
-                    <h3 class="serif">Pisanie przed projektowaniem.</h3>
-                    <p>Co się dzieje, gdy projekt brand identity zaczyna się od pisania, a nie od moodboardu. Notatki z 5 procesów, w których 70% pracy zostało wykonane w Google Docs, zanim ktokolwiek otworzył Figmę.</p>
-                    <a href="#" class="read-more">Czytaj ↗</a>
-                </article>
-                <article class="note-card">
-                    <div class="note-num">№ 12 / 2025</div>
-                    <h3 class="serif">Co znaczy „polski" w brand designie.</h3>
-                    <p>Rzecz o diakrytyce, o szlachcie literniczej XX wieku, o Lechu Majewskim, o tym, dlaczego Helvetica nie przekłada się na polski. I dlaczego „brand made in Poland" to wciąż etykieta zamiast gatunku.</p>
-                    <a href="#" class="read-more">Czytaj ↗</a>
-                </article>
-            </div>
-        </section>
+        
 
         <section class="contact-sec" id="kontakt" data-act="05">
             <div class="sec-num">05 — Akt V</div>
@@ -1263,33 +1012,7 @@
 
     </main>
 
-    <aside class="case-modal" id="caseModal" aria-hidden="true" aria-label="Case study">
-        <div class="case-progress" aria-hidden="true"><div class="bar" id="caseProgressBar"></div></div>
-        <button type="button" class="case-close" id="caseClose" aria-label="Zamknij case study">Zamknij</button>
-        <div class="case-hero" id="caseHero">
-            <div class="case-hero-meta">
-                <div id="caseHeroProject">Projekt</div>
-                <div class="accent" id="caseHeroLoc">Warszawa · 2026</div>
-            </div>
-        </div>
-        <h2 class="case-title" id="caseTitle">Project</h2>
-        <div class="case-body">
-            <div class="case-meta-grid">
-                <div class="case-meta-cell"><span class="label">Klient</span><span class="val" id="caseClient">—</span></div>
-                <div class="case-meta-cell"><span class="label">Rok</span><span class="val" id="caseYear">—</span></div>
-                <div class="case-meta-cell"><span class="label">Zakres</span><span class="val" id="caseScope">—</span></div>
-                <div class="case-meta-cell"><span class="label">Lokalizacja</span><span class="val" id="caseLoc">—</span></div>
-            </div>
-            <p class="case-intro" id="caseIntro">Intro…</p>
-            <div class="case-text" id="caseText"></div>
-            <div class="case-gallery" id="caseGallery"></div>
-            <div class="case-credits" id="caseCredits"></div>
-        </div>
-        <div class="case-next" id="caseNext" data-cursor="Następny">
-            <div class="label">Następny projekt</div>
-            <div class="next-title" id="caseNextTitle">—</div>
-        </div>
-    </aside>
+    
 
     <div class="konami-flash" id="konamiFlash" aria-hidden="true"></div>
 
@@ -1380,7 +1103,7 @@
                 cursorRing.style.borderColor = state === 'big' ? 'var(--accent)' : 'rgba(255,255,255,0.4)';
                 cursorText.textContent = label;
             };
-            document.querySelectorAll('a, button, .pill, .portfolio-item, .stack-card, [data-cursor]').forEach(el => {
+            document.querySelectorAll('a, button, .pill, .stack-card, [data-cursor]').forEach(el => {
                 const label = el.dataset.cursor || '';
                 el.addEventListener('mouseenter', () => setRing('big', label));
                 el.addEventListener('mouseleave', () => setRing('default'));
@@ -1396,21 +1119,6 @@
                 });
                 el.addEventListener('mouseleave', () => {
                     gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.4)' });
-                });
-            });
-
-            // Magnetic on portfolio h3 (driven by parent LI mousemove since h3 needs to move freely)
-            document.querySelectorAll('.portfolio-item').forEach(item => {
-                const h3 = item.querySelector('h3');
-                if (!h3) return;
-                item.addEventListener('mousemove', e => {
-                    const r = item.getBoundingClientRect();
-                    const x = e.clientX - (r.left + r.width / 2);
-                    const y = e.clientY - (r.top + r.height / 2);
-                    gsap.to(h3, { x: x * 0.18 + 30, y: y * 0.25, duration: 0.55, ease: 'power3.out' });
-                });
-                item.addEventListener('mouseleave', () => {
-                    gsap.to(h3, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.45)' });
                 });
             });
         }
@@ -1591,7 +1299,7 @@
             });
         });
 
-        /* ---------- STATS COUNTER ---------- */
+        /* ---------- STATS COUNTER (kept harmlessly — no [data-count-to] left in DOM) ---------- */
         document.querySelectorAll('[data-count-to]').forEach(el => {
             const target = parseInt(el.dataset.countTo, 10);
             const obj = { val: 0 };
@@ -1603,36 +1311,6 @@
                 }
             });
         });
-
-        /* ---------- HOVER IMAGE FOLLOWER (FIXED) ---------- */
-        const hoverImgCont = document.getElementById('hoverImgCont');
-        const hoverImg = document.getElementById('hoverImg');
-        if (isFinePointer) {
-            gsap.set(hoverImgCont, { xPercent: -50, yPercent: -50, scale: 0.85 });
-            const xQuick = gsap.quickTo(hoverImgCont, 'x', { duration: 0.5, ease: 'power3.out' });
-            const yQuick = gsap.quickTo(hoverImgCont, 'y', { duration: 0.5, ease: 'power3.out' });
-            const followLoop = () => {
-                xQuick(mouseX);
-                yQuick(mouseY);
-                requestAnimationFrame(followLoop);
-            };
-            followLoop();
-
-            const rotations = [-4, 2, -2, 5, -3, 3, -5];
-            document.querySelectorAll('.portfolio-item').forEach((item, i) => {
-                const rot = rotations[i % rotations.length];
-                item.addEventListener('mouseenter', () => {
-                    hoverImg.src = item.dataset.thumb;
-                    gsap.to(hoverImgCont, {
-                        opacity: 1, scale: 1, rotation: rot,
-                        duration: 0.55, ease: 'power3.out'
-                    });
-                });
-                item.addEventListener('mouseleave', () => {
-                    gsap.to(hoverImgCont, { opacity: 0, scale: 0.85, duration: 0.4 });
-                });
-            });
-        }
 
         /* ---------- CARDS STACK ---------- */
         const cards = document.querySelectorAll('.stack-card');
@@ -1935,11 +1613,6 @@
             });
         });
 
-        // Portfolio anchors: prevent default jump (no real destination yet)
-        document.querySelectorAll('.portfolio-item').forEach(a => {
-            a.addEventListener('click', e => e.preventDefault());
-        });
-
         /* (Reel counter is now driven by syncHeroFrame inside the showreel cycle) */
 
         /* ---------- SCROLL PROGRESS HAIRLINE ---------- */
@@ -1972,348 +1645,6 @@
         }
         tickClocks();
         setInterval(tickClocks, 1000);
-
-        /* ---------- CASE STUDY MODAL ---------- */
-        const projects = {
-            'cervo-maison': {
-                title: 'Studium № 014 — Manufaktura', client: 'Klient pod NDA', year: '2026',
-                location: 'Polska', scope: 'Tożsamość · Editorial · Web',
-                hero: 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=1800&q=90&auto=format&fit=crop',
-                intro: 'Biżuteria, która pamięta dłonie. Trzy pokolenia rzemiosła w jednym zdaniu.',
-                text: [
-                    'Manufaktura biżuterii z trzeciego pokolenia. Klient szukał języka, który połączy atelierowe rzemiosło z codziennością — bez popadania w nostalgię ani w sterylność galerii.',
-                    'Zaczęliśmy od dwóch dni w pracowni. Słuchaliśmy, jak ojciec rozmawia z synem o szczególe szlifu, jak klientka pyta o etymologię nazwy. Z tego wyjęliśmy zdanie, na którym oparła się cała marka: <em style="color:var(--accent);font-style:italic;">„Biżuteria, która pamięta dłonie."</em>',
-                    'Słowo „pamięta" stało się fundamentem manifestu, struktury content-strategy i tonu wszystkich materiałów. System wizualny: typografia Fraunces z polską diakrytyką, paleta sage / cream / oxblood, fotografia w świetle dnia bez retuszu. Web jednoekranowy z manifestem, e-commerce w drugiej warstwie.',
-                    'Sześć miesięcy po launchu marka odnotowała znaczący wzrost średniej wartości koszyka. Najważniejsze: właściciele odzyskali poczucie, że marka mówi ich głosem.'
-                ],
-                gallery: [
-                    'https://images.unsplash.com/photo-1542838132-92c53300491e?w=1600&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1596944946297-f0d6df1116a8?w=1200&q=85&auto=format&fit=crop'
-                ],
-                credits: [
-                    ['Strategia narracyjna', 'studio'],
-                    ['Identyfikacja wizualna', 'studio'],
-                    ['Fotografia', 'partner zewnętrzny'],
-                    ['Editorial / Copy', 'studio'],
-                    ['Web', 'studio'],
-                    ['Klient', 'pod NDA']
-                ]
-            },
-            'atelier-norhe': {
-                title: 'Studium № 022 — Pracownia', client: 'Klient pod NDA', year: '2025',
-                location: 'Europa Północna', scope: 'Manifest · Web · Editorial',
-                hero: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1800&q=90&auto=format&fit=crop',
-                intro: 'Pracownia ceramiki, która nie chciała być modna. Tylko trwała.',
-                text: [
-                    'To była mała pracownia ceramiki użytkowej, prowadzony przez parę projektantek w pierwszych pięciu latach działalności. Brief brzmiał: „chcemy stronę, której nie będziemy musieli zmieniać za dwa lata."',
-                    'Odpowiedź zaczęła się od strategii: lista rzeczy, których strona NIE robi. Nie krzyczy. Nie pokazuje wszystkiego. Nie sprzedaje agresywnie. To pozwoliło zaprojektować strukturę powolną, niemal redaktorską — z manifestem na górze i katalogiem dostępnym dopiero po świadomej decyzji.',
-                    'Web jest binarny: czerń-krem, jedna kolumna, typografia EB Garamond, brak animacji ozdobnych. Pierwsze, co użytkownik widzi, to esej o glinie. Dopiero po przewinięciu — produkty.',
-                    'Konwersja zwolniła. Średni czas na stronie wzrósł 6×. Klient wraca dwa razy częściej.'
-                ],
-                gallery: [
-                    'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1610701596295-f0d6df1116a8?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=1200&q=85&auto=format&fit=crop'
-                ],
-                credits: [
-                    ['Strategia', 'studio'],
-                    ['Manifest / Esej', 'studio'],
-                    ['Web Design', 'studio'],
-                    ['Web Development', 'studio + partner'],
-                    ['Klient', 'pod NDA']
-                ]
-            },
-            'polifonia': {
-                title: 'Studium № 041 — Festiwal', client: 'Klient pod NDA', year: '2025',
-                location: 'Polska', scope: 'Reżyseria · Film · Tożsamość',
-                hero: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1800&q=90&auto=format&fit=crop',
-                intro: 'Festiwal muzyki kameralnej, który chciał porozmawiać z publicznością koncertowych klubów.',
-                text: [
-                    'Festiwal od dwudziestu lat była festiwalem kameralnej muzyki współczesnej dla wąskiej publiczności melomanów. W 2025 dyrekcja postanowiła otworzyć go na widzów, którzy nigdy nie byli w filharmonii — bez utraty rdzenia.',
-                    'Nasze zadanie: wyreżyserować trzy 90-sekundowe filmy, które są zapowiedzią festiwalu i jednocześnie samodzielnymi miniaturami. Bez muzyki oryginalnej z koncertów. Bez voice-overu.',
-                    'Każdy film jest portretem jednego instrumentu i jednej wykonawczyni — w jej domu, w jej tempie, w ciszy między ćwiczeniami. To, co publiczność słyszy w foyer, to kontekst, nie produkt.',
-                    'Filmy zostały zwiększyły udział publiczności poniżej 30 roku życia o ponad 40%.'
-                ],
-                gallery: [
-                    'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1600&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1519124456-12e76b91e0d6?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1485579149621-3123dd979885?w=1200&q=85&auto=format&fit=crop'
-                ],
-                credits: [
-                    ['Reżyseria', 'studio'],
-                    ['Operator', 'partner zewnętrzny'],
-                    ['Montaż', 'partner zewnętrzny'],
-                    ['Produkcja', 'studio'],
-                    ['Klient', 'pod NDA']
-                ]
-            },
-            'salt-marrow': {
-                title: 'Studium № 053 — Bistro', client: 'Klient pod NDA', year: '2024',
-                location: 'Polska, wybrzeże', scope: 'Strategia · Branding · Menu',
-                hero: 'https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?w=1800&q=90&auto=format&fit=crop',
-                intro: 'Bistro, które gotuje z resztek. Nie z biedy — z postawy.',
-                text: [
-                    'Projekt szefa kuchni — to projekt szefa kuchni, który po dwunastu latach w Michelin-starred kuchniach wrócił do Polski z ideą zero-waste bistro. Brief nie powstał — była tylko rozmowa nad herbatą.',
-                    'Z tej rozmowy wyłonił się ton: marka nie przeprasza ani nie chwali się. Mówi po prostu, co serwuje i czego nie. Nazwa odsyła do dwóch składników, które kucharze tradycyjnie wyrzucają.',
-                    'Identyfikacja: jeden krój, jedna paleta (off-white + ochra), karta menu drukowana co dwa tygodnie na arkuszu offsetu, każda strona inna. Nawet skrawki papieru po cięciu trafiają do podstawek.',
-                    'Bistro otworzyło się z pełną rezerwacją na trzy tygodnie naprzód, recenzje w branżowej prasie międzynarodowej w pierwszym kwartale.'
-                ],
-                gallery: [
-                    'https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?w=1600&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1481833761820-0509d3217039?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1502301197179-65228ab57f78?w=1200&q=85&auto=format&fit=crop'
-                ],
-                credits: [
-                    ['Strategia', 'studio'],
-                    ['Branding', 'studio'],
-                    ['Menu System', 'studio + drukarnia partnerska'],
-                    ['Fotografia', 'partner zewnętrzny'],
-                    ['Klient', 'pod NDA']
-                ]
-            },
-            'hotel-lume': {
-                title: 'Studium № 067 — Hotel', client: 'Klient pod NDA', year: '2024',
-                location: 'Polska, wybrzeże', scope: 'Tożsamość · Kampania · Wnętrze (consult)',
-                hero: 'https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?w=1800&q=90&auto=format&fit=crop',
-                intro: 'Butikowy hotel w Sopocie, który chciał istnieć poza sezonem.',
-                text: [
-                    'Dwudziestoczteropokojowy hotel w starej kamienicy. Inwestor — wykształcony za granicą filolog, który po latach w hotelarstwie kupił kamienicę przy plaży i nie chciał robić „kolejnego butiku z białymi ścianami".',
-                    'Zaczęliśmy od strategii sezonowości. Większość hoteli w tej kategorii żyje sześć miesięcy. Miał działać dwanaście — co oznaczało, że marka nie może być zbudowana wokół plaży.',
-                    'Tożsamość: nazwa odsyła do światła prowadzi do języka, który mówi o porach dnia, nie o porach roku. Identyfikacja używa rzemieślniczej typografii serifowej, palety burnt umber + sea-foam, fotografii zimowej jako głównej.',
-                    'W pierwszą zimę po launchu obłożenie listopadowe wyniosło 73% (rok wcześniej: 38%). Co istotniejsze — średnia długość pobytu wzrosła o ponad pół nocy.'
-                ],
-                gallery: [
-                    'https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?w=1600&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1551776235-dde6d482980b?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=85&auto=format&fit=crop'
-                ],
-                credits: [
-                    ['Strategia', 'studio'],
-                    ['Tożsamość', 'studio'],
-                    ['Kampania', 'studio'],
-                    ['Konsultacje wnętrza', 'studio + pracownia partnerska'],
-                    ['Klient', 'pod NDA']
-                ]
-            },
-            'refugium-press': {
-                title: 'Studium № 081 — Wydawnictwo', client: 'Klient pod NDA', year: '2023',
-                location: 'Półwysep Iberyjski', scope: 'Editorial · System wydawniczy',
-                hero: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1800&q=90&auto=format&fit=crop',
-                intro: 'Niezależne wydawnictwo, które publikuje cztery tytuły rocznie. I pracuje nad każdym dwa lata.',
-                text: [
-                    'Wydawnictwo zostało założone w drugiej połowie poprzedniej dekady. Wydaje literaturę środkowoeuropejską w portugalskim tłumaczeniu — i odwrotnie. Pracuje powoli.',
-                    'Przyszli z prośbą o przeprojektowanie systemu okładkowego. Mieli wszystko: pisarzy, tłumaczy, drukarnię, papier z Saksonii. Brakowało im „jednego rytmu, który byłby widoczny przez sześć tytułów wydanych w odstępie pięciu lat".',
-                    'Zaprojektowaliśmy system oparty na typografii i konsekwentnym zarządzaniu polem typu na froncie. Każda okładka ma identyczne marginesy, identyczną hierarchię, identyczne miejsce na zdjęcie. Treść — autora, tytuł, ilustrację — daje życie. System schodzi w cień.',
-                    'Trzy lata po wdrożeniu wydawnictwo jest rozpoznawalna na półkach księgarskich z odległości pięciu metrów — bez logo na grzbiecie.'
-                ],
-                gallery: [
-                    'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1600&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1532153975070-2e9ab71f1b14?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200&q=85&auto=format&fit=crop'
-                ],
-                credits: [
-                    ['Editorial system', 'studio'],
-                    ['Typografia', 'studio'],
-                    ['Druk', 'drukarnie partnerskie'],
-                    ['Klient', 'pod NDA']
-                ]
-            },
-            'korzen-sol': {
-                title: 'Studium № 092 — Manufaktura przetworów', client: 'Klient pod NDA', year: '2022',
-                location: 'Polska, wschód', scope: 'Branding · Packaging · Web',
-                hero: 'https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=1800&q=90&auto=format&fit=crop',
-                intro: 'Manufaktura przetworów, która sprzedaje przeszłość bez sentymentu.',
-                text: [
-                    'Manufaktura robi pikle, kiszonki i miody pitne na podstawie regionalnych receptur z lat 50-tych. Ich problem: rynek lokalnych manufaktur z tamtej dekady to dwie estetyki — „rustykalna" (rafia, sztuczne pieczęcie) lub „ironicznie czysta" (Helvetica, biało-czarne minimalizmy).',
-                    'Klient nie chciał ani jednego, ani drugiego. Chciał, żeby produkt mówił prawdę: że to faktycznie jest stara receptura, ale wykonana dziś, świadomie, dla dzisiejszego stołu.',
-                    'Zaprojektowaliśmy system etykiet, który łączy litery wzorowane na drukowanych pocztówkach regionu z lat 50-tych z czystym układem informacyjnym. Każdy słoik ma na etykiecie wskazanie pokolenia, od którego receptura pochodzi — wraz z rokiem.',
-                    'W kolejnym roku marka weszła na półki sklepów spożywczych w wybranych miastach Europy Środkowej.'
-                ],
-                gallery: [
-                    'https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=1600&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1593623566080-7da10d3c5fab?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1516824711718-9d8e0d8cb7e0?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1544025162-d76694265947?w=1200&q=85&auto=format&fit=crop',
-                    'https://images.unsplash.com/photo-1542838332-7d05ac9f7dd5?w=1200&q=85&auto=format&fit=crop'
-                ],
-                credits: [
-                    ['Strategia', 'studio'],
-                    ['Branding', 'studio'],
-                    ['Packaging', 'studio'],
-                    ['Web', 'studio + partner'],
-                    ['Klient', 'pod NDA']
-                ]
-            }
-        };
-        const projectKeys = Object.keys(projects);
-
-        const modal = document.getElementById('caseModal');
-        const els = {
-            hero: document.getElementById('caseHero'),
-            heroProject: document.getElementById('caseHeroProject'),
-            heroLoc: document.getElementById('caseHeroLoc'),
-            title: document.getElementById('caseTitle'),
-            client: document.getElementById('caseClient'),
-            year: document.getElementById('caseYear'),
-            scope: document.getElementById('caseScope'),
-            loc: document.getElementById('caseLoc'),
-            intro: document.getElementById('caseIntro'),
-            text: document.getElementById('caseText'),
-            gallery: document.getElementById('caseGallery'),
-            credits: document.getElementById('caseCredits'),
-            nextTitle: document.getElementById('caseNextTitle'),
-            next: document.getElementById('caseNext'),
-            close: document.getElementById('caseClose')
-        };
-        function openCase(id) {
-            const p = projects[id]; if (!p) return;
-            els.hero.style.backgroundImage = `url('${p.hero}')`;
-            els.heroProject.textContent = p.title;
-            els.heroLoc.textContent = `${p.location} · ${p.year}`;
-            els.title.textContent = p.title;
-            els.client.innerHTML = p.client;
-            els.year.textContent = p.year;
-            els.scope.textContent = p.scope;
-            els.loc.textContent = p.location;
-            els.intro.textContent = p.intro;
-            els.text.innerHTML = p.text.map(t => `<p>${t}</p>`).join('');
-            els.gallery.innerHTML = p.gallery.map(g => `<img src="${g}" alt="${p.title} — studyjny kadr" loading="lazy">`).join('');
-            els.credits.innerHTML = p.credits.map(c => `<div class="case-credit"><span class="role">${c[0]}</span><span class="name">${c[1]}</span></div>`).join('');
-            const nextKey = projectKeys[(projectKeys.indexOf(id) + 1) % projectKeys.length];
-            els.next.dataset.project = nextKey;
-            els.nextTitle.textContent = projects[nextKey].title;
-
-            modal.scrollTop = 0;
-            modal.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
-            if (lenis) lenis.stop();
-            document.documentElement.dataset.modal = 'open';
-
-            // Stagger reveal of body sections
-            gsap.fromTo([els.title, '.case-meta-grid', els.intro, els.text, els.gallery, els.credits, els.next],
-                { y: 40, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.8, stagger: 0.07, ease: 'power3.out', delay: 0.5 }
-            );
-        }
-        function closeCase() {
-            modal.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = '';
-            if (lenis) lenis.start();
-            delete document.documentElement.dataset.modal;
-        }
-        document.querySelectorAll('.portfolio-item[data-project]').forEach(item => {
-            item.addEventListener('click', e => {
-                e.preventDefault();
-                openCase(item.dataset.project);
-            });
-        });
-        els.close.addEventListener('click', closeCase);
-        els.next.addEventListener('click', () => {
-            const id = els.next.dataset.project;
-            if (id) openCase(id);
-        });
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeCase();
-        });
-
-        /* ---------- MARQUEE PARTICLE FIELD ---------- */
-        const particleField = document.getElementById('marqueeParticles');
-        if (particleField && !reduceMotion) {
-            const N = 36;
-            const frag = document.createDocumentFragment();
-            for (let i = 0; i < N; i++) {
-                const dot = document.createElement('span');
-                dot.style.left = (Math.random() * 100) + '%';
-                dot.style.top = (Math.random() * 100) + '%';
-                dot.style.animationDelay = (Math.random() * 9) + 's';
-                dot.style.animationDuration = (7 + Math.random() * 6) + 's';
-                frag.appendChild(dot);
-            }
-            particleField.appendChild(frag);
-        }
-
-        /* ---------- QUOTE ROTATION ---------- */
-        const quoteContainer = document.getElementById('quoteRotation');
-        if (quoteContainer && !reduceMotion) {
-            const quotes = quoteContainer.querySelectorAll('blockquote');
-            let qIdx = 0;
-            setInterval(() => {
-                quotes[qIdx].classList.remove('active');
-                qIdx = (qIdx + 1) % quotes.length;
-                quotes[qIdx].classList.add('active');
-            }, 7000);
-        }
-
-        /* ---------- FAQ ACCORDION ---------- */
-        document.querySelectorAll('.faq-item').forEach(item => {
-            const btn = item.querySelector('.faq-question');
-            btn.addEventListener('click', () => {
-                const open = item.getAttribute('aria-expanded') === 'true';
-                item.setAttribute('aria-expanded', open ? 'false' : 'true');
-            });
-        });
-
-        /* ---------- MOBILE MENU ---------- */
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (menuToggle && mobileMenu) {
-            menuToggle.addEventListener('click', () => {
-                const open = menuToggle.getAttribute('aria-expanded') === 'true';
-                menuToggle.setAttribute('aria-expanded', open ? 'false' : 'true');
-                mobileMenu.setAttribute('aria-hidden', open ? 'true' : 'false');
-                document.body.style.overflow = open ? '' : 'hidden';
-                if (lenis) { open ? lenis.start() : lenis.stop(); }
-            });
-            mobileMenu.querySelectorAll('a[href^="#"]').forEach(a => {
-                a.addEventListener('click', e => {
-                    e.preventDefault();
-                    const href = a.getAttribute('href');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    mobileMenu.setAttribute('aria-hidden', 'true');
-                    document.body.style.overflow = '';
-                    if (lenis) { lenis.start(); setTimeout(() => smoothScrollTo(href), 80); }
-                });
-            });
-        }
-
-        /* ---------- MODAL READING PROGRESS ---------- */
-        const caseProgressBar = document.getElementById('caseProgressBar');
-        if (modal && caseProgressBar) {
-            modal.addEventListener('scroll', () => {
-                const max = modal.scrollHeight - modal.clientHeight;
-                const p = max > 0 ? modal.scrollTop / max : 0;
-                caseProgressBar.style.width = (p * 100) + '%';
-            });
-        }
-
-        /* ---------- OFFICE LIVE TIMES ---------- */
-        function fmtZ(tz) {
-            try { return new Intl.DateTimeFormat('pl-PL', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: tz }).format(new Date()); }
-            catch (e) { return '—:—'; }
-        }
-        function tickOffices() {
-            const w = document.getElementById('officeTimeWAW');
-            const l = document.getElementById('officeTimeLIS');
-            const m = document.getElementById('menuClock');
-            if (w) w.textContent = `Lokalnie · ${fmtZ('Europe/Warsaw')} CET`;
-            if (l) l.textContent = `Lokalnie · ${fmtZ('Europe/Lisbon')} WET`;
-            if (m) m.textContent = fmtZ('Europe/Warsaw');
-        }
-        tickOffices();
-        setInterval(tickOffices, 30000);
 
         /* ---------- KONAMI: ↑↑↓↓←→←→BA = "Director's Cut" mode ---------- */
         const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
